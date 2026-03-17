@@ -435,6 +435,10 @@ a:hover { color: var(--black); }
   font-style: italic;
 }
 
+.doc-table.no-italic-table .template-row td {
+  font-style: normal;
+}
+
 /* --- Status Badge --- */
 .badge {
   display: inline-flex;
