@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>サイトマップ -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>サイトマップ - ポートフォリオサイト</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
 </head>
+
 <body>
   <button class="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
         <div class="doc-category">DOCUMENT 04</div>
         <h1 class="doc-title">サイトマップ</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-XX-XX</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：（氏名を入力）</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 更新日: 2026-03-17</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者: 厚海　洋子</span>
           <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
         </div>
       </header>
 
       <div class="doc-body">
-
         <div class="external-link-box">
           <div class="external-link-box-title">
             <span class="material-symbols-outlined">link</span>
-            詳細ドキュメント（Google スプレッドシート）
+            参考ドキュメントリンク
           </div>
           <div class="external-link-box-desc">
-            このページは概要のみを記載しています。詳細なサイトマップは以下のリンクからご確認ください。
+            サイト構造や画面構成の整理に利用した外部資料がある場合は、ここから参照できます。
           </div>
           <div class="external-link-input">
             <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-04">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-04').value || 'https://docs.google.com', '_blank'); return false;">
+            <a href="#" class="link-btn"
+              onclick="window.open(document.getElementById('external-link-04').value || 'https://docs.google.com', '_blank'); return false;">
               <span class="material-symbols-outlined">open_in_new</span>
               開く
             </a>
@@ -58,72 +61,309 @@
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> サイト構造図</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">Webサイト構造図 <span class="required">必須</span></div>
-          <div class="fill-hint">トップページから下層ページまでの階層構造をツリー形式で記載</div>
-          <div class="fill-content">
-            <p>（ツリー形式のサイト構造図を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">Webサイト構造図</div>
+            <div class="fill-hint">トップページから各公開ページへの遷移構造を整理したものです。</div>
+            <div class="fill-content">
+              <p>
+                トップページ<br>
+                ├── ワークショップ紹介ページ<br>
+                │　├── 体験の流れ<br>
+                │　├── 作れるもの<br>
+                │　├── 所要時間・料金<br>
+                │　└── 参加方法<br>
+                ├── 予約ページ<br>
+                │　├── 開催日程<br>
+                │　├── 予約フォーム<br>
+                │　├── 注意事項<br>
+                │　└── キャンセルポリシー<br>
+                ├── 香り結びのこだわりページ<br>
+                │　├── コンセプト<br>
+                │　├── 香りへのこだわり<br>
+                │　├── 浅草という立地の魅力<br>
+                │　└── ものづくり体験としての価値<br>
+                ├── アクセスページ<br>
+                │　├── 店舗情報<br>
+                │　├── 地図<br>
+                │　├── 最寄り駅からのアクセス<br>
+                │　└── 営業時間<br>
+                ├── よくある質問ページ<br>
+                │　├── 参加について<br>
+                │　├── 持ち物・対象年齢<br>
+                │　├── 言語対応<br>
+                │　└── 予約変更・キャンセル<br>
+                └── お知らせページ<br>
+                　├── 開催情報<br>
+                　├── 季節限定ワークショップ<br>
+                　├── キャンペーン情報<br>
+                　└── 営業時間変更・イベント告知
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">Webアプリケーション構造図 <span class="required">必須</span></div>
-          <div class="fill-hint">Spring Bootアプリケーションの画面構造をツリー形式で記載</div>
-          <div class="fill-content">
-            <p>（ツリー形式のアプリ構造図を記載）</p>
-          </div>
-        </div>
 
+          <div class="fill-block">
+            <div class="fill-label">Webアプリケーション構造図</div>
+            <div class="fill-hint">管理画面におけるログイン前後の画面遷移と機能構成です。</div>
+            <div class="fill-content">
+              <p>
+                ログイン前<br>
+                ├── ログイン画面<br>
+                └── パスワード再設定画面<br><br>
+
+                ログイン後<br>
+                ├── ダッシュボード<br>
+                ├── 予約管理<br>
+                │　├── 予約一覧<br>
+                │　├── 詳細表示<br>
+                │　├── 新規登録<br>
+                │　├── 編集<br>
+                │　├── 削除<br>
+                │　├── 検索<br>
+                │　└── キャンセル・変更対応<br>
+                ├── 開催スケジュール管理<br>
+                │　├── 一覧<br>
+                │　├── 検索<br>
+                │　├── 新規登録<br>
+                │　├── 編集<br>
+                │　└── 削除<br>
+                ├── 顧客管理<br>
+                │　├── 一覧<br>
+                │　├── 検索<br>
+                │　├── 詳細表示<br>
+                │　├── 新規登録<br>
+                │　├── 編集<br>
+                │　└── 削除<br>
+                ├── お知らせ管理<br>
+                │　├── 一覧<br>
+                │　├── 新規登録<br>
+                │　├── 編集<br>
+                │　└── 削除<br>
+                ├── FAQ・固定ページ管理<br>
+                │　├── FAQ管理<br>
+                │　├── トップページ編集<br>
+                │　├── こだわりページ編集<br>
+                │　├── アクセスページ編集<br>
+                │　└── 多言語文言管理<br>
+                ├── 自動返信メール管理<br>
+                └── アカウント設定<br>
+                　　├── パスワード変更<br>
+                　　└── ログアウト
+              </p>
+            </div>
+          </div>
         </section>
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> ページ一覧</h2>
 
           <div class="fill-block">
-            <div class="fill-label">Webサイト ページ一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>No.</th><th>ページ名</th><th>ページの目的</th><th>主要コンテンツ</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>1</td><td>（トップページ）</td><td>（サービスの魅力を伝え、各ページへ誘導）</td><td>（ヒーロー、サービス紹介、CTA等）</td></tr>
-          <tr class="template-row"><td>2</td><td>（ページ名）</td><td>（目的を記載）</td><td>（コンテンツを記載）</td></tr>
-          <tr class="template-row"><td>3</td><td>（ページ名）</td><td>（目的を記載）</td><td>（コンテンツを記載）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-label">Webサイト ページ一覧</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>ページ名</th>
+                  <th>ページの目的</th>
+                  <th>主要コンテンツ</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>トップページ</td>
+                  <td>香り結び - Kaori Musubi - の魅力を第一印象で伝え、各ページや予約ページへスムーズに誘導する。</td>
+                  <td>キャッチコピー、メインビジュアル、サービス概要、体験の魅力、利用シーン紹介、予約導線、お知らせへのリンク</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>ワークショップ紹介ページ</td>
+                  <td>ワークショップで体験できる内容を具体的に伝え、参加意欲を高める。</td>
+                  <td>体験の流れ、作れるもの、香り選びの楽しさ、所要時間、料金、完成イメージ写真、参加方法</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>予約ページ</td>
+                  <td>ユーザーが迷わず予約まで進めるようにし、離脱を防ぐ。</td>
+                  <td>開催日程、予約ボタンまたは予約フォーム、料金、注意事項、キャンセルポリシー、予約手順の案内</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>香り結びのこだわりページ</td>
+                  <td>サービスの世界観や他サービスとの違いを伝え、ブランド価値を高める。</td>
+                  <td>コンセプト、香りへのこだわり、日本らしい感性、浅草という立地の魅力、ものづくり体験としての価値</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>アクセスページ</td>
+                  <td>店舗までの行き方を分かりやすく示し、来店への不安を減らす。</td>
+                  <td>住所、地図、最寄り駅からのアクセス、徒歩時間、店舗外観写真、営業時間、周辺案内</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>よくある質問ページ</td>
+                  <td>参加前の疑問や不安を解消し、安心して予約できるようにする。</td>
+                  <td>所要時間、対象年齢、1人参加の可否、持ち物、言語対応、予約変更、キャンセルに関するQ&amp;A</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>お知らせページ</td>
+                  <td>最新情報を発信し、再訪問や継続的な集客につなげる。</td>
+                  <td>開催情報、季節限定ワークショップ、キャンペーン情報、営業時間変更、イベント告知</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
 
           <div class="fill-block">
-            <div class="fill-label">Webアプリ 画面一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>No.</th><th>画面名</th><th>画面の目的</th><th>主要機能</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>1</td><td>（ログイン画面）</td><td>（ユーザー認証）</td><td>（メールアドレス/パスワード入力）</td></tr>
-          <tr class="template-row"><td>2</td><td>（一覧画面）</td><td>（データの一覧表示）</td><td>（検索・ソート・ページネーション）</td></tr>
-          <tr class="template-row"><td>3</td><td>（登録画面）</td><td>（新規データ登録）</td><td>（入力フォーム・バリデーション）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-label">Webアプリ 画面一覧</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>画面名</th>
+                  <th>画面の目的</th>
+                  <th>主要機能</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>ログイン画面</td>
+                  <td>管理者のみがシステムを利用できるようにする。</td>
+                  <td>ID・パスワード入力、ログイン認証、エラーメッセージ表示</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>パスワード再設定画面</td>
+                  <td>ログインできない管理者がパスワードを再設定できるようにする。</td>
+                  <td>メールアドレス入力、再設定送信、再設定案内表示</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>ダッシュボード画面</td>
+                  <td>予約状況や運営状況をひと目で確認できるようにする。</td>
+                  <td>本日の予約件数表示、最新情報表示、各管理画面への導線</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>予約管理画面</td>
+                  <td>予約情報を管理し、確認・更新・対応を行えるようにする。</td>
+                  <td>一覧表示、詳細表示、新規登録、編集、削除、検索、キャンセル・変更対応</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>開催スケジュール管理画面</td>
+                  <td>ワークショップの開催日程や受付状況を管理できるようにする。</td>
+                  <td>一覧表示、検索、新規登録、編集、削除</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>顧客管理画面</td>
+                  <td>予約者情報を管理し、来店確認や連絡対応をしやすくする。</td>
+                  <td>一覧表示、検索、詳細表示、新規登録、編集、削除</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>お知らせ管理画面</td>
+                  <td>公開サイトのお知らせページを更新できるようにする。</td>
+                  <td>一覧表示、新規登録、編集、削除</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>FAQ・固定ページ管理画面</td>
+                  <td>FAQや固定ページの内容を更新し、公開サイトの情報を最新に保つ。</td>
+                  <td>FAQ管理、トップページ編集、こだわりページ編集、アクセスページ編集、多言語文言管理</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>自動返信メール管理画面</td>
+                  <td>予約完了時の案内メール内容を確認・管理できるようにする。</td>
+                  <td>自動返信メール設定、送信内容確認、案内文管理</td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>アカウント設定画面</td>
+                  <td>管理者アカウント情報を管理し、安全に利用できるようにする。</td>
+                  <td>パスワード変更、ログアウト</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> ユーザーフロー</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">メインシナリオ <span class="required">必須</span></div>
-          <div class="fill-hint">ペルソナがサイトに訪問してから目的を達成するまでの動線（メインの行動パターン）</div>
-          <div class="fill-content">
-            <p>（メインのユーザーフローを記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">メインシナリオ</div>
+            <div class="fill-hint">認知から予約完了、来店までの代表的な行動フローです。</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>ステップ</th>
+                  <th>行動</th>
+                  <th>表示ページ</th>
+                  <th>次のアクション</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1</td>
+                  <td>InstagramやGoogle検索で浅草の体験スポットを探し、「香り結び - Kaori Musubi -」を見つけて公式サイトに訪問する。</td>
+                  <td>トップページ</td>
+                  <td>サービス概要と体験の魅力を確認し、ワークショップ紹介ページへ進む</td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>香りづくり体験の内容が自分に合っているか確認する。</td>
+                  <td>ワークショップ紹介ページ</td>
+                  <td>体験の流れ、作れるもの、所要時間、料金を確認し、予約ページへ進む</td>
+                </tr>
+                <tr>
+                  <td>3</td>
+                  <td>観光の合間に参加できるかを判断するため、開催日程や予約方法を確認する。</td>
+                  <td>予約ページ</td>
+                  <td>希望日時、料金、注意事項、キャンセルポリシーを確認し、不安があればFAQページへ進む</td>
+                </tr>
+                <tr>
+                  <td>4</td>
+                  <td>参加前の不安を解消するため、気になる点を確認する。</td>
+                  <td>よくある質問ページ</td>
+                  <td>所要時間、1人参加の可否、持ち物、言語対応、予約変更・キャンセルについて確認し、予約ページへ戻る</td>
+                </tr>
+                <tr>
+                  <td>5</td>
+                  <td>店舗の場所と移動しやすさを確認し、当日の行動をイメージする。</td>
+                  <td>アクセスページ</td>
+                  <td>住所、地図、最寄り駅からのアクセス、営業時間を確認し、予約ページへ戻る</td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>ブランドの雰囲気や浅草らしさ、自分だけの香りを作る特別感を確認し、体験したい気持ちを高める。</td>
+                  <td>香り結びのこだわりページ</td>
+                  <td>コンセプトや香りへのこだわりを確認し、予約ページへ進む</td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>内容・所要時間・料金・場所に納得し、スマホで予約を完了する。</td>
+                  <td>予約ページ</td>
+                  <td>予約フォームを入力して送信し、予約完了後の案内を確認する</td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>予約後、当日の最新情報がないかを確認する。</td>
+                  <td>お知らせページ</td>
+                  <td>開催情報や営業時間変更がないことを確認し、当日来店する</td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>予約日時に店舗を訪れ、自分だけの香りづくり体験を楽しむ。</td>
+                  <td>店舗での体験利用</td>
+                  <td>体験後、完成した香りを持ち帰り、SNSやLINEで共有する</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">サブシナリオ <span class="optional">任意</span></div>
-          <div class="fill-hint">その他の行動パターン（1〜2パターン）</div>
-          <div class="fill-content">
-            <p>（サブシナリオを記載）</p>
-          </div>
-        </div>
 
         </section>
 
@@ -131,28 +371,380 @@
           <h2 class="section-title"><span class="section-icon">4</span> URL設計</h2>
 
           <div class="fill-block">
-            <div class="fill-label">URL一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>URL</th><th>HTTPメソッド</th><th>画面/機能</th><th>説明</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>/</td><td>GET</td><td>トップページ</td><td>Webサイトのトップ</td></tr>
-          <tr class="template-row"><td>/about</td><td>GET</td><td>概要ページ</td><td>サービスの概要</td></tr>
-          <tr class="template-row"><td>/app/login</td><td>GET</td><td>ログイン画面</td><td>ログインフォーム表示</td></tr>
-          <tr class="template-row"><td>/app/login</td><td>POST</td><td>ログイン処理</td><td>認証処理</td></tr>
-          <tr class="template-row"><td>/app/items</td><td>GET</td><td>一覧画面</td><td>データ一覧表示</td></tr>
-          <tr class="template-row"><td>/app/items/new</td><td>GET</td><td>新規登録画面</td><td>登録フォーム表示</td></tr>
-          <tr class="template-row"><td>/app/items</td><td>POST</td><td>新規登録処理</td><td>データ保存</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
-
+            <div class="fill-label">URL一覧</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>URL</th>
+                  <th>HTTPメソッド</th>
+                  <th>画面 / 機能</th>
+                  <th>説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>/</td>
+                  <td>GET</td>
+                  <td>トップページ</td>
+                  <td>香り結び - Kaori Musubi - のトップページを表示する</td>
+                </tr>
+                <tr>
+                  <td>/workshops</td>
+                  <td>GET</td>
+                  <td>ワークショップ紹介ページ</td>
+                  <td>体験の流れ、作れるもの、所要時間、料金、参加方法を表示する</td>
+                </tr>
+                <tr>
+                  <td>/reservations/new</td>
+                  <td>GET</td>
+                  <td>予約ページ</td>
+                  <td>開催日程、料金、注意事項、キャンセルポリシー、予約フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/reservations</td>
+                  <td>POST</td>
+                  <td>予約登録機能</td>
+                  <td>予約情報を送信し、新規予約を登録する</td>
+                </tr>
+                <tr>
+                  <td>/concept</td>
+                  <td>GET</td>
+                  <td>香り結びのこだわりページ</td>
+                  <td>コンセプト、香りへのこだわり、浅草らしさ、体験価値を表示する</td>
+                </tr>
+                <tr>
+                  <td>/access</td>
+                  <td>GET</td>
+                  <td>アクセスページ</td>
+                  <td>住所、地図、最寄り駅からのアクセス、営業時間を表示する</td>
+                </tr>
+                <tr>
+                  <td>/faq</td>
+                  <td>GET</td>
+                  <td>よくある質問ページ</td>
+                  <td>所要時間、対象年齢、持ち物、言語対応、予約変更・キャンセルに関するQ&amp;Aを表示する</td>
+                </tr>
+                <tr>
+                  <td>/news</td>
+                  <td>GET</td>
+                  <td>お知らせページ</td>
+                  <td>開催情報、キャンペーン情報、営業時間変更などのお知らせ一覧を表示する</td>
+                </tr>
+                <tr>
+                  <td>/news/{id}</td>
+                  <td>GET</td>
+                  <td>お知らせ詳細表示</td>
+                  <td>選択したお知らせの詳細を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/login</td>
+                  <td>GET</td>
+                  <td>ログイン画面</td>
+                  <td>管理アプリのログインフォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/login</td>
+                  <td>POST</td>
+                  <td>ログイン機能</td>
+                  <td>管理者認証を行い、管理画面へ遷移する</td>
+                </tr>
+                <tr>
+                  <td>/admin/password-reset</td>
+                  <td>GET</td>
+                  <td>パスワード再設定画面</td>
+                  <td>パスワード再設定フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/password-reset</td>
+                  <td>POST</td>
+                  <td>パスワード再設定機能</td>
+                  <td>再設定依頼を受け付ける</td>
+                </tr>
+                <tr>
+                  <td>/admin</td>
+                  <td>GET</td>
+                  <td>ダッシュボード画面</td>
+                  <td>本日の予約状況や主要機能への導線を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations</td>
+                  <td>GET</td>
+                  <td>予約管理画面</td>
+                  <td>予約一覧を表示し、検索や確認を行う</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}</td>
+                  <td>GET</td>
+                  <td>予約詳細表示</td>
+                  <td>個別の予約内容を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations</td>
+                  <td>POST</td>
+                  <td>予約新規登録</td>
+                  <td>管理側で予約を新規登録する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}/edit</td>
+                  <td>GET</td>
+                  <td>予約編集画面</td>
+                  <td>予約編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}</td>
+                  <td>POST</td>
+                  <td>予約更新</td>
+                  <td>予約内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}/delete</td>
+                  <td>POST</td>
+                  <td>予約削除</td>
+                  <td>予約を削除する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}/cancel</td>
+                  <td>POST</td>
+                  <td>キャンセル対応</td>
+                  <td>予約をキャンセル状態に更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/reservations/{id}/change</td>
+                  <td>POST</td>
+                  <td>変更対応</td>
+                  <td>日時変更など予約内容の変更を反映する</td>
+                </tr>
+                <tr>
+                  <td>/admin/schedules</td>
+                  <td>GET</td>
+                  <td>開催スケジュール管理画面</td>
+                  <td>開催日程・時間・定員・受付状況の一覧を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/schedules</td>
+                  <td>POST</td>
+                  <td>開催スケジュール新規登録</td>
+                  <td>新しい開催枠を登録する</td>
+                </tr>
+                <tr>
+                  <td>/admin/schedules/{id}/edit</td>
+                  <td>GET</td>
+                  <td>開催スケジュール編集画面</td>
+                  <td>開催枠の編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/schedules/{id}</td>
+                  <td>POST</td>
+                  <td>開催スケジュール更新</td>
+                  <td>開催枠の内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/schedules/{id}/delete</td>
+                  <td>POST</td>
+                  <td>開催スケジュール削除</td>
+                  <td>開催枠を削除する</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers</td>
+                  <td>GET</td>
+                  <td>顧客管理画面</td>
+                  <td>顧客一覧を表示し、検索や確認を行う</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers/{id}</td>
+                  <td>GET</td>
+                  <td>顧客詳細表示</td>
+                  <td>顧客の氏名、連絡先、参加人数などを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers</td>
+                  <td>POST</td>
+                  <td>顧客新規登録</td>
+                  <td>顧客情報を新規登録する</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers/{id}/edit</td>
+                  <td>GET</td>
+                  <td>顧客編集画面</td>
+                  <td>顧客編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers/{id}</td>
+                  <td>POST</td>
+                  <td>顧客更新</td>
+                  <td>顧客情報を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/customers/{id}/delete</td>
+                  <td>POST</td>
+                  <td>顧客削除</td>
+                  <td>顧客情報を削除する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news</td>
+                  <td>GET</td>
+                  <td>お知らせ管理画面</td>
+                  <td>お知らせ一覧を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news/new</td>
+                  <td>GET</td>
+                  <td>お知らせ新規登録画面</td>
+                  <td>お知らせ登録フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news</td>
+                  <td>POST</td>
+                  <td>お知らせ登録</td>
+                  <td>お知らせを新規投稿する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news/{id}/edit</td>
+                  <td>GET</td>
+                  <td>お知らせ編集画面</td>
+                  <td>お知らせ編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news/{id}</td>
+                  <td>POST</td>
+                  <td>お知らせ更新</td>
+                  <td>お知らせ内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/news/{id}/delete</td>
+                  <td>POST</td>
+                  <td>お知らせ削除</td>
+                  <td>お知らせを削除する</td>
+                </tr>
+                <tr>
+                  <td>/admin/faqs</td>
+                  <td>GET</td>
+                  <td>FAQ管理画面</td>
+                  <td>FAQ一覧を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/faqs</td>
+                  <td>POST</td>
+                  <td>FAQ登録</td>
+                  <td>FAQを新規登録する</td>
+                </tr>
+                <tr>
+                  <td>/admin/faqs/{id}/edit</td>
+                  <td>GET</td>
+                  <td>FAQ編集画面</td>
+                  <td>FAQ編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/faqs/{id}</td>
+                  <td>POST</td>
+                  <td>FAQ更新</td>
+                  <td>FAQ内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/faqs/{id}/delete</td>
+                  <td>POST</td>
+                  <td>FAQ削除</td>
+                  <td>FAQを削除する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/home/edit</td>
+                  <td>GET</td>
+                  <td>トップページ編集画面</td>
+                  <td>トップページの固定文言を編集する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/home</td>
+                  <td>POST</td>
+                  <td>トップページ更新</td>
+                  <td>トップページ内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/concept/edit</td>
+                  <td>GET</td>
+                  <td>こだわりページ編集画面</td>
+                  <td>こだわりページの固定文言を編集する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/concept</td>
+                  <td>POST</td>
+                  <td>こだわりページ更新</td>
+                  <td>こだわりページ内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/access/edit</td>
+                  <td>GET</td>
+                  <td>アクセスページ編集画面</td>
+                  <td>アクセスページの固定文言を編集する</td>
+                </tr>
+                <tr>
+                  <td>/admin/pages/access</td>
+                  <td>POST</td>
+                  <td>アクセスページ更新</td>
+                  <td>アクセスページ内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/translations</td>
+                  <td>GET</td>
+                  <td>多言語文言管理画面</td>
+                  <td>多言語文言の一覧と設定内容を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/translations/{id}/edit</td>
+                  <td>GET</td>
+                  <td>多言語文言編集画面</td>
+                  <td>多言語文言の編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/translations/{id}</td>
+                  <td>POST</td>
+                  <td>多言語文言更新</td>
+                  <td>多言語文言を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/mail-templates</td>
+                  <td>GET</td>
+                  <td>自動返信メール管理画面</td>
+                  <td>予約完了メールのテンプレート一覧を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/mail-templates/{id}/edit</td>
+                  <td>GET</td>
+                  <td>自動返信メール編集画面</td>
+                  <td>メール文面の編集フォームを表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/mail-templates/{id}</td>
+                  <td>POST</td>
+                  <td>自動返信メール更新</td>
+                  <td>自動返信メールの内容を更新する</td>
+                </tr>
+                <tr>
+                  <td>/admin/account</td>
+                  <td>GET</td>
+                  <td>アカウント設定画面</td>
+                  <td>管理者アカウント設定を表示する</td>
+                </tr>
+                <tr>
+                  <td>/admin/account/password</td>
+                  <td>POST</td>
+                  <td>パスワード変更機能</td>
+                  <td>管理者パスワードを変更する</td>
+                </tr>
+                <tr>
+                  <td>/admin/logout</td>
+                  <td>POST</td>
+                  <td>ログアウト機能</td>
+                  <td>管理画面からログアウトする</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </section>
-
       </div>
     </main>
   </div>
 
   <script src="../js/main.js"></script>
 </body>
+
 </html>
