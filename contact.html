@@ -12,18 +12,32 @@
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header">
     <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="香り結びのトップページ"><span class="brand__mark">K</span><span><span class="brand__name">KAORI MUSUBI</span><span class="brand__sub">香りで結ぶ、浅草時間</span></span></a>
-      <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く"><span class="menu-toggle__line"></span><span class="menu-toggle__line"></span><span class="menu-toggle__line"></span></button>
+      <a class="brand" href="index.html" aria-label="香り結びのトップページ">
+        <span class="brand__mark">K</span>
+        <span>
+          <span class="brand__name">KAORI MUSUBI</span>
+          <span class="brand__sub">香りで結ぶ、浅草時間</span>
+        </span>
+      </a>
+      <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+      </button>
       <nav class="site-nav" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
         <ul class="site-nav__list">
-          <li><a href="works.html">ワークショップ紹介</a></li>
+          <li><a href="works.html">ワークショップ</a></li>
           <li><a href="about.html">こだわり</a></li>
           <li><a href="process.html">体験の流れ</a></li>
           <li><a href="skills.html">香りの魅力</a></li>
+          <li><a href="access.html">アクセス</a></li>
           <li><a href="contact.html" aria-current="page">お問い合わせ</a></li>
         </ul>
       </nav>
-      <div class="header-actions"><span class="lang-chip">JP / EN</span><a class="btn btn--primary" href="#contact-form">今すぐ予約する</a></div>
+      <div class="header-actions">
+        <span class="lang-chip">JP / EN</span>
+        <a class="btn btn--primary" href="#contact-form">予約する</a>
+      </div>
     </div>
   </header>
 
@@ -32,21 +46,19 @@
       <div class="container page-hero__grid">
         <div>
           <p class="breadcrumbs"><a href="index.html">ホーム</a> / お問い合わせ</p>
-          <span class="eyebrow">Reserve & Contact</span>
-          <h1 class="page-title">予約も相談も、旅の予定に合わせて気軽に。</h1>
-          <p class="page-lead">香り結びでは、ご予約希望はもちろん、プラン選びや所要時間の相談にも対応しています。観光中の短時間閲覧でも入力しやすいよう、必要情報を整理したフォームをご用意しました。</p>
+                    <h1 class="page-title">予約も相談も、気軽にご利用ください。</h1>
+          <p class="page-lead">ご希望日時でのご予約はもちろん、プラン選びや所要時間のご相談にも対応しています。観光中でも入力しやすいよう、必要な項目だけをまとめています。</p>
           <div class="hero-actions">
             <a class="btn btn--primary" href="#contact-form">フォームへ進む</a>
-            <a class="btn btn--secondary" href="works.html">体験をみる</a>
+            <a class="btn btn--secondary" href="access.html">アクセスを見る</a>
           </div>
         </div>
         <aside class="hero-card">
-          <span class="hero-card__label">Contact Guide</span>
           <h2 class="hero-card__title">こんなときにご利用ください</h2>
           <ul class="summary-list">
             <li>希望日時で予約したい</li>
-            <li>プラン選びを相談したい</li>
-            <li>持ち物や参加条件を確認したい</li>
+            <li>どのプランがよいか相談したい</li>
+            <li>持ち物や参加方法を確認したい</li>
           </ul>
         </aside>
       </div>
@@ -55,60 +67,15 @@
     <section class="page-section">
       <div class="container contact-layout">
         <section class="contact-card" aria-labelledby="contact-form-title">
-          <span class="card-kicker">Form</span>
           <h2 id="contact-form-title" class="card-title">お問い合わせフォーム</h2>
           <p class="card-text">必要事項をご入力ください。内容を確認のうえ、通常1〜2営業日以内を目安にご連絡します。</p>
           <form id="contact-form" class="form-grid" data-contact-form novalidate>
-            <div class="field">
-              <label for="name">お名前</label>
-              <input id="name" name="name" class="input" type="text" autocomplete="name" data-validate="required" aria-describedby="error-name">
-              <span id="error-name" class="field-error" data-error-for="name" aria-live="polite"></span>
-            </div>
-            <div class="field">
-              <label for="email">メールアドレス</label>
-              <input id="email" name="email" class="input" type="email" autocomplete="email" data-validate="required|email" aria-describedby="error-email note-email">
-              <p id="note-email" class="field-note">予約確認やお問い合わせ返信に使用します。</p>
-              <span id="error-email" class="field-error" data-error-for="email" aria-live="polite"></span>
-            </div>
-            <div class="field field--half">
-              <div>
-                <label for="plan">ご希望プラン</label>
-                <select id="plan" name="plan" class="select" data-validate="select" aria-describedby="error-plan">
-                  <option value="">選択してください</option>
-                  <option value="香りづくり体験">香りづくり体験</option>
-                  <option value="季節限定ワークショップ">季節限定ワークショップ</option>
-                  <option value="ペア体験プラン">ペア体験プラン</option>
-                  <option value="相談したい">相談して決めたい</option>
-                </select>
-                <span id="error-plan" class="field-error" data-error-for="plan" aria-live="polite"></span>
-              </div>
-              <div>
-                <label for="date">希望日</label>
-                <input id="date" name="date" class="input" type="date" data-validate="required" aria-describedby="error-date">
-                <span id="error-date" class="field-error" data-error-for="date" aria-live="polite"></span>
-              </div>
-            </div>
-            <div class="field">
-              <span class="legend">ご連絡方法</span>
-              <div class="radio-group" role="radiogroup" aria-label="ご連絡方法">
-                <label class="choice"><input type="radio" name="contactMethod" value="メール" checked>メール</label>
-                <label class="choice"><input type="radio" name="contactMethod" value="電話">電話</label>
-              </div>
-            </div>
-            <div class="field">
-              <span class="legend">ご希望内容</span>
-              <div class="checkbox-group">
-                <label class="choice"><input type="checkbox" name="requestType" value="予約希望">予約希望</label>
-                <label class="choice"><input type="checkbox" name="requestType" value="空き状況確認">空き状況確認</label>
-                <label class="choice"><input type="checkbox" name="requestType" value="プラン相談">プラン相談</label>
-              </div>
-            </div>
-            <div class="field">
-              <label for="message">お問い合わせ内容</label>
-              <textarea id="message" name="message" class="textarea" rows="6" data-validate="required" aria-describedby="error-message note-message"></textarea>
-              <p id="note-message" class="field-note">人数、希望時間、気になる点があればご記入ください。</p>
-              <span id="error-message" class="field-error" data-error-for="message" aria-live="polite"></span>
-            </div>
+            <div class="field"><label for="name">お名前</label><input id="name" name="name" class="input" type="text" autocomplete="name" data-validate="required" aria-describedby="error-name"><span id="error-name" class="field-error" data-error-for="name" aria-live="polite"></span></div>
+            <div class="field"><label for="email">メールアドレス</label><input id="email" name="email" class="input" type="email" autocomplete="email" data-validate="required|email" aria-describedby="error-email note-email"><p id="note-email" class="field-note">ご予約確認やお問い合わせ返信に使用します。</p><span id="error-email" class="field-error" data-error-for="email" aria-live="polite"></span></div>
+            <div class="field field--half"><div><label for="plan">ご希望プラン</label><select id="plan" name="plan" class="select" data-validate="select" aria-describedby="error-plan"><option value="">選択してください</option><option value="香りづくり体験">香りづくり体験</option><option value="季節限定ワークショップ">季節限定ワークショップ</option><option value="ペア体験プラン">ペア体験プラン</option><option value="相談したい">相談して決めたい</option></select><span id="error-plan" class="field-error" data-error-for="plan" aria-live="polite"></span></div><div><label for="date">希望日</label><input id="date" name="date" class="input" type="date" data-validate="required" aria-describedby="error-date"><span id="error-date" class="field-error" data-error-for="date" aria-live="polite"></span></div></div>
+            <div class="field"><span class="legend">ご連絡方法</span><div class="radio-group" role="radiogroup" aria-label="ご連絡方法"><label class="choice"><input type="radio" name="contactMethod" value="メール" checked>メール</label><label class="choice"><input type="radio" name="contactMethod" value="電話">電話</label></div></div>
+            <div class="field"><span class="legend">ご希望内容</span><div class="checkbox-group"><label class="choice"><input type="checkbox" name="requestType" value="予約希望">予約希望</label><label class="choice"><input type="checkbox" name="requestType" value="空き状況確認">空き状況確認</label><label class="choice"><input type="checkbox" name="requestType" value="プラン相談">プラン相談</label></div></div>
+            <div class="field"><label for="message">お問い合わせ内容</label><textarea id="message" name="message" class="textarea" rows="6" data-validate="required" aria-describedby="error-message note-message"></textarea><p id="note-message" class="field-note">人数、希望時間、気になることがあればご記入ください。</p><span id="error-message" class="field-error" data-error-for="message" aria-live="polite"></span></div>
             <p class="submit-note">送信はダミーです。入力確認用のフロント実装として動作します。</p>
             <button class="btn btn--primary" type="submit">送信する</button>
             <p class="form-status" data-form-status aria-live="polite"></p>
@@ -116,8 +83,7 @@
         </section>
 
         <aside class="contact-card">
-          <span class="card-kicker">Info</span>
-          <h2 class="card-title">予約前のご案内</h2>
+          <h2 class="card-title">ご予約前のご案内</h2>
           <ul class="contact-info-list">
             <li>店舗名: 香むすび 浅草房</li>
             <li>運営: 株式会社 香縁社</li>
@@ -137,25 +103,57 @@
     <section class="page-section">
       <div class="container split-layout">
         <article class="panel">
-          <span class="card-kicker">Before You Book</span>
           <h2 class="card-title">来店前の不安を減らすために</h2>
           <ul class="check-list">
             <li>希望日時が未定でも、おおよその時間帯だけで相談できます</li>
-            <li>香りに敏感な方や不安がある方は、事前にメッセージ欄でお知らせください</li>
-            <li>旅行中で予定が変わりやすい場合も、まずはお問い合わせください</li>
+            <li>香りに敏感な方や不安がある方は、事前にお知らせください</li>
+            <li>旅行中で予定が変わりやすい場合も、まずはお気軽にご相談ください</li>
           </ul>
         </article>
         <article class="panel">
-          <span class="card-kicker">CTA</span>
-          <h2 class="card-title">迷ったら、まずは相談からでも大丈夫です</h2>
-          <p class="card-text">予約確定前のご相談も歓迎しています。体験内容がまだ決まっていない方にも、所要時間やおすすめプランをご案内します。</p>
-          <div class="inline-actions"><a class="btn btn--primary" href="#contact-form">フォームへ戻る</a></div>
+          <h2 class="card-title">場所が気になる方はアクセスページもご覧ください</h2>
+          <p class="card-text">最寄り駅からの行き方や営業時間を、アクセスページでまとめてご案内しています。</p>
+          <div class="inline-actions"><a class="btn btn--primary" href="access.html">アクセスを見る</a></div>
         </article>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer"><div class="container"><div class="footer-grid"><section class="footer-brand"><h2 class="footer-brand__title">KAORI MUSUBI</h2><p>浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験を届けます。</p></section><section class="footer-column"><h3>体験メニュー</h3><ul class="footer-nav"><li><a href="works.html">ワークショップ紹介</a></li><li><a href="process.html">体験の流れ</a></li><li><a href="skills.html">香りの魅力</a></li></ul></section><section class="footer-column"><h3>ご案内</h3><ul class="footer-nav"><li><a href="about.html">こだわり</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="docs/06-design-guide.html">デザインガイド</a></li></ul></section><section class="footer-column"><h3>店舗情報</h3><ul class="footer-contact"><li>香むすび 浅草房</li><li>東京都台東区浅草X-X-X</li><li>10:00 - 19:00</li></ul></section></div><p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p></div></footer>
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <section class="footer-brand">
+          <h2 class="footer-brand__title">KAORI MUSUBI</h2>
+          <p>浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験をお届けします。</p>
+        </section>
+        <section class="footer-column">
+          <h3>体験メニュー</h3>
+          <ul class="footer-nav">
+            <li><a href="works.html">ワークショップ</a></li>
+            <li><a href="process.html">体験の流れ</a></li>
+            <li><a href="skills.html">香りの魅力</a></li>
+          </ul>
+        </section>
+        <section class="footer-column">
+          <h3>ご案内</h3>
+          <ul class="footer-nav">
+            <li><a href="about.html">こだわり</a></li>
+            <li><a href="access.html">アクセス</a></li>
+            <li><a href="contact.html">お問い合わせ</a></li>
+          </ul>
+        </section>
+        <section class="footer-column">
+          <h3>店舗情報</h3>
+          <ul class="footer-contact">
+            <li>香むすび 浅草房</li>
+            <li>東京都台東区浅草X-X-X</li>
+            <li>10:00 - 19:00</li>
+          </ul>
+        </section>
+      </div>
+      <p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p>
+    </div>
+  </footer>
   <script src="js/main.js"></script>
 </body>
 </html>
