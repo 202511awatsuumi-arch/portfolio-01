@@ -1,150 +1,162 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>自己紹介 - プロジェクトアーカイブ</title>
-  <link rel="stylesheet"
-    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>こだわり | 香り結び - Kaori Musubi -</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
-  <button class="hamburger" aria-label="メニュー">
-    <span></span><span></span><span></span>
-  </button>
+  <a class="skip-link" href="#main">本文へ移動</a>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="index.html" aria-label="香り結びのトップページ"><span class="brand__mark">K</span><span><span class="brand__name">KAORI MUSUBI</span><span class="brand__sub">香りで結ぶ、浅草時間</span></span></a>
+      <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く"><span class="menu-toggle__line"></span><span class="menu-toggle__line"></span><span class="menu-toggle__line"></span></button>
+      <nav class="site-nav" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
+        <ul class="site-nav__list">
+          <li><a href="works.html">ワークショップ紹介</a></li>
+          <li><a href="about.html" aria-current="page">こだわり</a></li>
+          <li><a href="process.html">体験の流れ</a></li>
+          <li><a href="skills.html">香りの魅力</a></li>
+          <li><a href="contact.html">お問い合わせ</a></li>
+        </ul>
+      </nav>
+      <div class="header-actions"><span class="lang-chip">JP / EN</span><a class="btn btn--primary" href="contact.html">今すぐ予約する</a></div>
+    </div>
+  </header>
 
-  <div class="page-wrapper">
-    <aside class="sidebar" data-nav-level="root"></aside>
-
-    <main class="main-content">
-      <header class="doc-header">
-        <div class="doc-category">ABOUT ME</div>
-        <h1 class="doc-title">自己紹介</h1>
-        <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-03-17</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：厚海　洋子</span>
-          <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container page-hero__grid">
+        <div>
+          <p class="breadcrumbs"><a href="index.html">ホーム</a> / こだわり</p>
+          <span class="eyebrow">About Brand</span>
+          <h1 class="page-title">浅草の空気感を、香りの体験へ編みなおす。</h1>
+          <p class="page-lead">香り結びは、浅草観光を楽しむ旅行者に向けて、日本らしい感性とものづくりの魅力をやわらかく届けるブランドです。和モダン、上質感、ときめきを軸に、旅の記憶へ静かに残る時間を設計しています。</p>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="contact.html">予約する</a>
+            <a class="btn btn--secondary" href="works.html">体験をみる</a>
+          </div>
         </div>
-      </header>
-
-      <div class="doc-body">
-
-        <section class="section">
-          <h2 class="section-title"><span class="section-icon"><span
-                class="material-symbols-outlined">badge</span></span> 基本情報</h2>
-
-          <div class="fill-block">
-            <div class="fill-label">厚海　洋子 <span class="required">必須</span></div>
-            <div class="fill-content">
-              <p>厚海　洋子</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">フリガナ <span class="optional">任意</span></div>
-            <div class="fill-content">
-              <p>アツウミ　ヨウコ</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">所属 <span class="required">必須</span></div>
-            <div class="fill-content">
-              <p>〇〇専門学校 Webデザイン科</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">キャッチコピー <span class="required">必須</span></div>
-            <div class="fill-hint">自分を一言で表現するフレーズ</div>
-            <div class="fill-content">
-              <p>（キャッチコピーを入力）</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title"><span class="section-icon"><span
-                class="material-symbols-outlined">face</span></span> 自己紹介</h2>
-
-          <div class="fill-block">
-            <div class="fill-label">自己紹介文 <span class="required">必須</span></div>
-            <div class="fill-hint">3〜5文で自分の強み・学んだこと・目指す方向性を紹介</div>
-            <div class="fill-content">
-              <p>（自己紹介文を入力）</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">趣味・特技 <span class="optional">任意</span></div>
-            <div class="fill-content">
-              <p>（趣味・特技を入力）</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title"><span class="section-icon"><span
-                class="material-symbols-outlined">flag</span></span> 目標・将来像</h2>
-
-          <div class="fill-block">
-            <div class="fill-label">目指すエンジニア像 <span class="required">必須</span></div>
-            <div class="fill-hint">どんなエンジニアになりたいか、将来の展望を記載</div>
-            <div class="fill-content">
-              <p>（目指すエンジニア像を入力）</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">学習中の技術・今後学びたい技術 <span class="optional">任意</span></div>
-            <div class="fill-content">
-              <p>（学習中・今後学びたい技術を入力）</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title"><span class="section-icon"><span
-                class="material-symbols-outlined">history_edu</span></span> 経歴・学歴</h2>
-
-          <div class="fill-block">
-            <div class="fill-label">経歴 <span class="optional">任意</span></div>
-            <div class="fill-hint">学歴やアルバイト経験などを時系列で記載</div>
-            <div class="fill-content">
-              <p>20XX年X月　〇〇高等学校 卒業</p>
-              <p>20XX年X月　〇〇専門学校 入学</p>
-              <p>（その他の経歴を入力）</p>
-            </div>
-          </div>
-        </section>
-
-        <section class="section">
-          <h2 class="section-title"><span class="section-icon"><span
-                class="material-symbols-outlined">link</span></span> SNS・リンク</h2>
-
-          <div class="fill-block">
-            <div class="fill-label">GitHub <span class="required">必須</span></div>
-            <div class="fill-content">
-              <p>https://github.com/（ユーザー名）</p>
-            </div>
-          </div>
-
-          <div class="fill-block">
-            <div class="fill-label">その他SNS <span class="optional">任意</span></div>
-            <div class="fill-hint">X（Twitter）、Qiita、Zenn など</div>
-            <div class="fill-content">
-              <p>（SNSリンクを入力）</p>
-            </div>
-          </div>
-        </section>
-
+        <aside class="hero-card">
+          <span class="hero-card__label">Brand Essence</span>
+          <h2 class="hero-card__title">香むすび 浅草房が大切にしている3つの感性</h2>
+          <ul class="summary-list">
+            <li>浅草らしい日本文化を、現代的で親しみやすく伝えること</li>
+            <li>旅先で味わう特別な時間として、上品に整えること</li>
+            <li>体験してみたいと思える、ときめきを残すこと</li>
+          </ul>
+        </aside>
       </div>
-    </main>
-  </div>
+    </section>
 
+    <section class="page-section">
+      <div class="container story-grid">
+        <article class="story-card">
+          <span class="card-kicker">Concept 01</span>
+          <h2 class="card-title">和モダン</h2>
+          <p>浅草らしい日本文化の雰囲気を伝えながら、現代的で洗練された印象に整えることで、若い旅行者にも親しみやすい体験にしています。生成り・墨色・えんじの落ち着いた色調と、控えめな和の余韻で世界観をつくります。</p>
+        </article>
+        <div class="media-placeholder" data-label="浅草らしい街並みや和の質感を想起させるビジュアル想定" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container story-grid">
+        <div class="media-placeholder" data-label="素材感や手仕事感が伝わる体験シーンのビジュアル想定" aria-hidden="true"></div>
+        <article class="story-card">
+          <span class="card-kicker">Concept 02</span>
+          <h2 class="card-title">上質感</h2>
+          <p>香りづくり体験を、旅先で味わう特別で価値のある時間として伝えるため、余白を活かしたレイアウトと丁寧な導線設計を大切にしています。素材感や手仕事感が伝わる見せ方で、落ち着きのある高級感を目指します。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container story-grid">
+        <article class="story-card">
+          <span class="card-kicker">Concept 03</span>
+          <h2 class="card-title">ときめき</h2>
+          <p>「体験してみたい」「思い出として残したい」と感じてもらうために、やわらかな写真表現や印象に残るコピー、繊細な装飾の余韻を大切にしています。観光中の短時間閲覧でも、心が動く世界観が伝わることを重視しています。</p>
+        </article>
+        <div class="media-placeholder" data-label="心が動く瞬間や完成した香りを持ち帰る余韻のビジュアル想定" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container split-layout">
+        <article class="panel">
+          <span class="card-kicker">Brand Story</span>
+          <h2 class="card-title">観光の途中でも、土地の記憶に触れられる体験へ</h2>
+          <p class="card-text">浅草には、歩くだけで感じられる気配や余韻があります。香り結びはその感覚を、ただ眺めるだけでなく、自分の手で形にする時間へ変えるために生まれました。旅の途中に立ち寄りやすく、でも軽すぎない。そんなちょうどよい特別感を目指しています。</p>
+          <ul class="check-list">
+            <li>観光ルートに組み込みやすい所要時間</li>
+            <li>初めてでも迷わない情報整理</li>
+            <li>持ち帰った後も思い出が続く体験設計</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <span class="card-kicker">Why Kaori Musubi</span>
+          <h2 class="card-title">予約判断まで進みやすいブランド設計</h2>
+          <div class="meta-list">
+            <div class="meta-row"><span>空気感</span><strong>和モダンで洗練された印象</strong></div>
+            <div class="meta-row"><span>体験価値</span><strong>自分だけの香りを持ち帰れる</strong></div>
+            <div class="meta-row"><span>導線</span><strong>予約と相談を分かりやすく整理</strong></div>
+          </div>
+          <div class="inline-actions"><a class="btn btn--secondary" href="contact.html">お問い合わせ</a></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="section-header">
+          <span class="eyebrow">Comparison</span>
+          <h2 class="section-title">香り結びが目指す体験の違い</h2>
+          <p class="section-copy">気軽さだけでも、高級感だけでも終わらせず、浅草らしさと旅の満足感を両立させることを目指しています。</p>
+        </div>
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th scope="col">比較項目</th>
+              <th scope="col">香り結び</th>
+              <th scope="col">一般的な体験</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">世界観</th>
+              <td>和モダンで上質、旅の余韻を感じる</td>
+              <td>汎用的で場所性が伝わりにくい</td>
+            </tr>
+            <tr>
+              <th scope="row">体験後の価値</th>
+              <td>完成した香りを思い出として持ち帰れる</td>
+              <td>その場で完結しやすい</td>
+            </tr>
+            <tr>
+              <th scope="row">予約導線</th>
+              <td>比較しやすく、相談にも進みやすい</td>
+              <td>情報が散らばり判断しにくいことがある</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="container cta-band__inner">
+        <span class="eyebrow">Reserve</span>
+        <h2 class="cta-band__title">浅草の記憶を、香りというかたちに。</h2>
+        <p class="cta-band__copy">体験内容の相談から予約まで、旅程に合わせてご案内します。迷っている段階でも、まずは気軽にお問い合わせください。</p>
+        <div class="inline-actions"><a class="btn btn--light" href="contact.html">お問い合わせ</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container"><div class="footer-grid"><section class="footer-brand"><h2 class="footer-brand__title">KAORI MUSUBI</h2><p>浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験を届けます。</p></section><section class="footer-column"><h3>体験メニュー</h3><ul class="footer-nav"><li><a href="works.html">ワークショップ紹介</a></li><li><a href="process.html">体験の流れ</a></li><li><a href="skills.html">香りの魅力</a></li></ul></section><section class="footer-column"><h3>ご案内</h3><ul class="footer-nav"><li><a href="about.html">こだわり</a></li><li><a href="contact.html">お問い合わせ</a></li><li><a href="docs/06-design-guide.html">デザインガイド</a></li></ul></section><section class="footer-column"><h3>店舗情報</h3><ul class="footer-contact"><li>香むすび 浅草房</li><li>東京都台東区浅草X-X-X</li><li>10:00 - 19:00</li></ul></section></div><p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p></div></footer>
   <script src="js/main.js"></script>
 </body>
-
 </html>

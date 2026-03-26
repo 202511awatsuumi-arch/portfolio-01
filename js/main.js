@@ -1,159 +1,171 @@
-//  プロジェクトアーカイブ 共通JS
+document.addEventListener("DOMContentLoaded", () => {
+  const menuButton = document.querySelector("[data-menu-button]");
+  const siteNav = document.querySelector("[data-site-nav]");
 
-// ナビゲーション生成関数
-function generateNavigation() {
-  const sidebar = document.querySelector('.sidebar');
-  if (!sidebar) return;
+  if (menuButton && siteNav) {
+    const closeMenu = () => {
+      menuButton.setAttribute("aria-expanded", "false");
+      siteNav.classList.remove("is-open");
+      document.body.classList.remove("is-locked");
+    };
 
-  // data-nav-level属性でパス階層を判定（root, docs, design, prompts）
-  const navLevel = sidebar.dataset.navLevel || 'root';
+    const openMenu = () => {
+      menuButton.setAttribute("aria-expanded", "true");
+      siteNav.classList.add("is-open");
+      document.body.classList.add("is-locked");
+    };
 
-  // パスプレフィックスを設定
-  let rootPath = './';
-  let docsPath = './docs/';
-  let designPath = './design/';
-  let promptsPath = './prompts/';
-
-  if (navLevel === 'docs') {
-    rootPath = '../';
-    docsPath = './';
-    designPath = '../design/';
-    promptsPath = '../prompts/';
-  } else if (navLevel === 'design') {
-    rootPath = '../';
-    docsPath = '../docs/';
-    designPath = './';
-    promptsPath = '../prompts/';
-  } else if (navLevel === 'prompts') {
-    rootPath = '../';
-    docsPath = '../docs/';
-    designPath = '../design/';
-    promptsPath = './';
-  }
-
-  const navHTML = `
-    <div class="sidebar-header">
-      <div class="logo">PROJECT ARCHIVE</div>
-      <div class="project-name"><br>プロジェクトアーカイブ</div>
-    </div>
-    <nav class="sidebar-nav">
-      <div class="nav-group">
-        <div class="nav-group-title">プロジェクト</div>
-        <a href="${rootPath}index.html"><span class="material-symbols-outlined icon-sm">home</span> トップページ</a>
-        <a href="${rootPath}about.html"><span class="material-symbols-outlined icon-sm">person</span> 自己紹介</a>
-        <a href="${rootPath}works.html"><span class="material-symbols-outlined icon-sm">work</span> 制作物一覧</a>
-        <a href="${rootPath}process.html"><span class="material-symbols-outlined icon-sm">assignment</span> 制作プロセス</a>
-        <a href="${rootPath}skills.html"><span class="material-symbols-outlined icon-sm">bolt</span> スキルシート</a>
-        <a href="${rootPath}contact.html"><span class="material-symbols-outlined icon-sm">mail</span> お問い合わせ</a>
-      </div>
-      <div class="nav-group">
-        <div class="nav-group-title">制作ドキュメント</div>
-        <a href="${docsPath}01-proposal.html"><span class="nav-number">01</span> 企画提案書</a>
-        <a href="${docsPath}02-market-research.html"><span class="nav-number">02</span> マーケットリサーチ</a>
-        <a href="${docsPath}03-persona.html"><span class="nav-number">03</span> ペルソナシート</a>
-        <a href="${docsPath}04-sitemap.html"><span class="nav-number">04</span> サイトマップ</a>
-        <a href="${docsPath}05-wireframe.html"><span class="nav-number">05</span> ワイヤーフレーム</a>
-        <a href="${docsPath}06-design-guide.html"><span class="nav-number">06</span> デザインガイドライン</a>
-        <a href="${docsPath}10-retrospective.html"><span class="nav-number">10</span> 振り返り・技術記事</a>
-      </div>
-      <div class="nav-group">
-        <div class="nav-group-title">設計資料</div>
-        <a href="${docsPath}07-specification.html"><span class="nav-number">07</span> 仕様書</a>
-        <a href="${docsPath}08-db-design.html"><span class="nav-number">08</span> DB設計書</a>
-        <a href="${docsPath}09-test-report.html"><span class="nav-number">09</span> テスト報告書</a>
-        <a href="${designPath}system-flow.html"><span class="material-symbols-outlined icon-sm">account_tree</span> システムフロー図</a>
-        <a href="${designPath}class-diagram.html"><span class="material-symbols-outlined icon-sm">lan</span> クラス構成図</a>
-        <a href="${designPath}method-list.html"><span class="material-symbols-outlined icon-sm">list_alt</span> メソッド一覧</a>
-        <a href="${designPath}logic-explanation.html"><span class="material-symbols-outlined icon-sm">search</span> ロジック解説</a>
-      </div>
-      <div class="nav-group">
-        <div class="nav-group-title">プロンプト</div>
-        <a href="${promptsPath}prompt-step.html"><span class="material-symbols-outlined icon-sm">format_list_numbered</span> ステップ別プロンプト</a>
-        <a href="${promptsPath}prompt-function.html"><span class="material-symbols-outlined icon-sm">extension</span> 機能追加別プロンプト</a>
-        <a href="${promptsPath}prompt-log.html"><span class="material-symbols-outlined icon-sm">history</span> 実行ログ</a>
-      </div>
-    </nav>
-    <div class="sidebar-footer">
-      &copy; Project Archive 2026
-    </div>
-  `;
-
-  sidebar.innerHTML = navHTML;
-}
-
-document.addEventListener('DOMContentLoaded', () => {
-  // ナビゲーションを生成
-  generateNavigation();
-
-  // Sidebar toggle for mobile
-  const hamburger = document.querySelector('.hamburger');
-  const sidebar = document.querySelector('.sidebar');
-
-  if (hamburger && sidebar) {
-    hamburger.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-    });
-
-    // Close sidebar when clicking outside
-    document.addEventListener('click', (e) => {
-      if (sidebar.classList.contains('open') &&
-          !sidebar.contains(e.target) &&
-          !hamburger.contains(e.target)) {
-        sidebar.classList.remove('open');
+    menuButton.addEventListener("click", () => {
+      const expanded = menuButton.getAttribute("aria-expanded") === "true";
+      if (expanded) {
+        closeMenu();
+      } else {
+        openMenu();
       }
     });
 
-    // Close sidebar when clicking a nav link (mobile)
-    sidebar.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-          sidebar.classList.remove('open');
+    document.addEventListener("click", (event) => {
+      if (
+        siteNav.classList.contains("is-open") &&
+        !siteNav.contains(event.target) &&
+        !menuButton.contains(event.target)
+      ) {
+        closeMenu();
+      }
+    });
+
+    siteNav.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        if (window.innerWidth < 1024) {
+          closeMenu();
         }
       });
     });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024) {
+        document.body.classList.remove("is-locked");
+        siteNav.classList.remove("is-open");
+        menuButton.setAttribute("aria-expanded", "false");
+      }
+    });
   }
 
-  // Set active nav item based on current page
-  const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-  document.querySelectorAll('.sidebar-nav a').forEach(link => {
-    const href = link.getAttribute('href');
-    if (href && (href.endsWith(currentPage) || (currentPage === 'index.html' && href === './index.html'))) {
-      link.classList.add('active');
-    }
+  document.querySelectorAll('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const href = link.getAttribute("href");
+      if (!href || href === "#") {
+        return;
+      }
+
+      const target = document.querySelector(href);
+      if (!target) {
+        return;
+      }
+
+      event.preventDefault();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   });
 
-  // Copy prompt text functionality
-  document.querySelectorAll('.prompt-box').forEach(box => {
-    const promptText = box.querySelector('.prompt-text');
-    if (promptText) {
-      promptText.style.cursor = 'pointer';
-      promptText.title = 'クリックしてコピー';
+  document.querySelectorAll(".accordion__button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const expanded = button.getAttribute("aria-expanded") === "true";
+      button.setAttribute("aria-expanded", String(!expanded));
+    });
+  });
 
-      promptText.addEventListener('click', () => {
-        const text = promptText.textContent;
-        navigator.clipboard.writeText(text).then(() => {
-          const originalBg = promptText.style.background;
-          promptText.style.background = '#d1fae5';
-          promptText.style.transition = 'background 0.3s';
-          setTimeout(() => {
-            promptText.style.background = originalBg || '#fff';
-          }, 500);
+  const tabButtons = document.querySelectorAll(".tab-button");
+  const faqPanels = document.querySelectorAll(".faq-panel");
+  if (tabButtons.length && faqPanels.length) {
+    tabButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const targetId = button.dataset.tab;
+        tabButtons.forEach((item) => item.setAttribute("aria-selected", "false"));
+        button.setAttribute("aria-selected", "true");
+        faqPanels.forEach((panel) => {
+          panel.hidden = panel.id !== targetId;
         });
       });
-    }
-  });
+    });
+  }
 
-  // Smooth scroll for TOC links
-  document.querySelectorAll('.toc-list a').forEach(link => {
-    link.addEventListener('click', (e) => {
-      const href = link.getAttribute('href');
-      if (href && href.startsWith('#')) {
-        e.preventDefault();
-        const target = document.querySelector(href);
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const contactForm = document.querySelector("[data-contact-form]");
+  if (contactForm) {
+    const status = contactForm.querySelector("[data-form-status]");
+    const fields = Array.from(contactForm.querySelectorAll("[data-validate]"));
+
+    const validators = {
+      required: (value) => value.trim().length > 0,
+      email: (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.trim()),
+      select: (value) => value.trim().length > 0 && value !== ""
+    };
+
+    const messages = {
+      required: "入力してください。",
+      email: "正しいメールアドレスを入力してください。",
+      select: "選択してください。"
+    };
+
+    const setFieldState = (field, errorMessage) => {
+      const error = contactForm.querySelector(`[data-error-for="${field.id}"]`);
+      if (!error) return;
+      error.textContent = errorMessage || "";
+      field.classList.toggle("is-error", Boolean(errorMessage));
+      field.setAttribute("aria-invalid", errorMessage ? "true" : "false");
+    };
+
+    const validateField = (field) => {
+      const rules = field.dataset.validate.split("|");
+      for (const rule of rules) {
+        const validator = validators[rule];
+        if (validator && !validator(field.value)) {
+          setFieldState(field, messages[rule]);
+          return false;
         }
       }
+      setFieldState(field, "");
+      return true;
+    };
+
+    fields.forEach((field) => {
+      field.addEventListener("blur", () => validateField(field));
+      field.addEventListener("input", () => {
+        if (field.classList.contains("is-error")) {
+          validateField(field);
+        }
+      });
+      field.addEventListener("change", () => validateField(field));
     });
-  });
+
+    contactForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+      let isValid = true;
+      fields.forEach((field) => {
+        if (!validateField(field)) {
+          isValid = false;
+        }
+      });
+
+      if (!isValid) {
+        if (status) {
+          status.textContent = "未入力または入力内容に誤りがあります。ご確認ください。";
+          status.classList.remove("is-success");
+        }
+        const firstError = contactForm.querySelector(".is-error");
+        if (firstError) {
+          firstError.focus();
+        }
+        return;
+      }
+
+      if (status) {
+        status.textContent = "送信ありがとうございました。内容を確認のうえ、担当者よりご連絡します。";
+        status.classList.add("is-success");
+      }
+
+      contactForm.reset();
+      fields.forEach((field) => setFieldState(field, ""));
+    });
+  }
 });
