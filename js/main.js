@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+  const siteHeader = document.querySelector("[data-site-header]");
   const menuButton = document.querySelector("[data-menu-button]");
   const siteNav = document.querySelector("[data-site-nav]");
+
+  const syncHeaderState = () => {
+    if (!siteHeader) return;
+    siteHeader.classList.toggle("is-scrolled", window.scrollY > 24);
+  };
+
+  syncHeaderState();
+  window.addEventListener("scroll", syncHeaderState, { passive: true });
 
   if (menuButton && siteNav) {
     const closeMenu = () => {
@@ -44,9 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     window.addEventListener("resize", () => {
       if (window.innerWidth >= 1024) {
-        document.body.classList.remove("is-locked");
-        siteNav.classList.remove("is-open");
-        menuButton.setAttribute("aria-expanded", "false");
+        closeMenu();
       }
     });
   }
@@ -74,21 +81,6 @@ document.addEventListener("DOMContentLoaded", () => {
       button.setAttribute("aria-expanded", String(!expanded));
     });
   });
-
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const faqPanels = document.querySelectorAll(".faq-panel");
-  if (tabButtons.length && faqPanels.length) {
-    tabButtons.forEach((button) => {
-      button.addEventListener("click", () => {
-        const targetId = button.dataset.tab;
-        tabButtons.forEach((item) => item.setAttribute("aria-selected", "false"));
-        button.setAttribute("aria-selected", "true");
-        faqPanels.forEach((panel) => {
-          panel.hidden = panel.id !== targetId;
-        });
-      });
-    });
-  }
 
   const contactForm = document.querySelector("[data-contact-form]");
   if (contactForm) {
@@ -141,6 +133,7 @@ document.addEventListener("DOMContentLoaded", () => {
     contactForm.addEventListener("submit", (event) => {
       event.preventDefault();
       let isValid = true;
+
       fields.forEach((field) => {
         if (!validateField(field)) {
           isValid = false;
