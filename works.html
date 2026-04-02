@@ -1,42 +1,48 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ワークショップ | 香り結び - Kaori Musubi -</title>
+  <meta name="description" content="浅草で体験できる香り結びのワークショップ一覧です。香り選びから調香、お持ち帰りまで、旅の時間に合わせて楽しめる体験をご案内します。">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-reference page-works">
   <a class="skip-link" href="#main">本文へ移動</a>
-  <header class="site-header">
+
+  <header class="site-header" data-site-header>
     <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="香り結びのトップページ">
-        <span class="brand__mark">K</span>
-        <span>
+      <a class="brand brand--reference" href="index.html" aria-label="香り結びのトップページ">
+        <img class="brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+        <span class="brand__text">
           <span class="brand__name">KAORI MUSUBI</span>
           <span class="brand__sub">香りで結ぶ、浅草時間</span>
         </span>
       </a>
+
       <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
         <span class="menu-toggle__line"></span>
         <span class="menu-toggle__line"></span>
         <span class="menu-toggle__line"></span>
       </button>
-      <nav class="site-nav" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
+
+      <nav class="site-nav site-nav--reference" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
         <ul class="site-nav__list">
           <li><a href="works.html" aria-current="page">ワークショップ</a></li>
           <li><a href="about.html">こだわり</a></li>
           <li><a href="process.html">体験の流れ</a></li>
           <li><a href="skills.html">香りの魅力</a></li>
-          <li><a href="access.html">アクセス</a></li>
+          <li><a class="site-nav__soft-link" href="access.html">アクセス</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
-      <div class="header-actions">
+
+      <div class="header-actions header-actions--reference">
         <span class="lang-chip">JP / EN</span>
-        <a class="btn btn--primary" href="contact.html">予約する</a>
+        <a class="btn btn--primary btn--w-short" href="contact.html">予約する</a>
       </div>
     </div>
   </header>
@@ -46,14 +52,14 @@
       <div class="container page-hero__grid">
         <div>
           <p class="breadcrumbs"><a href="index.html">ホーム</a> / ワークショップ</p>
-                    <h1 class="page-title">旅の途中で、自分だけの香りをつくる。</h1>
-          <p class="page-lead">浅草らしい和の空気を感じながら、香りを選び、自分だけの一本に仕上げていく体験です。所要時間や料金を確認しながら、お好みのプランを選べます。</p>
+          <h1 class="page-title">浅草で、自分だけの香りをつくる体験</h1>
+          <p class="page-lead">香り結びのワークショップでは、浅草らしい空気を感じながら、香り選びから調香、お持ち帰りまでをゆったりお楽しみいただけます。はじめての方にもわかりやすいよう、内容ごとの違いや所要時間をまとめてご案内しています。</p>
           <div class="hero-actions">
-            <a class="btn btn--primary" href="contact.html">予約する</a>
-            <a class="btn btn--secondary" href="#plans">料金をみる</a>
+            <a class="btn btn--primary btn--w-short" href="contact.html">予約する</a>
+            <a class="btn btn--secondary btn--w-short" href="#plans">コースを見る</a>
           </div>
         </div>
-        <div class="media-placeholder" data-label="ワークショップ写真が入ります" aria-hidden="true"></div>
+        <div class="media-placeholder" data-label="ワークショップのイメージ" aria-hidden="true"></div>
       </div>
     </section>
 
@@ -63,9 +69,21 @@
           <h2 class="section-title">体験の流れ</h2>
         </div>
         <div class="feature-grid">
-          <article class="feature-card"><span class="feature-card__icon">1</span><h3>香りを知る</h3><p>和の香りや季節の香りを試しながら、心地よいと感じる方向を見つけます。</p></article>
-          <article class="feature-card"><span class="feature-card__icon">2</span><h3>好きな香りを重ねる</h3><p>スタッフと一緒にバランスを確認しながら、少しずつ自分らしい香りに整えます。</p></article>
-          <article class="feature-card"><span class="feature-card__icon">3</span><h3>旅の思い出として持ち帰る</h3><p>完成した香りは当日そのままお持ち帰りいただけます。浅草で過ごした時間が香りとして残ります。</p></article>
+          <article class="feature-card">
+            <span class="feature-card__icon">1</span>
+            <h3>香りを知る</h3>
+            <p>浅草の空気感や和の感性を大切にしながら、調香に使う香りの特徴をひとつずつ丁寧にご案内します。</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__icon">2</span>
+            <h3>好みの香りを重ねる</h3>
+            <p>スタッフと一緒にバランスを確認しながら、少しずつ理想の一本へ近づけていきます。</p>
+          </article>
+          <article class="feature-card">
+            <span class="feature-card__icon">3</span>
+            <h3>その日の思い出として持ち帰る</h3>
+            <p>完成した香りはそのまま当日お持ち帰り可能。旅の余韻とともに、その後の時間にもお楽しみいただけます。</p>
+          </article>
         </div>
       </div>
     </section>
@@ -76,35 +94,60 @@
           <h2 class="section-title">体験で味わえること</h2>
         </div>
         <div class="gallery-grid">
-          <div class="gallery-card"><div class="media-placeholder" data-label="香り選びの写真"></div><h3>香りを選ぶ</h3><p class="card-text">いくつもの香りを試しながら、今の気分に合う香りを見つけていきます。</p></div>
-          <div class="gallery-card"><div class="media-placeholder" data-label="調香の写真"></div><h3>香りを重ねる</h3><p class="card-text">香りの変化を楽しみながら、少しずつ理想の印象へ近づけます。</p></div>
-          <div class="gallery-card"><div class="media-placeholder" data-label="完成品の写真"></div><h3>思い出を残す</h3><p class="card-text">完成した香りは、写真にも記憶にも残る旅の思い出になります。</p></div>
-          <div class="gallery-card"><div class="media-placeholder" data-label="お持ち帰りの写真"></div><h3>そのまま持ち帰る</h3><p class="card-text">体験後の街歩きや帰宅後にも、浅草の余韻を香りと一緒に楽しめます。</p></div>
+          <article class="gallery-card">
+            <div class="media-placeholder" data-label="香り選び" aria-hidden="true"></div>
+            <h3>香りを選ぶ</h3>
+            <p class="card-text">ひとつひとつの香りに触れながら、気分や旅の思い出に合う香りを見つけていきます。</p>
+          </article>
+          <article class="gallery-card">
+            <div class="media-placeholder" data-label="調香の様子" aria-hidden="true"></div>
+            <h3>香りを整える</h3>
+            <p class="card-text">香りの強弱や重なり方を確認しながら、理想の印象へ丁寧に整えます。</p>
+          </article>
+          <article class="gallery-card">
+            <div class="media-placeholder" data-label="相談時間" aria-hidden="true"></div>
+            <h3>相談しながら決める</h3>
+            <p class="card-text">はじめての方にもわかりやすいよう、スタッフが質問に答えながら進めます。</p>
+          </article>
+          <article class="gallery-card">
+            <div class="media-placeholder" data-label="持ち帰り" aria-hidden="true"></div>
+            <h3>そのまま持ち帰る</h3>
+            <p class="card-text">完成後は浅草散策や宿泊先でも楽しめるよう、当日中にお持ち帰りいただけます。</p>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="plans" class="page-section">
       <div class="container">
-        <div class="section-header">
-          <h2 class="section-title">コース比較</h2>
+        <div class="reference-section__heading">
+          <h2>旅の予定に合わせて選べる体験プラン</h2>
+          <p>短時間で気軽に楽しみたい方にも、ゆったりと香りづくりを味わいたい方にも。ご希望に合わせて選びやすいプランをご用意しています。</p>
         </div>
-        <div class="plans-grid">
-          <article class="plan-card">
-            <span class="plan-card__badge">スタンダード</span>
-            <h3 class="card-title">香りづくり体験</h3>
-            <div class="price">4,500円 <small>60分</small></div>
-            <p class="card-text">観光の合間に参加しやすい基本コース。香り選びと調香の楽しさをバランスよく味わえます。</p>
-            <ul class="check-list"><li>初めての方におすすめ</li><li>1名から予約可能</li><li>完成品は当日持ち帰り</li></ul>
-            <a class="btn btn--primary" href="contact.html">予約する</a>
+
+        <div class="reference-plan-grid">
+          <article class="reference-plan-card">
+            <span class="reference-plan-card__ribbon reference-plan-card__ribbon--muted">人気</span>
+            <h3>スタンダードコース</h3>
+            <div class="reference-plan-card__price">4,500円<span>税込 / 60分</span></div>
+            <p>香り選びから調香までをバランスよく楽しめる基本プラン。浅草観光の合間にも参加しやすい内容です。</p>
+            <div class="reference-plan-card__meta">
+              <div><span>おすすめ</span><strong>初めての方</strong></div>
+              <div><span>体験内容</span><strong>オリジナルフレグランス</strong></div>
+            </div>
+            <a class="btn btn--outline btn--large btn--full" href="contact.html">予約する</a>
           </article>
-          <article class="plan-card plan-card--featured">
-            <span class="plan-card__badge">プレミアム</span>
-            <h3 class="card-title">ペア体験プラン</h3>
-            <div class="price">8,000円 <small>90分</small></div>
-            <p class="card-text">大切な人と一緒に、会話を楽しみながら香りづくりを味わえる人気のプランです。</p>
-            <ul class="check-list"><li>2名での参加におすすめ</li><li>記念日にも人気</li><li>ゆったり楽しめる90分</li></ul>
-            <a class="btn btn--primary" href="contact.html">予約する</a>
+
+          <article class="reference-plan-card reference-plan-card--featured">
+            <span class="reference-plan-card__ribbon">特別な日に</span>
+            <h3>プレミアムコース</h3>
+            <div class="reference-plan-card__price">8,000円<span>税込 / 90分</span></div>
+            <p>香りをじっくり選びたい方や、記念日に特別な思い出を残したい方におすすめのコースです。</p>
+            <div class="reference-plan-card__meta">
+              <div><span>おすすめ</span><strong>記念日やペア利用</strong></div>
+              <div><span>体験内容</span><strong>香りカウンセリング付き</strong></div>
+            </div>
+            <a class="btn btn--primary btn--large btn--full" href="contact.html">予約する</a>
           </article>
         </div>
       </div>
@@ -117,62 +160,78 @@
           <ul class="check-list">
             <li>香り選びのガイド</li>
             <li>調香サポート</li>
-            <li>完成した香りのお持ち帰り</li>
-            <li>所要時間や参加方法のご案内</li>
+            <li>完成した香りの当日持ち帰り</li>
+            <li>予約前のご相談対応</li>
           </ul>
         </div>
         <div class="panel">
           <h2 class="card-title">観光の予定にも組み込みやすい内容です</h2>
-          <p class="card-text">料金や所要時間を確認しながら、ご自身の旅程に合うコースを選べます。迷った場合はお問い合わせからお気軽にご相談ください。</p>
-          <div class="inline-actions"><a class="btn btn--secondary" href="contact.html">お問い合わせ</a></div>
+          <p class="card-text">体験時間や内容を事前に確認しながら、希望に合うコースを選べます。迷った場合はお問い合わせからお気軽にご相談ください。</p>
+          <div class="inline-actions">
+            <a class="btn btn--secondary btn--w-medium" href="contact.html">お問い合わせ</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="cta-band">
       <div class="container cta-band__inner">
-        <h2 class="cta-band__title">今の気分を、香りとして持ち帰る。</h2>
+        <h2 class="cta-band__title">旅の思い出を、香りとして持ち帰る</h2>
         <p class="cta-band__copy">コースがまだ決まっていなくても大丈夫です。ご希望に合わせてご案内します。</p>
-        <div class="inline-actions"><a class="btn btn--light" href="contact.html">予約する</a></div>
+        <div class="inline-actions">
+          <a class="btn btn--light btn--w-short" href="contact.html">予約する</a>
+        </div>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
+  <footer class="site-footer site-footer--reference">
     <div class="container">
       <div class="footer-grid">
         <section class="footer-brand">
-          <h2 class="footer-brand__title">KAORI MUSUBI</h2>
-          <p>浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験をお届けします。</p>
+          <div class="footer-brand__header">
+            <img class="footer-brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+            <div class="footer-brand__text">
+              <h2 class="footer-brand__title">KAORI MUSUBI</h2>
+              <p class="footer-brand__sub">香りで結ぶ、浅草時間</p>
+            </div>
+          </div>
         </section>
-        <section class="footer-column">
-          <h3>体験メニュー</h3>
-          <ul class="footer-nav">
-            <li><a href="works.html">ワークショップ</a></li>
-            <li><a href="process.html">体験の流れ</a></li>
-            <li><a href="skills.html">香りの魅力</a></li>
-          </ul>
-        </section>
-        <section class="footer-column">
-          <h3>ご案内</h3>
-          <ul class="footer-nav">
-            <li><a href="about.html">こだわり</a></li>
-            <li><a href="access.html">アクセス</a></li>
-            <li><a href="contact.html">お問い合わせ</a></li>
-          </ul>
-        </section>
-        <section class="footer-column">
-          <h3>店舗情報</h3>
-          <ul class="footer-contact">
-            <li>香むすび 浅草房</li>
-            <li>東京都台東区浅草X-X-X</li>
-            <li>10:00 - 19:00</li>
-          </ul>
-        </section>
+        <div class="footer-column-group">
+          <section class="footer-column">
+            <h3>体験メニュー</h3>
+            <ul class="footer-nav">
+              <li><a href="works.html">ワークショップ</a></li>
+              <li><a href="process.html">体験の流れ</a></li>
+              <li><a href="skills.html">香りの魅力</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>ご案内</h3>
+            <ul class="footer-nav">
+              <li><a href="about.html">こだわり</a></li>
+              <li><a href="access.html">アクセス</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>店舗情報</h3>
+            <ul class="footer-contact">
+              <li>香むすび 浅草房</li>
+              <li>東京都台東区浅草X-X-X</li>
+              <li>10:00 - 19:00</li>
+            </ul>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">camera_alt</span></a>
+              <a href="#" aria-label="SNS Share"><span class="material-symbols-outlined" aria-hidden="true">share</span></a>
+            </div>
+          </section>
+        </div>
       </div>
       <p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p>
     </div>
   </footer>
+
   <script src="js/main.js"></script>
 </body>
 </html>

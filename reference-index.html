@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="ja"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>香り結び - Kaori Musubi - | 香りで結ぶ、浅草時間</title>
+<meta content="浅草観光のひとときに、日本らしい感性とものづくりの楽しさを。香り結びでは、自分だけの香りをつくる特別な時間をゆったりとお楽しみいただけます。" name="description"/>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700;900&amp;family=Manrope:wght@400;500;700&amp;family=Noto+Sans+JP:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "error-container": "#ffdad6",
+              "secondary-fixed-dim": "#e7c186",
+              "on-tertiary-fixed-variant": "#603d45",
+              "on-background": "#1c1c18",
+              "on-error-container": "#93000a",
+              "surface": "#fdf9f3",
+              "background": "#fdf9f3",
+              "on-primary-fixed-variant": "#7c2a3a",
+              "on-tertiary-container": "#ffe0e5",
+              "on-secondary-container": "#795c2b",
+              "error": "#ba1a1a",
+              "on-secondary-fixed": "#281900",
+              "tertiary": "#6a464e",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-container": "#855d66",
+              "outline": "#877274",
+              "primary-container": "#a64b5a",
+              "tertiary-fixed": "#ffd9e0",
+              "on-primary-container": "#ffe1e3",
+              "primary-fixed": "#ffd9dc",
+              "surface-variant": "#e6e2dc",
+              "on-surface-variant": "#544244",
+              "on-primary-fixed": "#400011",
+              "on-secondary": "#ffffff",
+              "on-surface": "#1c1c18",
+              "on-tertiary": "#ffffff",
+              "outline-variant": "#dac0c2",
+              "inverse-on-surface": "#f4f0ea",
+              "surface-container-highest": "#e6e2dc",
+              "inverse-primary": "#ffb2bb",
+              "on-error": "#ffffff",
+              "on-tertiary-fixed": "#2f131a",
+              "primary": "#883443",
+              "primary-fixed-dim": "#ffb2bb",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fdf9f3",
+              "secondary-container": "#ffd79a",
+              "secondary": "#765929",
+              "surface-container-low": "#f7f3ed",
+              "secondary-fixed": "#ffdead",
+              "tertiary-fixed-dim": "#ebbac4",
+              "surface-tint": "#9a4150",
+              "surface-container": "#f1ede7",
+              "on-secondary-fixed-variant": "#5c4213",
+              "surface-container-high": "#ebe8e2",
+              "inverse-surface": "#31302d",
+              "surface-dim": "#ddd9d4"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif JP", "serif"],
+              "body": ["Noto Sans JP", "sans-serif"],
+              "label": ["Manrope", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .heritage-gradient {
+        background: linear-gradient(135deg, #883443 0%, #a64b5a 100%);
+      }
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 0;
+        background: #883443;
+        color: white;
+        padding: 8px;
+        z-index: 100;
+        transition: top 0.2s;
+      }
+      .skip-link:focus {
+        top: 0;
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body leading-relaxed">
+<a class="skip-link" href="#main">本文へ移動</a>
+<!-- Header -->
+<header class="fixed top-0 w-full z-50 bg-[#fdf9f3]/85 backdrop-blur-xl shadow-[0_20px_40px_rgba(47,42,40,0.06)]">
+<div class="flex justify-between items-center px-4 md:px-8 py-4 max-w-[1440px] mx-auto">
+<a aria-label="香り結びのトップページ" class="flex items-center gap-3" href="index.html">
+<img alt="KAORI MUSUBI Logo" class="w-10 h-10 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0uj6FeFkjiPbDlocfovl8r4JhjkC_vLqQ9z3EHITDKR-6bSu4jJvPP-up2pZ1J4iO3D6zJIdcLy37_xYUmic0Zj-iPSMq3jnqcN4iZjHE9A0kiPURb02vMaRTcCl6_mxqgmeWg5S__TbHiMZhpm00I3nO0cWhxbcvscnP8C4QrDMemzxdYhyMJkD4b61GbklRoBWvZ8DjWSeASTntR_7rsDm3hZIC658lu8iRNBpbCtEn81KK5y6jFCq3Q"/>
+<div class="flex flex-col">
+<span class="text-base font-bold tracking-wider leading-tight font-headline">KAORI MUSUBI</span>
+<span class="text-[10px] text-on-surface-variant font-medium tracking-tight">香りで結ぶ、浅草時間</span>
+</div>
+</a>
+<nav aria-label="グローバルナビゲーション" class="hidden md:block">
+<ul class="flex items-center gap-8">
+<li><a class="text-[#2f2a28] hover:text-[#a64b5a] transition-colors font-sans text-sm" href="works.html">ワークショップ</a></li>
+<li><a class="text-[#2f2a28] hover:text-[#a64b5a] transition-colors font-sans text-sm" href="about.html">こだわり</a></li>
+<li><a class="text-[#2f2a28] hover:text-[#a64b5a] transition-colors font-sans text-sm" href="process.html">体験の流れ</a></li>
+<li><a class="text-[#2f2a28] hover:text-[#a64b5a] transition-colors font-sans text-sm" href="skills.html">香りの魅力</a></li>
+<li><a class="bg-[#f4ebe8] text-[#a64b5a] px-4 py-1.5 rounded-lg font-sans text-sm font-medium" href="access.html">アクセス</a></li>
+<li><a class="text-[#2f2a28] hover:text-[#a64b5a] transition-colors font-sans text-sm" href="contact.html">お問い合わせ</a></li>
+</ul>
+</nav>
+<div class="flex items-center gap-4 md:gap-6">
+<span class="text-xs md:text-sm font-label tracking-widest text-outline">JP / EN</span>
+<a aria-label="予約ページへ" class="bg-[#A64B5A] text-white px-4 md:px-6 py-2 md:py-2.5 rounded-lg font-bold hover:opacity-90 transition-opacity active:scale-95 duration-200 text-sm" href="contact.html">
+                    予約する
+                </a>
+</div>
+</div>
+</header>
+<main id="main">
+<!-- Hero Section -->
+<section class="relative min-h-screen pt-32 pb-16 flex items-center overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="背景画像：体験の様子" class="w-full h-full object-cover opacity-20" src="https://lh3.googleusercontent.com/aida/ADBb0uikwY8F5b7k6kLcPVjJ0dYpLxIeaYs4YhPCLXBaXgnjFgCuaX161xSnrURhLWBO4-fMpN2C0GCWL-Y2V7uMmk_6MD5Tm1Wh1QapVBw-sxw47Bhf1w82xtnKSk22e_Ys-y-XHJHZ11TPVoCUpVgQNf-OWBHZupFTRHAgGlLUfBf0SFkB8dOwKjqhfdg5CB-bcFsjN2hg52cpmzkbHlIeHZ9kYOa5JWNT-kvLARilwaXBvZfKNFtxzgCVlA"/>
+<div class="absolute inset-0 bg-surface/40"></div>
+</div>
+<div class="max-w-[1440px] mx-auto px-8 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+<div class="lg:col-span-7">
+<h1 class="font-headline text-5xl md:text-8xl text-primary leading-tight mb-8 tracking-tighter">
+                        香りで結ぶ、<br/>浅草時間。
+                    </h1>
+<p class="text-lg md:text-2xl text-on-surface-variant mb-12 max-w-xl font-headline">
+                        浅草観光のひとときに、日本らしい感性とものづくりの楽しさを。香り結びでは、自分だけの香りをつくる特別な時間をゆったりとお楽しみいただけます。
+                    </p>
+<div class="flex flex-wrap gap-4">
+<a class="heritage-gradient text-white px-10 py-4 rounded-xl font-bold text-lg hover:opacity-90 transition-all shadow-lg active:scale-95 text-center" href="contact.html">
+                            予約する
+                        </a>
+<a class="bg-surface-container-highest text-on-surface px-10 py-4 rounded-xl font-bold text-lg hover:bg-surface-container-high transition-all active:scale-95 text-center" href="works.html">
+                            体験をみる
+                        </a>
+</div>
+<div class="mt-16 flex items-center gap-4 text-on-surface-variant">
+<span aria-hidden="true" class="material-symbols-outlined text-primary">location_on</span>
+<p class="font-headline text-lg">店舗名: 香むすび 浅草房 / 運営: 株式会社 香縁社</p>
+</div>
+</div>
+<aside aria-label="香り結びの魅力" class="lg:col-span-5 relative">
+<div class="bg-surface-container-lowest p-8 rounded-xl shadow-[0_20px_40px_rgba(47,42,40,0.06)] relative z-20">
+<div class="aspect-[4/5] overflow-hidden rounded-lg mb-6">
+<img alt="クリエイティブな調香素材のフラットレイ" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ugZkOG1DOQCC7UogPZOHufkubmwjmhc7tepZ0uvPFRsf_UZlDz7ssKcLDxrs5NY9bi8ZBRaK49-oWqK3jEIkkVp1MTbFF4LEiYpbnsgJZUDp2ohDFNLCkmQFcGmUaT9uDrk45c6lJ7h6sjMjtSCwlKVurSbBC3zphpVcgDBWbLUpJB-7sni8b-2DbWMsJCk8_MPg9D3ON1i5lqHN2j-RQw4zJ_BNA_ixDXNpHNxBEf2zB-kD1srapOfGQ"/>
+</div>
+<h2 class="font-headline text-xl md:text-2xl mb-4 text-on-surface">浅草らしさを感じながら、自分だけの香りを持ち帰れます</h2>
+<p class="text-on-surface-variant mb-6 text-sm md:text-base">体験内容や料金、所要時間をひと目で確認しながら、気になるプランを選べます。初めての方も安心して予約へ進めるよう、必要な情報をわかりやすくまとめています。</p>
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-on-surface-variant font-medium">
+<span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                浅草で味わう和の香り体験
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-medium">
+<span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                完成した香りは当日お持ち帰り
+                            </li>
+<li class="flex items-center gap-3 text-on-surface-variant font-medium">
+<span aria-hidden="true" class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+                                予約前のご相談にも対応
+                            </li>
+</ul>
+</div>
+<!-- Decorative element -->
+<div aria-hidden="true" class="absolute -top-12 -right-12 w-48 h-48 border-[20px] border-secondary/5 rounded-full -z-10"></div>
+</aside>
+</div>
+</section>
+<!-- Features Section -->
+<section class="py-24 bg-surface-container-low">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="text-center mb-20">
+<h2 class="font-headline text-3xl md:text-5xl text-primary mb-6">浅草らしい空気感を、上質な体験に</h2>
+<p class="text-lg text-on-surface-variant max-w-3xl mx-auto">
+                        和モダンの落ち着きと、旅先で出会うときめきを大切にしたワークショップです。写真に残したくなる美しさと、心に残る体験の両方を楽しめます。
+                    </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Feature 1 -->
+<article class="bg-surface-container-lowest p-10 rounded-xl transition-transform hover:-translate-y-2">
+<div aria-hidden="true" class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-8 text-primary">
+<span class="font-headline text-2xl font-bold">1</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 text-on-surface">浅草で味わう和の香り</h3>
+<p class="text-on-surface-variant leading-loose">
+                            日本らしいやさしい香りに触れながら、浅草ならではの雰囲気をゆっくり感じていただけます。
+                        </p>
+</article>
+<!-- Feature 2 -->
+<article class="bg-surface-container-lowest p-10 rounded-xl transition-transform hover:-translate-y-2">
+<div aria-hidden="true" class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-8 text-primary">
+<span class="font-headline text-2xl font-bold">2</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 text-on-surface">自分だけの一本をつくる</h3>
+<p class="text-on-surface-variant leading-loose">
+                            香りを選び、重ね、整える時間そのものが思い出に。完成した香りは旅の余韻とともに持ち帰れます。
+                        </p>
+</article>
+<!-- Feature 3 -->
+<article class="bg-surface-container-lowest p-10 rounded-xl transition-transform hover:-translate-y-2">
+<div aria-hidden="true" class="w-16 h-16 bg-surface-container rounded-full flex items-center justify-center mb-8 text-primary">
+<span class="font-headline text-2xl font-bold">3</span>
+</div>
+<h3 class="font-headline text-2xl mb-4 text-on-surface">初めてでも安心</h3>
+<p class="text-on-surface-variant leading-loose">
+                            体験の流れや料金、ご来店前に気になることをページ内で確認できるので、はじめての方も安心です。
+                        </p>
+</article>
+</div>
+</div>
+</section>
+<!-- Panel Section -->
+<section class="py-24">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="bg-surface-container-high rounded-xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
+<div class="relative min-h-[400px]">
+<img alt="ハイエンドなミニマルボトル" class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/ADBb0ug6QxstIio_c1_uNAVxOqaOE7joNHAJZJUVjnzLNrxNyln7fxTJt_o8dAol36e-VKcjeMroG4JWp0pBbcQdk0vJg00H70hmNDmYVgOCb7f4Mh0d17zwcjvTWiSysLIkDHyVlBsKHN9Oc0-s9XQn3AUmsyVXnbFHnfMYZtlI6PVMg-mr_hYFboYfzItwd5Jb4htUKfuOtMExketbW_7CgK7CNTYrmoSudrgvAnJVjGf5DKRHvCQFCgLw"/>
+</div>
+<div class="p-12 lg:p-20 flex flex-col justify-center">
+<h2 class="font-headline text-3xl md:text-4xl text-on-surface mb-6">観光の合間にも立ち寄りやすい、やさしい体験時間</h2>
+<p class="text-lg text-on-surface-variant mb-10 leading-relaxed">
+                            体験は約60分から。浅草散策の前後にも組み込みやすく、完成した香りはその日の思い出としてそのまま持ち帰れます。
+                        </p>
+<ul class="space-y-6 mb-12">
+<li class="flex items-start gap-4">
+<span aria-hidden="true" class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<span class="font-bold block">香り選びが初めてでもスタッフがサポート</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span aria-hidden="true" class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<span class="font-bold block">時間や人数に合わせてプランを選べる</span>
+</div>
+</li>
+<li class="flex items-start gap-4">
+<span aria-hidden="true" class="material-symbols-outlined text-primary mt-1">check_circle</span>
+<div>
+<span class="font-bold block">迷ったときはお問い合わせから相談できる</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Plans Section -->
+<section class="py-24 bg-surface">
+<div class="max-w-[1440px] mx-auto px-8">
+<div class="text-center mb-16">
+<h2 class="font-headline text-4xl text-primary mb-4">旅の予定に合わせて選べる体験プラン</h2>
+<p class="text-on-surface-variant">短時間で気軽に楽しみたい方にも、ゆったりと香りづくりを味わいたい方にも。ご希望に合わせて選びやすいプランをご用意しています。</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
+<!-- Standard Plan -->
+<article class="bg-surface-container-low p-12 rounded-xl border border-outline-variant/20 flex flex-col relative">
+<span class="absolute top-0 right-0 bg-outline text-white px-6 py-2 rounded-bl-xl font-bold text-sm">人気</span>
+<h3 class="font-headline text-3xl mb-2 text-on-surface">スタンダードコース</h3>
+<div class="text-primary font-bold text-2xl mb-4">4,500円 <span class="text-sm font-normal text-on-surface-variant">税込 / 60分</span></div>
+<p class="text-on-surface-variant mb-8 leading-relaxed">香り選びから調香までをバランスよく楽しめる基本プラン。浅草観光の合間にも参加しやすい内容です。</p>
+<div class="space-y-4 mb-12 flex-grow">
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">おすすめ</span>
+<strong class="text-on-surface">初めての方</strong>
+</div>
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">完成品</span>
+<strong class="text-on-surface">オリジナルフレグランス</strong>
+</div>
+</div>
+<a aria-label="スタンダードコースを予約する" class="w-full border-2 border-primary text-primary py-4 rounded-xl font-bold hover:bg-primary hover:text-white transition-all text-center" href="contact.html">予約する</a>
+</article>
+<!-- Premium Plan -->
+<article class="bg-surface-container-lowest p-12 rounded-xl shadow-2xl ring-2 ring-primary relative overflow-hidden flex flex-col">
+<div class="absolute top-0 right-0 bg-primary text-white px-6 py-2 rounded-bl-xl font-bold text-sm">特別な日に</div>
+<h3 class="font-headline text-3xl mb-2 text-on-surface">プレミアムコース</h3>
+<div class="text-primary font-bold text-2xl mb-4">8,000円 <span class="text-sm font-normal text-on-surface-variant">税込 / 90分</span></div>
+<p class="text-on-surface-variant mb-8 leading-relaxed">香りをじっくり選びたい方や、記念日に特別な思い出を残したい方におすすめのコースです。</p>
+<div class="space-y-4 mb-12 flex-grow">
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">おすすめ</span>
+<strong class="text-on-surface">記念日やペア利用</strong>
+</div>
+<div class="flex justify-between border-b border-outline-variant/20 pb-2">
+<span class="text-on-surface-variant">完成品</span>
+<strong class="text-on-surface">香りカード付き</strong>
+</div>
+</div>
+<a aria-label="プレミアムコースを予約する" class="w-full heritage-gradient text-white py-4 rounded-xl font-bold hover:opacity-90 transition-all shadow-md text-center" href="contact.html">予約する</a>
+</article>
+</div>
+</div>
+</section>
+<!-- Stats Section -->
+<section class="py-24 bg-surface-container-highest">
+<div class="max-w-[1440px] mx-auto px-8">
+<h2 class="font-headline text-center text-3xl text-primary mb-16">旅の中でも選ばれやすい理由</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+<article class="text-center p-6 bg-surface/40 rounded-xl">
+<strong class="font-headline text-5xl text-primary mb-2 block">60分〜</strong>
+<span class="text-on-surface-variant font-bold block">観光の合間に立ち寄りやすい所要時間</span>
+</article>
+<article class="text-center p-6 bg-surface/40 rounded-xl">
+<strong class="font-headline text-5xl text-primary mb-2 block">1名から</strong>
+<span class="text-on-surface-variant font-bold block">おひとりでも気軽に参加可能</span>
+</article>
+<article class="text-center p-6 bg-surface/40 rounded-xl">
+<strong class="font-headline text-5xl text-primary mb-2 block">浅草徒歩圏</strong>
+<span class="text-on-surface-variant font-bold block">街歩きの途中でも立ち寄りやすい立地</span>
+</article>
+<article class="text-center p-6 bg-surface/40 rounded-xl">
+<strong class="font-headline text-5xl text-primary mb-2 block">相談OK</strong>
+<span class="text-on-surface-variant font-bold block">予約前の不安やご質問にも対応</span>
+</article>
+</div>
+</div>
+</section>
+<!-- FAQ Section -->
+<section class="py-24">
+<div class="max-w-5xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12">
+<div>
+<h2 class="font-headline text-4xl text-on-surface mb-6">予約前によくあるご質問</h2>
+<p class="text-lg text-on-surface-variant leading-relaxed">初めての方にも安心してお越しいただけるよう、よくあるご質問をまとめました。</p>
+</div>
+<div class="space-y-4">
+<details class="group bg-surface-container-low rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-bold pr-4">1人でも参加できますか？</span>
+<span aria-hidden="true" class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-on-surface-variant">
+<p>はい、1名からご参加いただけます。おひとりでゆっくり香りを楽しみたい方にもおすすめです。</p>
+</div>
+</details>
+<details class="group bg-surface-container-low rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-bold pr-4">当日の予約相談はできますか？</span>
+<span aria-hidden="true" class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-on-surface-variant">
+<p>空き状況によってご案内できる場合があります。まずはお問い合わせから希望日時をご連絡ください。</p>
+</div>
+</details>
+<details class="group bg-surface-container-low rounded-xl">
+<summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+<span class="font-bold pr-4">完成した香りはその日に持ち帰れますか？</span>
+<span aria-hidden="true" class="material-symbols-outlined group-open:rotate-180 transition-transform">expand_more</span>
+</summary>
+<div class="px-6 pb-6 text-on-surface-variant">
+<p>はい、当日にお持ち帰りいただけます。旅の思い出としてその後の時間にもお楽しみください。</p>
+</div>
+</details>
+</div>
+</div>
+</section>
+<!-- CTA Band -->
+<section class="py-24 heritage-gradient relative overflow-hidden">
+<div aria-hidden="true" class="absolute inset-0 opacity-10">
+<div class="w-full h-full" style="background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+</div>
+<div class="max-w-[1440px] mx-auto px-8 text-center relative z-10 text-white">
+<h2 class="font-headline text-3xl md:text-5xl mb-6">浅草の思い出を, 香りにして持ち帰りませんか。</h2>
+<p class="text-xl opacity-90 mb-12">プランがまだ決まっていない方も大丈夫です。ご希望に合わせておすすめをご案内します。</p>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="bg-white text-primary px-12 py-5 rounded-xl font-bold text-lg hover:bg-opacity-90 transition-all shadow-xl active:scale-95 text-center" href="contact.html">
+                        予約する
+                    </a>
+<a class="bg-transparent border-2 border-white text-white px-12 py-5 rounded-xl font-bold text-lg hover:bg-white/10 transition-all active:scale-95 text-center" href="access.html">
+                        アクセスを見る
+                    </a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#e6e2dc] w-full pt-24 pb-12">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 px-8 max-w-[1440px] mx-auto">
+<section>
+<h2 class="font-headline text-3xl text-[#1c1c18] mb-4">KAORI MUSUBI</h2>
+<p class="text-[#2f2a28]/70 leading-relaxed">
+                    浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験をお届けします。
+                </p>
+</section>
+<nav aria-label="体験メニュー">
+<h3 class="font-headline text-xl mb-6 text-[#1c1c18]">体験メニュー</h3>
+<ul class="space-y-4">
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="works.html">ワークショップ</a></li>
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="process.html">体験の流れ</a></li>
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="skills.html">香りの魅力</a></li>
+</ul>
+</nav>
+<nav aria-label="ご案内">
+<h3 class="font-headline text-xl mb-6 text-[#1c1c18]">ご案内</h3>
+<ul class="space-y-4">
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="about.html">こだわり</a></li>
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="access.html">アクセス</a></li>
+<li><a class="text-[#2f2a28]/70 hover:text-[#a64b5a] transition-colors" href="contact.html">お問い合わせ</a></li>
+</ul>
+</nav>
+<section>
+<h3 class="font-headline text-xl mb-6 text-[#1c1c18]">店舗情報</h3>
+<ul class="space-y-4 text-[#2f2a28]/70">
+<li>香むすび 浅草房</li>
+<li>東京都台東区浅草X-X-X</li>
+<li>10:00 - 19:00</li>
+</ul>
+<div class="flex gap-4 mt-6">
+<a aria-label="Instagram" class="text-[#2f2a28]/70 hover:text-[#a64b5a]" href="#">
+<span aria-hidden="true" class="material-symbols-outlined">camera_alt</span>
+</a>
+<a aria-label="SNS Share" class="text-[#2f2a28]/70 hover:text-[#a64b5a]" href="#">
+<span aria-hidden="true" class="material-symbols-outlined">share</span>
+</a>
+</div>
+</section>
+</div>
+<div class="mt-20 text-center border-t border-black/5 pt-8">
+<p class="text-[#2f2a28]/50 text-sm">© 2026 KAORI MUSUBI / 株式会社 香縁社</p>
+</div>
+</footer>
+</body></html>

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -6,37 +6,41 @@
   <title>お問い合わせ・予約 | 香り結び - Kaori Musubi -</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="page-reference">
   <a class="skip-link" href="#main">本文へ移動</a>
-  <header class="site-header">
+  <header class="site-header" data-site-header>
     <div class="container site-header__inner">
-      <a class="brand" href="index.html" aria-label="香り結びのトップページ">
-        <span class="brand__mark">K</span>
-        <span>
+      <a class="brand brand--reference" href="index.html" aria-label="香り結びのトップページ">
+        <img class="brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+        <span class="brand__text">
           <span class="brand__name">KAORI MUSUBI</span>
           <span class="brand__sub">香りで結ぶ、浅草時間</span>
         </span>
       </a>
+
       <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="メニューを開く">
         <span class="menu-toggle__line"></span>
         <span class="menu-toggle__line"></span>
         <span class="menu-toggle__line"></span>
       </button>
-      <nav class="site-nav" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
+
+      <nav class="site-nav site-nav--reference" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
         <ul class="site-nav__list">
           <li><a href="works.html">ワークショップ</a></li>
           <li><a href="about.html">こだわり</a></li>
           <li><a href="process.html">体験の流れ</a></li>
           <li><a href="skills.html">香りの魅力</a></li>
-          <li><a href="access.html">アクセス</a></li>
+          <li><a class="site-nav__soft-link" href="access.html">アクセス</a></li>
           <li><a href="contact.html" aria-current="page">お問い合わせ</a></li>
         </ul>
       </nav>
-      <div class="header-actions">
+
+      <div class="header-actions header-actions--reference">
         <span class="lang-chip">JP / EN</span>
-        <a class="btn btn--primary" href="#contact-form">予約する</a>
+        <a class="btn btn--primary btn--w-short" href="#contact-form">予約する</a>
       </div>
     </div>
   </header>
@@ -119,37 +123,48 @@
     </section>
   </main>
 
-  <footer class="site-footer">
+    <footer class="site-footer site-footer--reference">
     <div class="container">
       <div class="footer-grid">
         <section class="footer-brand">
-          <h2 class="footer-brand__title">KAORI MUSUBI</h2>
-          <p>浅草観光の途中で、日本らしい感性とものづくりの魅力に触れられる香り体験をお届けします。</p>
+          <div class="footer-brand__header">
+            <img class="footer-brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+            <div class="footer-brand__text">
+              <h2 class="footer-brand__title">KAORI MUSUBI</h2>
+              <p class="footer-brand__sub">香りで結ぶ、浅草時間</p>
+            </div>
+          </div>
         </section>
-        <section class="footer-column">
-          <h3>体験メニュー</h3>
-          <ul class="footer-nav">
-            <li><a href="works.html">ワークショップ</a></li>
-            <li><a href="process.html">体験の流れ</a></li>
-            <li><a href="skills.html">香りの魅力</a></li>
-          </ul>
-        </section>
-        <section class="footer-column">
-          <h3>ご案内</h3>
-          <ul class="footer-nav">
-            <li><a href="about.html">こだわり</a></li>
-            <li><a href="access.html">アクセス</a></li>
-            <li><a href="contact.html">お問い合わせ</a></li>
-          </ul>
-        </section>
-        <section class="footer-column">
-          <h3>店舗情報</h3>
-          <ul class="footer-contact">
-            <li>香むすび 浅草房</li>
-            <li>東京都台東区浅草X-X-X</li>
-            <li>10:00 - 19:00</li>
-          </ul>
-        </section>
+        <div class="footer-column-group">
+          <section class="footer-column">
+            <h3>体験メニュー</h3>
+            <ul class="footer-nav">
+              <li><a href="works.html">ワークショップ</a></li>
+              <li><a href="process.html">体験の流れ</a></li>
+              <li><a href="skills.html">香りの魅力</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>ご案内</h3>
+            <ul class="footer-nav">
+              <li><a href="about.html">こだわり</a></li>
+              <li><a href="access.html">アクセス</a></li>
+              <li><a href="contact.html">お問い合わせ</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>店舗情報</h3>
+            <ul class="footer-contact">
+              <li>香むすび 浅草房</li>
+              <li>東京都台東区浅草X-X-X</li>
+              <li>10:00 - 19:00</li>
+            </ul>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">camera_alt</span></a>
+              <a href="#" aria-label="SNS Share"><span class="material-symbols-outlined" aria-hidden="true">share</span></a>
+            </div>
+          </section>
+        </div>
       </div>
       <p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p>
     </div>
@@ -157,3 +172,4 @@
   <script src="js/main.js"></script>
 </body>
 </html>
+
