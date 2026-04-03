@@ -86,6 +86,9 @@ document.addEventListener("DOMContentLoaded", () => {
   if (contactForm) {
     const status = contactForm.querySelector("[data-form-status]");
     const fields = Array.from(contactForm.querySelectorAll("[data-validate]"));
+    const inquiryType = contactForm.querySelector("[data-inquiry-type]");
+    const reservationSections = Array.from(contactForm.querySelectorAll("[data-reservation-only]"));
+    const messageNote = contactForm.querySelector("#note-message");
 
     const validators = {
       required: (value) => value.trim().length > 0,
@@ -108,6 +111,11 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     const validateField = (field) => {
+      if (field.disabled) {
+        setFieldState(field, "");
+        return true;
+      }
+
       const rules = field.dataset.validate.split("|");
       for (const rule of rules) {
         const validator = validators[rule];
@@ -116,8 +124,31 @@ document.addEventListener("DOMContentLoaded", () => {
           return false;
         }
       }
+
       setFieldState(field, "");
       return true;
+    };
+
+    const syncInquiryType = () => {
+      const isWorkshop = !inquiryType || inquiryType.value === "workshop";
+
+      reservationSections.forEach((section) => {
+        section.hidden = !isWorkshop;
+        section.setAttribute("aria-hidden", String(!isWorkshop));
+
+        section.querySelectorAll("input, select, textarea").forEach((field) => {
+          field.disabled = !isWorkshop;
+          if (!isWorkshop && field.matches("[data-validate]")) {
+            setFieldState(field, "");
+          }
+        });
+      });
+
+      if (messageNote) {
+        messageNote.textContent = isWorkshop
+          ? messageNote.dataset.noteWorkshop || ""
+          : messageNote.dataset.noteStore || "";
+      }
     };
 
     fields.forEach((field) => {
@@ -130,12 +161,17 @@ document.addEventListener("DOMContentLoaded", () => {
       field.addEventListener("change", () => validateField(field));
     });
 
+    if (inquiryType) {
+      inquiryType.addEventListener("change", syncInquiryType);
+      syncInquiryType();
+    }
+
     contactForm.addEventListener("submit", (event) => {
       event.preventDefault();
       let isValid = true;
 
       fields.forEach((field) => {
-        if (!validateField(field)) {
+        if (!field.disabled && !validateField(field)) {
           isValid = false;
         }
       });
@@ -153,12 +189,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (status) {
-        status.textContent = "送信ありがとうございました。内容を確認のうえ、担当者よりご連絡します。";
+        status.textContent = "送信ありがとうございました。内容を確認のうえ、折り返しご連絡します。";
         status.classList.add("is-success");
       }
 
       contactForm.reset();
       fields.forEach((field) => setFieldState(field, ""));
+      syncInquiryType();
     });
   }
 });

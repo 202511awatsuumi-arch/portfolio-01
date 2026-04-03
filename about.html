@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link rel="stylesheet" href="css/style.css">
 </head>
-<body class="page-reference">
+<body class="page-reference page-about">
   <a class="skip-link" href="#main">本文へ移動</a>
   <header class="site-header" data-site-header>
     <div class="container site-header__inner">
@@ -30,10 +30,9 @@
       <nav class="site-nav site-nav--reference" id="site-nav" data-site-nav aria-label="グローバルナビゲーション">
         <ul class="site-nav__list">
           <li><a href="works.html">ワークショップ</a></li>
-          <li><a href="about.html" aria-current="page">こだわり</a></li>
-          <li><a href="process.html">体験の流れ</a></li>
+          <li><a href="about.html">こだわり</a></li>
           <li><a href="skills.html">香りの魅力</a></li>
-          <li><a class="site-nav__soft-link" href="access.html">アクセス</a></li>
+          <li><a href="access.html">アクセス</a></li>
           <li><a href="contact.html">お問い合わせ</a></li>
         </ul>
       </nav>
@@ -49,39 +48,42 @@
     <section class="page-hero">
       <div class="container page-hero__grid">
         <div>
-          <p class="breadcrumbs"><a href="index.html">ホーム</a> / こだわり</p>
-                    <h1 class="page-title">浅草の空気感を、香りの時間へ。</h1>
-          <p class="page-lead">香り結びは、浅草らしい日本文化の余韻を感じながら、自分だけの香りをつくる体験です。和モダンの落ち着きと、旅先で出会うときめきを大切にしています。</p>
-          <div class="hero-actions">
-            <a class="btn btn--primary" href="contact.html">予約する</a>
-            <a class="btn btn--secondary" href="works.html">体験をみる</a>
-          </div>
+          <h1 class="page-title">浅草の空気感を、香りの時間へ。</h1>
+          <p class="page-lead">香り結びは、浅草らしい日本文化の余韻を感じながら、自分だけの香りをつくる体験です。<br>和モダンの落ち着きと、旅先で出会うときめきを大切にしています。</p>
         </div>
-        <aside class="hero-card">
+        <aside class="about-hero-summary">
           <h2 class="hero-card__title">香むすび 浅草房が大切にしていること</h2>
           <ul class="summary-list">
             <li>浅草らしい和の空気を感じられること</li>
             <li>旅の中で、少し特別な時間になること</li>
             <li>体験したあとも思い出が続くこと</li>
           </ul>
+          <div class="hero-actions">
+            <a class="btn btn--primary" href="contact.html">予約する</a>
+            <a class="btn btn--secondary" href="works.html">体験をみる</a>
+          </div>
         </aside>
       </div>
     </section>
 
     <section class="page-section">
       <div class="container story-grid">
-        <article class="story-card">
+        <article class="story-copy">
           <h2 class="card-title">和モダン</h2>
           <p>浅草らしい日本文化の雰囲気を感じながら、今の気分にもなじむ洗練された時間を目指しています。やわらかな色合いと落ち着いた世界観で、気負わず楽しめる和の体験にしています。</p>
         </article>
-        <div class="media-placeholder" data-label="浅草の街並みや和の雰囲気の写真が入ります" aria-hidden="true"></div>
+        <figure class="media-placeholder">
+          <img src="images/screen8.png" alt="和モダンな雰囲気を感じるイメージ">
+        </figure>
       </div>
     </section>
 
     <section class="page-section">
       <div class="container story-grid">
-        <div class="media-placeholder" data-label="手仕事の温かさが伝わる写真が入ります" aria-hidden="true"></div>
-        <article class="story-card">
+        <figure class="media-placeholder">
+          <img src="images/screen9.png" alt="上質感を伝える体験空間のイメージ">
+        </figure>
+        <article class="story-copy">
           <h2 class="card-title">上質感</h2>
           <p>香りづくりの時間そのものを、旅先で味わう少し贅沢なひとときとして楽しんでいただけるよう、落ち着いた空間と丁寧なご案内を大切にしています。</p>
         </article>
@@ -90,17 +92,19 @@
 
     <section class="page-section">
       <div class="container story-grid">
-        <article class="story-card">
+        <article class="story-copy">
           <h2 class="card-title">ときめき</h2>
           <p>「やってみたい」と思える軽やかさと、「来てよかった」と思える満足感の両方を大切にしています。完成した香りが旅の記憶にそっと寄り添うような体験を目指しています。</p>
         </article>
-        <div class="media-placeholder" data-label="完成した香りや体験中の笑顔の写真が入ります" aria-hidden="true"></div>
+        <figure class="media-placeholder">
+          <img src="images/screen10.png" alt="ときめきを感じる完成イメージ">
+        </figure>
       </div>
     </section>
 
     <section class="page-section">
       <div class="container split-layout">
-        <article class="panel">
+        <article class="about-message">
           <h2 class="card-title">歩くだけでは出会えない、浅草の余韻に触れる</h2>
           <p class="card-text">浅草の街には、にぎわいの中にも静かな余韻があります。香り結びは、その空気感を眺めるだけでなく、自分の手でかたちにする時間として持ち帰っていただくためのワークショップです。</p>
           <ul class="check-list">
@@ -109,15 +113,6 @@
             <li>持ち帰ったあとも続く旅の思い出</li>
           </ul>
         </article>
-        <article class="panel">
-          <h2 class="card-title">気になることを確かめながら、安心して選べます</h2>
-          <div class="meta-list">
-            <div class="meta-row"><span>雰囲気</span><strong>和モダンで落ち着いた空間</strong></div>
-            <div class="meta-row"><span>体験</span><strong>自分だけの香りをつくれる</strong></div>
-            <div class="meta-row"><span>ご案内</span><strong>予約前のご相談にも対応</strong></div>
-          </div>
-          <div class="inline-actions"><a class="btn btn--secondary" href="contact.html">お問い合わせ</a></div>
-        </article>
       </div>
     </section>
 
@@ -125,7 +120,7 @@
       <div class="container cta-band__inner">
         <h2 class="cta-band__title">浅草の記憶を、香りというかたちに。</h2>
         <p class="cta-band__copy">旅の予定に合わせて、ぴったりのプランをご案内します。気になることがあれば、お気軽にお問い合わせください。</p>
-        <div class="inline-actions"><a class="btn btn--light" href="contact.html">お問い合わせ</a></div>
+        <div class="inline-actions"><a class="btn btn--primary btn--large btn--w-short reference-cta__primary-btn" href="contact.html">お問い合わせ</a></div>
       </div>
     </section>
   </main>
@@ -147,7 +142,6 @@
             <h3>体験メニュー</h3>
             <ul class="footer-nav">
               <li><a href="works.html">ワークショップ</a></li>
-              <li><a href="process.html">体験の流れ</a></li>
               <li><a href="skills.html">香りの魅力</a></li>
             </ul>
           </section>
