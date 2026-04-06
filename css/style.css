@@ -2334,11 +2334,23 @@ button {
   color: var(--reference-accent);
 }
 
+.page-access .page-title {
+  font-family: "Noto Serif JP", serif;
+  font-size: clamp(39px, 3.2vw, 53px);
+  line-height: 1.14;
+  letter-spacing: 0.02em;
+  color: var(--reference-accent);
+}
+
 .page-about .page-hero {
   padding: 116px 0 24px;
 }
 
 .page-skills .page-hero {
+  padding: 116px 0 24px;
+}
+
+.page-access .page-hero {
   padding: 116px 0 24px;
 }
 
@@ -2348,7 +2360,7 @@ button {
   gap: 0;
 }
 
-.page-skills .page-hero__grid > div {
+.page-skills .page-hero__grid>div {
   text-align: center;
 }
 
@@ -2358,12 +2370,23 @@ button {
   gap: 0;
 }
 
-.page-about .page-hero__grid > div {
+.page-access .page-hero__grid {
+  grid-template-columns: minmax(0, 920px);
+  justify-content: center;
+  gap: 0;
+}
+
+.page-about .page-hero__grid>div {
+  text-align: center;
+}
+
+.page-access .page-hero__grid>div {
   text-align: center;
 }
 
 .page-about .page-lead,
-.page-skills .page-lead {
+.page-skills .page-lead,
+.page-access .page-lead {
   font-family: "Noto Serif JP", serif;
   font-size: 15px;
   line-height: 1.9;
@@ -2379,8 +2402,19 @@ button {
   justify-content: center;
 }
 
+.page-access .hero-actions {
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
 .page-skills .hero-actions {
   justify-content: center;
+}
+
+.page-access .btn {
+  min-height: 44px;
+  padding: 13px 26px;
+  font-size: 16px;
 }
 
 .page-about .hero-card__title,
@@ -2535,6 +2569,10 @@ button {
   padding-top: 50px;
 }
 
+.page-access .page-section {
+  padding-top: 50px;
+}
+
 .page-skills .skills-gallery-section {
   padding: 50px 0;
 }
@@ -2553,6 +2591,7 @@ button {
 
 .page-skills .skills-feature-image {
   min-height: 0;
+  height: 100%;
   margin: 0;
   border: 0;
   background: transparent;
@@ -2643,7 +2682,7 @@ button {
   background: #c9ae82;
 }
 
-.page-about .page-section + .page-section:has(.about-message) {
+.page-about .page-section+.page-section:has(.about-message) {
   padding-top: 80px;
 }
 
@@ -2770,7 +2809,7 @@ button {
   grid-template-columns: repeat(2, minmax(0, 540px));
   justify-content: center;
   gap: 32px;
-  align-items: center;
+  align-items: stretch;
 }
 
 .page-skills .page-section:has(.about-message) .split-layout {
@@ -2798,6 +2837,7 @@ button {
 }
 
 @media (max-width: 900px) {
+
   .page-about .story-grid,
   .page-about .split-layout {
     grid-template-columns: 1fr;
@@ -2837,9 +2877,243 @@ button {
   font-size: 16px;
 }
 
+.page-access .btn--large,
+.page-access .btn--light,
+.page-access .btn--secondary,
+.page-access .btn--outline,
+.page-access .header-actions--reference .btn {
+  font-size: 16px;
+}
+
+.page-access .access-map {
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  background: transparent;
+}
+
+.page-access .access-map::before {
+  content: none;
+}
+
+.page-access .access-map img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 240px;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.page-access .page-section .split-layout {
+  gap: 70px;
+}
+
+.page-access .page-hero+.page-section {
+  padding-top: 0;
+}
+
+.page-access .access-store-info {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  text-align: left;
+}
+
+.page-access .access-store-info .card-title {
+  margin-bottom: 18px;
+}
+
+.page-access .access-store-info .meta-list {
+  gap: 14px;
+  padding-top: 0;
+  border-top: 0;
+  justify-items: start;
+}
+
+.page-access .access-store-info .meta-row {
+  display: grid;
+  grid-template-columns: 4em max-content;
+  justify-content: start;
+  column-gap: 80px;
+  font-family: "Noto Serif JP", serif;
+  font-size: 15px;
+  color: var(--reference-text);
+}
+
+.page-access .access-store-info .meta-row span {
+  color: var(--reference-text-soft);
+}
+
+.page-access .access-store-info .meta-row strong {
+  display: block;
+  justify-self: start;
+  text-align: left;
+}
+
+.page-access .access-store-info .inline-actions {
+  margin-top: 28px;
+}
+
 .page-contact .page-title {
   font-size: clamp(29px, 3.2vw, 43px);
   color: var(--reference-accent);
+}
+
+.page-access #route .section-header {
+  text-align: center;
+}
+
+.page-access #route .section-copy {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.page-access #route .section-title {
+  font-size: clamp(25px, 2.5vw, 35px);
+  color: var(--reference-accent);
+}
+
+.page-access #route .feature-grid {
+  grid-template-columns: 1fr;
+  justify-items: center;
+  gap: 24px;
+}
+
+.page-access #route .feature-card {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  column-gap: 22px;
+  align-items: start;
+  width: min(100%, 800px);
+  padding: 30px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.page-access #route .feature-card h3,
+.page-access #route .feature-card p {
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+.page-access #route .feature-card h3 {
+  font-size: 19px;
+  line-height: 1.45;
+}
+
+.page-access #route .feature-card__icon {
+  grid-column: 1;
+  grid-row: 1;
+  width: 54px;
+  height: 54px;
+  font-size: 24px;
+}
+
+.page-access #route .feature-card h3 {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 4px 0 0;
+}
+
+.page-access #route .feature-card p {
+  grid-column: 2;
+  grid-row: 2;
+  margin: 8px 0 0;
+}
+
+.page-access #route+.page-section {
+  padding-top: 80px;
+}
+
+.page-access .access-guide-band {
+  position: relative;
+  width: 100%;
+  padding-top: 0;
+}
+
+.page-access .access-guide {
+  max-width: 680px;
+  margin: 0 auto;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.page-access .access-guide-media {
+  position: relative;
+  min-height: 0;
+  margin: 0;
+  border: 0;
+  background: #efe7dc;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 0;
+}
+
+.page-access .access-guide-media::before {
+  content: none;
+}
+
+.page-access .access-guide-media::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(25, 21, 19, 0.48), rgba(25, 21, 19, 0.28)),
+    rgba(25, 21, 19, 0.14);
+  border-radius: 0;
+}
+
+.page-access .access-guide-media img {
+  display: block;
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  object-position: center 35%;
+  border-radius: 0;
+  opacity: 0.78;
+}
+
+.page-access .access-guide-band__content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateX(-50px);
+}
+
+.page-access .access-guide .check-list {
+  width: fit-content;
+  max-width: 100%;
+  margin: 18px 0 0;
+}
+
+.page-access .access-guide .check-list li {
+  text-align: left;
+}
+
+.page-access .access-guide .card-title,
+.page-access .access-guide .check-list li,
+.page-access .access-guide .card-text {
+  color: rgba(255, 255, 255, 0.96);
+}
+
+.page-access .access-guide .check-list li::before {
+  background: #d9b06a;
+}
+
+.page-access .access-guide .card-text {
+  margin-top: 18px;
+}
+
+.page-access .access-guide .inline-actions {
+  justify-content: center;
+}
+
+.page-access .cta-band {
+  margin-top: 0;
 }
 
 .page-contact .page-section {
