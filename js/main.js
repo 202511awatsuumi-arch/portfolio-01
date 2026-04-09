@@ -83,6 +83,45 @@
     });
   });
 
+  const englishContactDate = document.querySelector('.page-contact input#date.input[name="date"]');
+  if (
+    isEnglishPage &&
+    document.body.classList.contains("page-contact") &&
+    englishContactDate &&
+    typeof window.flatpickr === "function"
+  ) {
+    window.flatpickr(englishContactDate, {
+      locale: {
+        weekdays: {
+          shorthand: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+          longhand: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
+        },
+        months: {
+          shorthand: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+          longhand: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        },
+        firstDayOfWeek: 0,
+        rangeSeparator: " to ",
+        weekAbbreviation: "Wk",
+        scrollTitle: "Scroll to increment",
+        toggleTitle: "Click to toggle",
+        amPM: ["AM", "PM"],
+        yearAriaLabel: "Year",
+        monthAriaLabel: "Month",
+        hourAriaLabel: "Hour",
+        minuteAriaLabel: "Minute",
+        time_24hr: false
+      },
+      dateFormat: "m/d/Y",
+      ariaDateFormat: "F j, Y",
+      allowInput: true,
+      disableMobile: true,
+      monthSelectorType: "static",
+      prevArrow: "Prev",
+      nextArrow: "Next"
+    });
+  }
+
   const contactForm = document.querySelector("[data-contact-form]");
   if (contactForm) {
     const status = contactForm.querySelector("[data-form-status]");

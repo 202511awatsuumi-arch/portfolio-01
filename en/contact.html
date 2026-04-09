@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
   <link rel="stylesheet" href="../css/style.css">
 </head>
 <body class="page-reference page-contact">
@@ -81,7 +82,7 @@
             <div class="field"><label for="name">Name</label><input id="name" name="name" class="input" type="text" autocomplete="name" data-validate="required" aria-describedby="error-name"><span id="error-name" class="field-error" data-error-for="name" aria-live="polite"></span></div>
             <div class="field"><label for="email">Email Address</label><input id="email" name="email" class="input" type="email" autocomplete="email" data-validate="required|email" aria-describedby="error-email note-email"><p id="note-email" class="field-note">We will use this address to confirm your booking or reply to your inquiry.</p><span id="error-email" class="field-error" data-error-for="email" aria-live="polite"></span></div>
             <div class="contact-form-section" data-reservation-only>
-              <div class="field field--half"><div><label for="plan">Preferred Plan</label><select id="plan" name="plan" class="select" data-validate="select" aria-describedby="error-plan"><option value="">Please select</option><option value="Fragrance Making Experience">Fragrance Making Experience</option><option value="Seasonal Limited Workshop">Seasonal Limited Workshop</option><option value="Pair Experience Plan">Pair Experience Plan</option><option value="Need Advice">I would like advice first</option></select><span id="error-plan" class="field-error" data-error-for="plan" aria-live="polite"></span></div><div><label for="date">Preferred Date</label><input id="date" name="date" class="input" type="date" data-validate="required" aria-describedby="error-date"><span id="error-date" class="field-error" data-error-for="date" aria-live="polite"></span></div></div>
+              <div class="field field--half"><div><label for="plan">Preferred Plan</label><select id="plan" name="plan" class="select" data-validate="select" aria-describedby="error-plan"><option value="">Please select</option><option value="Standard Course">Standard Course</option><option value="Premium Course">Premium Course</option><option value="I’d like to decide after consultation">I’d like to decide after consultation</option></select><span id="error-plan" class="field-error" data-error-for="plan" aria-live="polite"></span></div><div><label for="date">Preferred Date</label><input id="date" name="date" class="input" type="text" lang="en-US" placeholder="MM/DD/YYYY" autocomplete="off" inputmode="numeric" data-validate="required" aria-describedby="error-date"><span id="error-date" class="field-error" data-error-for="date" aria-live="polite"></span></div></div>
             </div>
             <div class="field"><span class="legend">Preferred Contact Method</span><div class="radio-group" role="radiogroup" aria-label="Preferred contact method"><label class="choice"><input type="radio" name="contactMethod" value="Email" checked>Email</label><label class="choice"><input type="radio" name="contactMethod" value="Phone">Phone</label></div></div>
             <div class="contact-form-section" data-reservation-only>
@@ -142,6 +143,7 @@
       <p class="footer-copy">© 2026 KAORI MUSUBI / Koensha Co., Ltd.</p>
     </div>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
   <script src="../js/main.js"></script>
 </body>
 </html>
