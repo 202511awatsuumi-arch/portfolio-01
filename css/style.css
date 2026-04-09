@@ -2612,6 +2612,22 @@ html[lang="en"] .page-contact .contact-hero__content .page-title {
   border-radius: 20px;
 }
 
+html[lang="en"] .page-skills .skills-gallery {
+  align-items: stretch;
+}
+
+html[lang="en"] .page-skills .skills-gallery-card {
+  width: 100%;
+  min-width: 0;
+  display: flex;
+}
+
+html[lang="en"] .page-skills .skills-gallery-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .page-skills .skills-feature-image {
   min-height: 0;
   height: 100%;
