@@ -1,4 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
+﻿document.addEventListener("DOMContentLoaded", () => {
+  const isEnglishPage = document.documentElement.lang === "en";
   const siteHeader = document.querySelector("[data-site-header]");
   const menuButton = document.querySelector("[data-menu-button]");
   const siteNav = document.querySelector("[data-site-nav]");
@@ -96,11 +97,25 @@ document.addEventListener("DOMContentLoaded", () => {
       select: (value) => value.trim().length > 0 && value !== ""
     };
 
-    const messages = {
-      required: "入力してください。",
-      email: "正しいメールアドレスを入力してください。",
-      select: "選択してください。"
-    };
+    const messages = isEnglishPage
+      ? {
+          required: "Please fill out this field.",
+          email: "Please enter a valid email address.",
+          select: "Please select an option."
+        }
+      : {
+          required: "入力してください。",
+          email: "正しいメールアドレスを入力してください。",
+          select: "選択してください。"
+        };
+
+    const invalidStatusText = isEnglishPage
+      ? "Some required fields are missing or invalid. Please review the form."
+      : "未入力または入力内容に誤りがあります。ご確認ください。";
+
+    const successStatusText = isEnglishPage
+      ? "Thank you for your message. We will review it and get back to you shortly."
+      : "送信ありがとうございました。内容を確認のうえ、折り返しご連絡します。";
 
     const setFieldState = (field, errorMessage) => {
       const error = contactForm.querySelector(`[data-error-for="${field.id}"]`);
@@ -178,7 +193,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (!isValid) {
         if (status) {
-          status.textContent = "未入力または入力内容に誤りがあります。ご確認ください。";
+          status.textContent = invalidStatusText;
           status.classList.remove("is-success");
         }
         const firstError = contactForm.querySelector(".is-error");
@@ -189,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (status) {
-        status.textContent = "送信ありがとうございました。内容を確認のうえ、折り返しご連絡します。";
+        status.textContent = successStatusText;
         status.classList.add("is-success");
       }
 

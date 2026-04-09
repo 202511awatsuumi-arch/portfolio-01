@@ -1,0 +1,147 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact & Booking | KAORI MUSUBI</title>
+  <meta name="description" content="Use the contact form for reservations, workshop questions, and store inquiries for KAORI MUSUBI in Asakusa.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="page-reference page-contact">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header" data-site-header>
+    <div class="container site-header__inner">
+      <a class="brand brand--reference" href="index.html" aria-label="KAORI MUSUBI home page">
+        <img class="brand__logo" src="../images/LOGO.png" alt="KAORI MUSUBI logo">
+        <span class="brand__text">
+          <span class="brand__name">KAORI MUSUBI</span>
+          <span class="brand__sub">A Fragrant Asakusa Moment</span>
+        </span>
+      </a>
+
+      <button class="menu-toggle" type="button" data-menu-button aria-expanded="false" aria-controls="site-nav" aria-label="Open menu">
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+        <span class="menu-toggle__line"></span>
+      </button>
+
+      <nav class="site-nav site-nav--reference" id="site-nav" data-site-nav aria-label="Global navigation">
+        <ul class="site-nav__list">
+          <li><a href="works.html">Workshops</a></li>
+          <li><a href="about.html">Our Philosophy</a></li>
+          <li><a href="skills.html">Why Fragrance</a></li>
+          <li><a href="access.html">Access</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions header-actions--reference">
+        <span class="lang-chip"><a href="../contact.html" lang="ja">JP</a> / <span aria-current="page">EN</span></span>
+        <a class="btn btn--primary btn--w-short" href="contact.html">Book Now</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main" class="main">
+    <section class="page-hero">
+      <div class="container page-hero__grid contact-hero__grid">
+        <div class="contact-hero__content">
+          <p class="breadcrumbs"><a href="index.html">Home</a> / Contact</p>
+          <h1 class="page-title">Reservations and questions are always welcome.</h1>
+          <p class="page-lead">You can use this form to book your preferred date and time, ask about plans, or confirm how long the experience takes.<br>We keep the form simple so it is easy to complete even while traveling.</p>
+          <section class="hero-card contact-hero-summary" aria-labelledby="contact-hero-summary-title">
+            <h2 id="contact-hero-summary-title" class="hero-card__title">When to use this form</h2>
+            <ul class="summary-list contact-hero-summary__list">
+              <li>You would like to book a preferred date and time, or consult first because your travel schedule may change</li>
+              <li>You want advice on which plan to choose, or would like to confirm what to bring and how to join</li>
+              <li>You would like to mention fragrance sensitivity in advance</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container contact-layout">
+        <section class="contact-card contact-form-card" aria-labelledby="contact-form-title">
+          <h2 id="contact-form-title" class="card-title">Booking / Contact Form</h2>
+          <p class="card-text">We accept workshop reservations and consultation requests, as well as general store inquiries such as opening hours and access. After checking your message, we will usually reply within 1 to 2 business days.</p>
+          <form id="contact-form" class="form-grid" data-contact-form novalidate>
+            <div class="field">
+              <label for="inquiryType">Inquiry Type</label>
+              <select id="inquiryType" name="inquiryType" class="select" data-inquiry-type aria-describedby="note-inquiryType">
+                <option value="workshop" selected>Workshop booking / consultation</option>
+                <option value="store">General store inquiry</option>
+              </select>
+              <p id="note-inquiryType" class="field-note">Only the fields you need will be shown based on your inquiry.</p>
+            </div>
+            <div class="field"><label for="name">Name</label><input id="name" name="name" class="input" type="text" autocomplete="name" data-validate="required" aria-describedby="error-name"><span id="error-name" class="field-error" data-error-for="name" aria-live="polite"></span></div>
+            <div class="field"><label for="email">Email Address</label><input id="email" name="email" class="input" type="email" autocomplete="email" data-validate="required|email" aria-describedby="error-email note-email"><p id="note-email" class="field-note">We will use this address to confirm your booking or reply to your inquiry.</p><span id="error-email" class="field-error" data-error-for="email" aria-live="polite"></span></div>
+            <div class="contact-form-section" data-reservation-only>
+              <div class="field field--half"><div><label for="plan">Preferred Plan</label><select id="plan" name="plan" class="select" data-validate="select" aria-describedby="error-plan"><option value="">Please select</option><option value="Fragrance Making Experience">Fragrance Making Experience</option><option value="Seasonal Limited Workshop">Seasonal Limited Workshop</option><option value="Pair Experience Plan">Pair Experience Plan</option><option value="Need Advice">I would like advice first</option></select><span id="error-plan" class="field-error" data-error-for="plan" aria-live="polite"></span></div><div><label for="date">Preferred Date</label><input id="date" name="date" class="input" type="date" data-validate="required" aria-describedby="error-date"><span id="error-date" class="field-error" data-error-for="date" aria-live="polite"></span></div></div>
+            </div>
+            <div class="field"><span class="legend">Preferred Contact Method</span><div class="radio-group" role="radiogroup" aria-label="Preferred contact method"><label class="choice"><input type="radio" name="contactMethod" value="Email" checked>Email</label><label class="choice"><input type="radio" name="contactMethod" value="Phone">Phone</label></div></div>
+            <div class="contact-form-section" data-reservation-only>
+              <div class="field"><span class="legend">Request Details</span><div class="checkbox-group"><label class="choice"><input type="checkbox" name="requestType" value="Booking Request">Booking request</label><label class="choice"><input type="checkbox" name="requestType" value="Availability Check">Availability check</label><label class="choice"><input type="checkbox" name="requestType" value="Plan Consultation">Plan consultation</label></div></div>
+            </div>
+            <div class="field"><label for="message">Message</label><textarea id="message" name="message" class="textarea" rows="6" data-validate="required" aria-describedby="error-message note-message"></textarea><p id="note-message" class="field-note" data-note-workshop="Please include your group size, preferred time, and any questions you may have." data-note-store="Please let us know if you have questions about opening hours, access, or the services we offer.">Please include your group size, preferred time, and any questions you may have.</p><span id="error-message" class="field-error" data-error-for="message" aria-live="polite"></span></div>
+            <button class="btn btn--primary" type="submit">Send</button>
+            <p class="form-status" data-form-status aria-live="polite"></p>
+          </form>
+        </section>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer site-footer--reference">
+    <div class="container">
+      <div class="footer-grid">
+        <section class="footer-brand">
+          <div class="footer-brand__header">
+            <img class="footer-brand__logo" src="../images/LOGO.png" alt="KAORI MUSUBI logo">
+            <div class="footer-brand__text">
+              <h2 class="footer-brand__title">KAORI MUSUBI</h2>
+              <p class="footer-brand__sub">A Fragrant Asakusa Moment</p>
+            </div>
+          </div>
+        </section>
+        <div class="footer-column-group">
+          <section class="footer-column">
+            <h3>Workshop Menu</h3>
+            <ul class="footer-nav">
+              <li><a href="works.html">Workshops</a></li>
+              <li><a href="skills.html">Why Fragrance</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>Information</h3>
+            <ul class="footer-nav">
+              <li><a href="about.html">Our Philosophy</a></li>
+              <li><a href="access.html">Access</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </section>
+          <section class="footer-column">
+            <h3>Shop Information</h3>
+            <ul class="footer-contact">
+              <li>Kaomusubi Asakusabou</li>
+              <li>X-X-X Asakusa, Taito-ku, Tokyo</li>
+              <li>10:00 - 19:00</li>
+            </ul>
+            <div class="footer-social">
+              <a href="#" aria-label="Instagram"><span class="material-symbols-outlined" aria-hidden="true">camera_alt</span></a>
+              <a href="#" aria-label="Share on social media"><span class="material-symbols-outlined" aria-hidden="true">share</span></a>
+            </div>
+          </section>
+        </div>
+      </div>
+      <p class="footer-copy">© 2026 KAORI MUSUBI / Koensha Co., Ltd.</p>
+    </div>
+  </footer>
+  <script src="../js/main.js"></script>
+</body>
+</html>
