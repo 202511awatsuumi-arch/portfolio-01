@@ -542,7 +542,6 @@ button {
 .contact-layout,
 .field--half,
 .value-grid,
-.three-grid,
 .stats-grid,
 .gallery-grid,
 .story-grid {
@@ -560,7 +559,6 @@ button {
 .value-card,
 .story-card,
 .gallery-card,
-.flow-step,
 .info-card,
 .detail-card,
 .faq-card,
@@ -583,7 +581,6 @@ button {
 .value-card,
 .story-card,
 .gallery-card,
-.flow-step,
 .info-card,
 .detail-card,
 .faq-card,
@@ -655,8 +652,7 @@ button {
   background: linear-gradient(180deg, rgba(166, 75, 90, 0.84), rgba(199, 163, 107, 0.52));
 }
 
-.feature-card__icon,
-.flow-step__number {
+.feature-card__icon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -671,7 +667,6 @@ button {
 
 .feature-card h3,
 .value-card h3,
-.flow-step__content h3,
 .contact-card h3,
 .faq-card h3,
 .notice-card h3,
@@ -955,7 +950,6 @@ button {
 .split-layout,
 .story-grid,
 .value-grid,
-.three-grid,
 .gallery-grid,
 .stats-grid {
   display: grid;
@@ -1188,8 +1182,7 @@ html[lang="en"] .page-contact .contact-hero__content .page-title {
 
   .feature-grid,
   .plans-grid,
-  .value-grid,
-  .three-grid {
+  .value-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
