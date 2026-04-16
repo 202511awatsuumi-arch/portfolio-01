@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// Replaced by SiteController to avoid keeping broken, mojibake-prone route definitions active.
-public class WebPageController {
+@Controller
+public class ContactSiteController {
 
     private final ContactInquiryService contactInquiryService;
 
-    public WebPageController(ContactInquiryService contactInquiryService) {
+    public ContactSiteController(ContactInquiryService contactInquiryService) {
         this.contactInquiryService = contactInquiryService;
     }
 
@@ -53,7 +53,7 @@ public class WebPageController {
 
     @GetMapping("/contact.html")
     public String contact(Model model) {
-        prepareContactView(model, false);
+        model.addAttribute("isEnglishPage", false);
         return "contact";
     }
 
@@ -84,14 +84,14 @@ public class WebPageController {
 
     @GetMapping("/en/contact.html")
     public String enContact(Model model) {
-        prepareContactView(model, true);
+        model.addAttribute("isEnglishPage", true);
         return "en/contact";
     }
 
     @GetMapping("/admin/contacts")
     public String adminContacts(Model model) {
         model.addAttribute("contacts", contactInquiryService.findAll());
-        return "admin/contacts";
+        return "admin/contacts-view";
     }
 
     @PostMapping("/contact")
@@ -112,16 +112,15 @@ public class WebPageController {
         return handleContactSubmission(contactForm, bindingResult, true, requestedWith);
     }
 
-    private void prepareContactView(Model model, boolean english) {
-        model.addAttribute("isEnglishPage", english);
-    }
-
     private ResponseEntity<Map<String, Object>> handleContactSubmission(
             ContactForm contactForm,
             BindingResult bindingResult,
             boolean english,
             String requestedWith) {
         validateWorkshopFields(contactForm, bindingResult, english);
+        validatePreferredDate(contactForm, bindingResult, english);
+        validateRequestType(contactForm, bindingResult, english);
+        validatePhoneNumber(contactForm, bindingResult, english);
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -163,6 +162,61 @@ public class WebPageController {
         }
     }
 
+    private void validatePreferredDate(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        if (isBlank(contactForm.getDate())) {
+            return;
+        }
+
+        try {
+            contactInquiryService.normalizePreferredDate(contactForm.getDate());
+        } catch (IllegalArgumentException ex) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "date",
+                            english
+                                    ? "Please enter the date as YYYY-MM-DD or MM/DD/YYYY."
+                                    : "日付は YYYY-MM-DD または MM/DD/YYYY 形式で入力してください。"));
+        }
+    }
+
+    private void validateRequestType(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        if (!"workshop".equals(contactForm.getInquiryType())) {
+            return;
+        }
+
+        if (contactForm.getRequestType() == null || contactForm.getRequestType().stream().noneMatch(this::isNotBlank)) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "requestType",
+                            english
+                                    ? "Please select at least one request detail."
+                                    : "ご希望内容を1つ以上選択してください。"));
+        }
+    }
+
+    private void validatePhoneNumber(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        String contactMethod = contactForm.getContactMethod();
+        boolean prefersPhone = "電話".equals(contactMethod) || "Phone".equals(contactMethod);
+        if (!prefersPhone) {
+            return;
+        }
+
+        if (isBlank(contactForm.getPhoneNumber())) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "phoneNumber",
+                            english
+                                    ? "Please enter your phone number if you prefer to be contacted by phone."
+                                    : "電話でのご連絡を希望する場合は電話番号を入力してください。"));
+        }
+    }
+
     private Map<String, Object> errorResponse(BindingResult bindingResult, boolean english) {
         Map<String, String> fieldErrors = new LinkedHashMap<>();
         bindingResult.getFieldErrors()
@@ -197,5 +251,9 @@ public class WebPageController {
 
     private boolean isBlank(String value) {
         return value == null || value.isBlank();
+    }
+
+    private boolean isNotBlank(String value) {
+        return !isBlank(value);
     }
 }

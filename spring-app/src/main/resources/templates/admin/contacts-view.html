@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ一覧 | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference">
+  <main class="main">
+    <section class="page-hero">
+      <div class="container">
+        <p class="breadcrumbs"><a href="/index.html">ホーム</a> / 管理画面</p>
+        <h1 class="page-title">お問い合わせ一覧</h1>
+        <p class="page-lead">送信された内容を新しい順に確認できます。</p>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <div class="contact-card" style="overflow:auto;">
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">受付日時</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">種別</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">名前</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">メール</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">電話番号</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:if="${#lists.isEmpty(contacts)}">
+                <td colspan="6" style="padding:16px;">まだお問い合わせはありません。</td>
+              </tr>
+              <tr th:each="contact : ${contacts}">
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${#temporals.format(contact.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;">
+                  <div th:text="${contact.inquiryType == 'workshop' ? 'ワークショップ' : '店舗問い合わせ'}"></div>
+                  <div th:text="${contact.englishPage ? 'EN' : 'JP'}" style="font-size:0.85rem; color:#666;"></div>
+                </td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${contact.name}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${contact.email}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${contact.phoneNumber}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;">
+                  <div th:if="${contact.plan != null}" th:text="'プラン: ' + ${contact.plan}"></div>
+                  <div th:if="${contact.preferredDate != null}" th:text="'希望日: ' + ${#temporals.format(contact.preferredDate, 'yyyy-MM-dd')}"></div>
+                  <div th:if="${contact.contactMethod != null}" th:text="'連絡方法: ' + ${contact.contactMethod}"></div>
+                  <div th:if="${contact.requestTypes != null}" th:text="'希望内容: ' + ${contact.requestTypes}"></div>
+                  <div th:text="${contact.message}" style="margin-top:8px; white-space:pre-wrap;"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

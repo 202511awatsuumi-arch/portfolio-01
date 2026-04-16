@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-// Replaced by SiteController to avoid keeping broken, mojibake-prone route definitions active.
-public class WebPageController {
+// Replaced by ContactSiteController to keep route behavior stable while removing mojibake-prone strings.
+public class SiteController {
 
     private final ContactInquiryService contactInquiryService;
 
-    public WebPageController(ContactInquiryService contactInquiryService) {
+    public SiteController(ContactInquiryService contactInquiryService) {
         this.contactInquiryService = contactInquiryService;
     }
 
@@ -53,7 +53,7 @@ public class WebPageController {
 
     @GetMapping("/contact.html")
     public String contact(Model model) {
-        prepareContactView(model, false);
+        model.addAttribute("isEnglishPage", false);
         return "contact";
     }
 
@@ -84,7 +84,7 @@ public class WebPageController {
 
     @GetMapping("/en/contact.html")
     public String enContact(Model model) {
-        prepareContactView(model, true);
+        model.addAttribute("isEnglishPage", true);
         return "en/contact";
     }
 
@@ -110,10 +110,6 @@ public class WebPageController {
             BindingResult bindingResult,
             @RequestHeader(value = "X-Requested-With", required = false) String requestedWith) {
         return handleContactSubmission(contactForm, bindingResult, true, requestedWith);
-    }
-
-    private void prepareContactView(Model model, boolean english) {
-        model.addAttribute("isEnglishPage", english);
     }
 
     private ResponseEntity<Map<String, Object>> handleContactSubmission(

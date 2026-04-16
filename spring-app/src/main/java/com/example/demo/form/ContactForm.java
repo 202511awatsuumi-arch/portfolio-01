@@ -16,10 +16,13 @@ public class ContactForm {
     @Email
     private String email;
 
+    private String phoneNumber;
+
     private String plan;
 
     private String date;
 
+    @NotBlank
     private String contactMethod;
 
     private List<String> requestType;
@@ -57,6 +60,14 @@ public class ContactForm {
 
     public void setPlan(String plan) {
         this.plan = plan;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getDate() {

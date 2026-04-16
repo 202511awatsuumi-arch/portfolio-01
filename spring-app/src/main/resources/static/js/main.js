@@ -88,6 +88,7 @@
     isEnglishPage &&
     document.body.classList.contains("page-contact") &&
     englishContactDate &&
+    englishContactDate.type === "text" &&
     typeof window.flatpickr === "function"
   ) {
     window.flatpickr(englishContactDate, {
@@ -129,6 +130,17 @@
     const inquiryType = contactForm.querySelector("[data-inquiry-type]");
     const reservationSections = Array.from(contactForm.querySelectorAll("[data-reservation-only]"));
     const messageNote = contactForm.querySelector("#note-message");
+    const contactMethodInputs = Array.from(contactForm.querySelectorAll('input[name="contactMethod"]'));
+    const phoneNumberInput = contactForm.querySelector('#phoneNumber');
+    const requestTypeInputs = Array.from(contactForm.querySelectorAll('input[name="requestType"]'));
+    const requestTypeError = contactForm.querySelector('[data-error-for="requestType"]');
+    const phoneNumberError = contactForm.querySelector('[data-error-for="phoneNumber"]');
+    const requestTypeErrorText = isEnglishPage
+      ? "Please select at least one request detail."
+      : "ご希望内容を1つ以上選択してください。";
+    const phoneNumberErrorText = isEnglishPage
+      ? "Please enter your phone number if you prefer to be contacted by phone."
+      : "電話でのご連絡を希望する場合は電話番号を入力してください。";
 
     const validators = {
       required: (value) => value.trim().length > 0,
@@ -179,6 +191,92 @@
         const errorMessage = fieldErrors[field.name] || "";
         setFieldState(field, errorMessage);
       });
+
+      if (requestTypeError) {
+        requestTypeError.textContent = fieldErrors.requestType || "";
+      }
+
+      if (phoneNumberError) {
+        phoneNumberError.textContent = fieldErrors.phoneNumber || "";
+      }
+    };
+
+    const hasSelectedRequestType = () => requestTypeInputs.some((input) => input.checked);
+
+    const setRequestTypeError = (errorMessage) => {
+      if (!requestTypeError) return;
+      requestTypeError.textContent = errorMessage || "";
+    };
+
+    const getSelectedContactMethod = () => {
+      const selected = contactMethodInputs.find((input) => input.checked);
+      return selected ? selected.value : "";
+    };
+
+    const setPhoneNumberError = (errorMessage) => {
+      if (!phoneNumberError || !phoneNumberInput) return;
+      phoneNumberError.textContent = errorMessage || "";
+      phoneNumberInput.classList.toggle("is-error", Boolean(errorMessage));
+      phoneNumberInput.setAttribute("aria-invalid", errorMessage ? "true" : "false");
+    };
+
+    const validatePhoneNumber = () => {
+      const contactMethod = getSelectedContactMethod();
+      const prefersPhone = contactMethod === "電話" || contactMethod === "Phone";
+      if (!prefersPhone) {
+        setPhoneNumberError("");
+        return true;
+      }
+
+      if (phoneNumberInput && phoneNumberInput.value.trim().length > 0) {
+        setPhoneNumberError("");
+        return true;
+      }
+
+      setPhoneNumberError(phoneNumberErrorText);
+      return false;
+    };
+
+    const ensureDefaultRequestType = () => {
+      if (!hasSelectedRequestType() && requestTypeInputs.length > 0) {
+        requestTypeInputs[0].checked = true;
+      }
+    };
+
+    const validateRequestType = () => {
+      const isWorkshop = !inquiryType || inquiryType.value === "workshop";
+      if (!isWorkshop) {
+        setRequestTypeError("");
+        return true;
+      }
+
+      if (hasSelectedRequestType()) {
+        setRequestTypeError("");
+        return true;
+      }
+
+      setRequestTypeError(requestTypeErrorText);
+      return false;
+    };
+
+    const normalizePreferredDate = (rawValue) => {
+      if (!rawValue) {
+        return "";
+      }
+
+      const value = rawValue.trim();
+
+      if (/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+        return value;
+      }
+
+      const match = value.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+      if (match) {
+        const [, month, day, year] = match;
+        return `${year}-${month}-${day}`;
+      }
+
+      return value;
     };
 
     const validateField = (field) => {
@@ -220,6 +318,13 @@
           ? messageNote.dataset.noteWorkshop || ""
           : messageNote.dataset.noteStore || "";
       }
+
+      if (isWorkshop) {
+        ensureDefaultRequestType();
+        validateRequestType();
+      } else {
+        setRequestTypeError("");
+      }
     };
 
     fields.forEach((field) => {
@@ -236,6 +341,27 @@
       });
     });
 
+    requestTypeInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        validateRequestType();
+        clearStatus();
+      });
+    });
+
+    contactMethodInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        validatePhoneNumber();
+        clearStatus();
+      });
+    });
+
+    if (phoneNumberInput) {
+      phoneNumberInput.addEventListener("input", () => {
+        validatePhoneNumber();
+        clearStatus();
+      });
+    }
+
     if (inquiryType) {
       inquiryType.addEventListener("change", syncInquiryType);
       syncInquiryType();
@@ -251,6 +377,14 @@
         }
       });
 
+      if (!validateRequestType()) {
+        isValid = false;
+      }
+
+      if (!validatePhoneNumber()) {
+        isValid = false;
+      }
+
       if (!isValid) {
         if (status) {
           status.textContent = invalidStatusText;
@@ -264,9 +398,14 @@
       }
 
       try {
+        const formData = new FormData(contactForm);
+        if (formData.has("date")) {
+          formData.set("date", normalizePreferredDate(String(formData.get("date") || "")));
+        }
+
         const response = await fetch(contactForm.action, {
           method: contactForm.method || "POST",
-          body: new FormData(contactForm),
+          body: formData,
           headers: {
             "X-Requested-With": "XMLHttpRequest"
           }
@@ -294,6 +433,8 @@
 
         contactForm.reset();
         fields.forEach((field) => setFieldState(field, ""));
+        setRequestTypeError("");
+        setPhoneNumberError("");
         syncInquiryType();
       } catch (error) {
         if (status) {
