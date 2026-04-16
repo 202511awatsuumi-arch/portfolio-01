@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.demo.entity.ContactInquiry;
 import com.example.demo.repository.ContactInquiryRepository;
 import java.time.LocalDate;
+import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,17 +45,31 @@ class ContactSiteControllerTest {
     }
 
     @Test
-    void jpPageHasFirstRequestTypeCheckedByDefault() throws Exception {
+    void jpPageUsesCodeValuesForContactMethodPlanAndRequestTypes() throws Exception {
         mockMvc.perform(get("/contact.html"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("value=\"予約希望\" checked")));
+                .andExpect(content().string(Matchers.containsString("value=\"EMAIL\" checked")))
+                .andExpect(content().string(Matchers.containsString("value=\"PHONE\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"STANDARD\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"PREMIUM\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"CONSULT\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"BOOKING_REQUEST\" checked")))
+                .andExpect(content().string(Matchers.containsString("value=\"AVAILABILITY_CHECK\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"PLAN_CONSULTATION\"")));
     }
 
     @Test
-    void enPageHasFirstRequestTypeCheckedByDefault() throws Exception {
+    void enPageUsesCodeValuesForContactMethodPlanAndRequestTypes() throws Exception {
         mockMvc.perform(get("/en/contact.html"))
                 .andExpect(status().isOk())
-                .andExpect(content().string(org.hamcrest.Matchers.containsString("value=\"Booking Request\" checked")));
+                .andExpect(content().string(Matchers.containsString("value=\"EMAIL\" checked")))
+                .andExpect(content().string(Matchers.containsString("value=\"PHONE\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"STANDARD\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"PREMIUM\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"CONSULT\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"BOOKING_REQUEST\" checked")))
+                .andExpect(content().string(Matchers.containsString("value=\"AVAILABILITY_CHECK\"")))
+                .andExpect(content().string(Matchers.containsString("value=\"PLAN_CONSULTATION\"")));
     }
 
     @Test
@@ -64,10 +79,10 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Taro")
                         .param("email", "taro@example.com")
-                        .param("plan", "スタンダードコース")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-29")
-                        .param("contactMethod", "メール")
-                        .param("requestType", "予約希望")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "予約したいです"))
                 .andExpect(status().isOk());
 
@@ -82,10 +97,10 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "STANDARD")
                         .param("date", "04/25/2026")
-                        .param("contactMethod", "Email")
-                        .param("requestType", "Booking Request")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "Book me in"))
                 .andExpect(status().isOk());
 
@@ -100,10 +115,10 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "STANDARD")
                         .param("date", "25/04/2026")
-                        .param("contactMethod", "Email")
-                        .param("requestType", "Booking Request")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "Book me in"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fieldErrors.date").exists());
@@ -118,7 +133,7 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "store")
                         .param("name", "Hanako")
                         .param("email", "hanako@example.com")
-                        .param("contactMethod", "メール")
+                        .param("contactMethod", "EMAIL")
                         .param("message", "営業時間を知りたいです"))
                 .andExpect(status().isOk());
 
@@ -133,10 +148,10 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Taro")
                         .param("email", "taro@example.com")
-                        .param("plan", "スタンダードコース")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "メール")
-                        .param("requestType", "予約希望")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "予約したいです"))
                 .andExpect(status().isOk());
 
@@ -145,10 +160,10 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "STANDARD")
                         .param("date", "04/25/2026")
-                        .param("contactMethod", "Email")
-                        .param("requestType", "Booking Request")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "Book me in"))
                 .andExpect(status().isOk());
 
@@ -164,7 +179,7 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "store")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("contactMethod", "Email")
+                        .param("contactMethod", "EMAIL")
                         .param("message", "Tell me your opening hours"))
                 .andExpect(status().isOk());
     }
@@ -176,9 +191,9 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Taro")
                         .param("email", "taro@example.com")
-                        .param("plan", "スタンダードコース")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "メール")
+                        .param("contactMethod", "EMAIL")
                         .param("message", "予約したいです"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fieldErrors.requestType").value("ご希望内容を1つ以上選択してください。"));
@@ -191,34 +206,33 @@ class ContactSiteControllerTest {
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
                         .param("contactMethod", "")
-                        .param("requestType", "Booking Request")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "Book me in"))
                 .andExpect(status().isBadRequest())
                 .andExpect(jsonPath("$.fieldErrors.contactMethod").exists());
     }
 
     @Test
-    void rejectsMissingPhoneNumberForJapanesePhoneContactApiCall() throws Exception {
+    void rejectsInvalidContactMethodCode() throws Exception {
         mockMvc.perform(post("/contact")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("inquiryType", "workshop")
                         .param("name", "Taro")
                         .param("email", "taro@example.com")
-                        .param("plan", "\u30b9\u30bf\u30f3\u30c0\u30fc\u30c9\u30b3\u30fc\u30b9")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "\u96fb\u8a71")
-                        .param("requestType", "\u4e88\u7d04\u5e0c\u671b")
-                        .param("message", "\u4e88\u7d04\u3057\u305f\u3044\u3067\u3059"))
+                        .param("contactMethod", "メール")
+                        .param("requestType", "BOOKING_REQUEST")
+                        .param("message", "予約したいです"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.fieldErrors.phoneNumber")
-                        .value("\u96fb\u8a71\u3067\u306e\u3054\u9023\u7d61\u3092\u5e0c\u671b\u3059\u308b\u5834\u5408\u306f\u96fb\u8a71\u756a\u53f7\u3092\u5165\u529b\u3057\u3066\u304f\u3060\u3055\u3044\u3002"));
+                .andExpect(jsonPath("$.fieldErrors.contactMethod").exists());
     }
 
     @Test
-    void rejectsMissingPhoneNumberForEnglishPhoneContactApiCall() throws Exception {
+    void rejectsInvalidPlanCode() throws Exception {
         mockMvc.perform(post("/en/contact")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("inquiryType", "workshop")
@@ -226,79 +240,100 @@ class ContactSiteControllerTest {
                         .param("email", "alex@example.com")
                         .param("plan", "Standard Course")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "Phone")
-                        .param("requestType", "Booking Request")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
                         .param("message", "Book me in"))
                 .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.fieldErrors.phoneNumber")
-                        .value("Please enter your phone number if you prefer to be contacted by phone."));
+                .andExpect(jsonPath("$.fieldErrors.plan").exists());
     }
 
     @Test
-    void allowsBlankPhoneNumberForJapaneseEmailContact() throws Exception {
-        mockMvc.perform(post("/contact")
-                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
-                        .param("inquiryType", "workshop")
-                        .param("name", "Taro")
-                        .param("email", "taro@example.com")
-                        .param("plan", "\u30b9\u30bf\u30f3\u30c0\u30fc\u30c9\u30b3\u30fc\u30b9")
-                        .param("date", "2026-04-25")
-                        .param("contactMethod", "\u30e1\u30fc\u30eb")
-                        .param("requestType", "\u4e88\u7d04\u5e0c\u671b")
-                        .param("message", "\u4e88\u7d04\u3057\u305f\u3044\u3067\u3059"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
-    void allowsBlankPhoneNumberForEnglishEmailContact() throws Exception {
+    void rejectsInvalidRequestTypeCode() throws Exception {
         mockMvc.perform(post("/en/contact")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "Email")
+                        .param("contactMethod", "EMAIL")
                         .param("requestType", "Booking Request")
                         .param("message", "Book me in"))
-                .andExpect(status().isOk());
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.fieldErrors.requestType").exists());
     }
 
     @Test
-    void savesPhoneNumberForJapanesePhoneContact() throws Exception {
+    void rejectsMissingPhoneNumberForPhoneContactApiCall() throws Exception {
         mockMvc.perform(post("/contact")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("inquiryType", "workshop")
                         .param("name", "Taro")
                         .param("email", "taro@example.com")
-                        .param("plan", "\u30b9\u30bf\u30f3\u30c0\u30fc\u30c9\u30b3\u30fc\u30b9")
+                        .param("plan", "STANDARD")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "\u96fb\u8a71")
+                        .param("contactMethod", "PHONE")
+                        .param("requestType", "BOOKING_REQUEST")
+                        .param("message", "予約したいです"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.fieldErrors.phoneNumber")
+                        .value("電話でのご連絡を希望する場合は電話番号を入力してください。"));
+    }
+
+    @Test
+    void allowsBlankPhoneNumberForEmailContact() throws Exception {
+        mockMvc.perform(post("/en/contact")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("inquiryType", "workshop")
+                        .param("name", "Alex")
+                        .param("email", "alex@example.com")
+                        .param("plan", "STANDARD")
+                        .param("date", "2026-04-25")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "BOOKING_REQUEST")
+                        .param("message", "Book me in"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void savesCodeValuesForWorkshopInquiry() throws Exception {
+        mockMvc.perform(post("/contact")
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("inquiryType", "workshop")
+                        .param("name", "Taro")
+                        .param("email", "taro@example.com")
+                        .param("plan", "PREMIUM")
+                        .param("date", "2026-04-25")
+                        .param("contactMethod", "PHONE")
                         .param("phoneNumber", "090-1234-5678")
-                        .param("requestType", "\u4e88\u7d04\u5e0c\u671b")
-                        .param("message", "\u4e88\u7d04\u3057\u305f\u3044\u3067\u3059"))
+                        .param("requestType", "BOOKING_REQUEST", "PLAN_CONSULTATION")
+                        .param("message", "予約したいです"))
                 .andExpect(status().isOk());
 
         ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
+        assertThat(inquiry.getContactMethod()).isEqualTo("PHONE");
+        assertThat(inquiry.getPlan()).isEqualTo("PREMIUM");
+        assertThat(inquiry.getRequestTypes()).isEqualTo("BOOKING_REQUEST, PLAN_CONSULTATION");
         assertThat(inquiry.getPhoneNumber()).isEqualTo("090-1234-5678");
     }
 
     @Test
-    void savesPhoneNumberForEnglishPhoneContact() throws Exception {
+    void savesCodeValuesForEnglishInquiry() throws Exception {
         mockMvc.perform(post("/en/contact")
                         .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                         .param("inquiryType", "workshop")
                         .param("name", "Alex")
                         .param("email", "alex@example.com")
-                        .param("plan", "Standard Course")
+                        .param("plan", "CONSULT")
                         .param("date", "2026-04-25")
-                        .param("contactMethod", "Phone")
-                        .param("phoneNumber", "+81 90 1234 5678")
-                        .param("requestType", "Booking Request")
+                        .param("contactMethod", "EMAIL")
+                        .param("requestType", "AVAILABILITY_CHECK")
                         .param("message", "Book me in"))
                 .andExpect(status().isOk());
 
         ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
-        assertThat(inquiry.getPhoneNumber()).isEqualTo("+81 90 1234 5678");
+        assertThat(inquiry.getContactMethod()).isEqualTo("EMAIL");
+        assertThat(inquiry.getPlan()).isEqualTo("CONSULT");
+        assertThat(inquiry.getRequestTypes()).isEqualTo("AVAILABILITY_CHECK");
     }
 }

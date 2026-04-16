@@ -5,6 +5,7 @@ import com.example.demo.service.ContactInquiryService;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.Set;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -19,6 +20,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class ContactSiteController {
+
+    private static final Set<String> ALLOWED_CONTACT_METHODS = Set.of("EMAIL", "PHONE");
+    private static final Set<String> ALLOWED_PLANS = Set.of("STANDARD", "PREMIUM", "CONSULT");
+    private static final Set<String> ALLOWED_REQUEST_TYPES =
+            Set.of("BOOKING_REQUEST", "AVAILABILITY_CHECK", "PLAN_CONSULTATION");
 
     private final ContactInquiryService contactInquiryService;
 
@@ -119,6 +125,7 @@ public class ContactSiteController {
             String requestedWith) {
         validateWorkshopFields(contactForm, bindingResult, english);
         validatePreferredDate(contactForm, bindingResult, english);
+        validateContactMethod(contactForm, bindingResult, english);
         validateRequestType(contactForm, bindingResult, english);
         validatePhoneNumber(contactForm, bindingResult, english);
 
@@ -142,6 +149,7 @@ public class ContactSiteController {
     private void validateWorkshopFields(
             ContactForm contactForm, BindingResult bindingResult, boolean english) {
         if (!"workshop".equals(contactForm.getInquiryType())) {
+            validatePlanCode(contactForm, bindingResult, english);
             return;
         }
 
@@ -151,6 +159,8 @@ public class ContactSiteController {
                             "contactForm",
                             "plan",
                             english ? "Please select an option." : "選択してください。"));
+        } else {
+            validatePlanCode(contactForm, bindingResult, english);
         }
 
         if (isBlank(contactForm.getDate())) {
@@ -181,13 +191,28 @@ public class ContactSiteController {
         }
     }
 
-    private void validateRequestType(
+    private void validateContactMethod(
             ContactForm contactForm, BindingResult bindingResult, boolean english) {
-        if (!"workshop".equals(contactForm.getInquiryType())) {
+        if (isBlank(contactForm.getContactMethod())) {
             return;
         }
 
-        if (contactForm.getRequestType() == null || contactForm.getRequestType().stream().noneMatch(this::isNotBlank)) {
+        if (!ALLOWED_CONTACT_METHODS.contains(contactForm.getContactMethod())) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "contactMethod",
+                            english ? "Please select a valid contact method." : "正しいご連絡方法を選んでください。"));
+        }
+    }
+
+    private void validateRequestType(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        boolean hasSelection =
+                contactForm.getRequestType() != null
+                        && contactForm.getRequestType().stream().anyMatch(this::isNotBlank);
+
+        if ("workshop".equals(contactForm.getInquiryType()) && !hasSelection) {
             bindingResult.addError(
                     new FieldError(
                             "contactForm",
@@ -195,14 +220,40 @@ public class ContactSiteController {
                             english
                                     ? "Please select at least one request detail."
                                     : "ご希望内容を1つ以上選択してください。"));
+            return;
+        }
+
+        boolean hasInvalidCode = hasSelection
+                && contactForm.getRequestType().stream()
+                        .filter(this::isNotBlank)
+                        .anyMatch(value -> !ALLOWED_REQUEST_TYPES.contains(value));
+        if (hasInvalidCode) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "requestType",
+                            english ? "Please select valid request details." : "正しいご希望内容を選んでください。"));
+        }
+    }
+
+    private void validatePlanCode(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        if (isBlank(contactForm.getPlan())) {
+            return;
+        }
+
+        if (!ALLOWED_PLANS.contains(contactForm.getPlan())) {
+            bindingResult.addError(
+                    new FieldError(
+                            "contactForm",
+                            "plan",
+                            english ? "Please select a valid option." : "正しい選択肢を選んでください。"));
         }
     }
 
     private void validatePhoneNumber(
             ContactForm contactForm, BindingResult bindingResult, boolean english) {
-        String contactMethod = contactForm.getContactMethod();
-        boolean prefersPhone = "電話".equals(contactMethod) || "Phone".equals(contactMethod);
-        if (!prefersPhone) {
+        if (!"PHONE".equals(contactForm.getContactMethod())) {
             return;
         }
 

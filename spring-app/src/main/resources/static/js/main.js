@@ -222,7 +222,7 @@
 
     const validatePhoneNumber = () => {
       const contactMethod = getSelectedContactMethod();
-      const prefersPhone = contactMethod === "電話" || contactMethod === "Phone";
+      const prefersPhone = contactMethod === "PHONE";
       if (!prefersPhone) {
         setPhoneNumberError("");
         return true;
