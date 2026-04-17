@@ -37,6 +37,16 @@ public class UserManagementService {
         return userMapper.selectAll();
     }
 
+    public List<UserAccount> findPage(int page, int size) {
+        int safePage = Math.max(page, 0);
+        int safeSize = Math.max(size, 1);
+        return userMapper.selectPage(safeSize, safePage * safeSize);
+    }
+
+    public long countAllUsers() {
+        return userMapper.countAll();
+    }
+
     public UserAccount findById(Long id) {
         return userMapper.selectById(id);
     }

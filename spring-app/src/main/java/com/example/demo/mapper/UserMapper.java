@@ -10,6 +10,10 @@ public interface UserMapper {
 
     List<UserAccount> selectAll();
 
+    List<UserAccount> selectPage(@Param("limit") int limit, @Param("offset") int offset);
+
+    long countAll();
+
     UserAccount selectById(@Param("id") Long id);
 
     UserAccount selectByUsername(@Param("username") String username);

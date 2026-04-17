@@ -20,6 +20,18 @@
     ORDER BY id
   </select>
 
+  <select id="selectPage" resultMap="UserAccountResultMap">
+    SELECT id, username, password_hash, role, enabled, created_at, updated_at
+    FROM users
+    ORDER BY created_at DESC, id DESC
+    LIMIT #{limit} OFFSET #{offset}
+  </select>
+
+  <select id="countAll" resultType="long">
+    SELECT COUNT(*)
+    FROM users
+  </select>
+
   <select id="selectById" resultMap="UserAccountResultMap">
     SELECT id, username, password_hash, role, enabled, created_at, updated_at
     FROM users

@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="page-reference">
+<body class="page-reference page-admin-user-edit">
   <main class="main">
     <section class="page-section">
-      <div class="container" style="max-width: 720px;">
+      <div class="container" style="max-width: 500px;">
         <section class="contact-card" aria-labelledby="user-edit-title">
           <h1 id="user-edit-title" class="card-title">ユーザー編集</h1>
           <form class="form-grid" th:action="@{/admin/users/{id}(id=${userEditForm.id})}" method="post" th:object="${userEditForm}">

@@ -4,7 +4,8 @@ import com.example.demo.entity.ContactInquiry;
 import com.example.demo.form.ContactForm;
 import com.example.demo.repository.ContactInquiryRepository;
 import java.time.LocalDate;
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -38,8 +39,9 @@ public class ContactInquiryService {
         contactInquiryRepository.save(inquiry);
     }
 
-    public List<ContactInquiry> findAll() {
-        return contactInquiryRepository.findAllByOrderByCreatedAtDesc();
+    public Page<ContactInquiry> findPage(int page, int size) {
+        return contactInquiryRepository.findAllByOrderByCreatedAtDesc(
+                PageRequest.of(page, size));
     }
 
     public String normalizePreferredDate(String value) {

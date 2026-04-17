@@ -46,7 +46,19 @@ public class SecurityConfig {
                                         .loginProcessingUrl("/admin/login")
                                         .usernameParameter("username")
                                         .passwordParameter("password")
-                                        .defaultSuccessUrl("/admin/users", true)
+                                        .successHandler(
+                                                (request, response, authentication) -> {
+                                                    boolean isAdmin =
+                                                            authentication.getAuthorities().stream()
+                                                                    .anyMatch(
+                                                                            authority ->
+                                                                                    "ROLE_ADMIN".equals(
+                                                                                            authority.getAuthority()));
+                                                    response.sendRedirect(
+                                                            isAdmin
+                                                                    ? "/admin/users"
+                                                                    : "/admin/inquiries");
+                                                })
                                         .failureUrl("/admin/login?error"))
                 .logout(
                         logout ->

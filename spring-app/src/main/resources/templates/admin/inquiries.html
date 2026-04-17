@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ一覧 | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference page-admin-inquiries">
+  <main class="main">
+    <section class="page-hero page-admin-inquiries__hero">
+      <div class="container page-admin-inquiries__hero-inner">
+        <h1 class="page-title">お問い合わせ一覧</h1>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn--primary" th:if="${isAdmin}" th:href="@{/admin/users}">ユーザー一覧</a>
+          <form th:action="@{/admin/logout}" method="post" style="margin:0;">
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+            <button class="btn btn--primary" type="submit">ログアウト</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section page-admin-inquiries__section">
+      <div class="container">
+        <div class="contact-card page-admin-inquiries__table-wrap">
+          <table class="page-admin-inquiries__table">
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>受信日時</th>
+                <th>種別</th>
+                <th>お名前</th>
+                <th>メール</th>
+                <th>電話番号</th>
+                <th>内容</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:if="${#lists.isEmpty(contacts)}">
+                <td colspan="7" class="page-admin-inquiries__empty">お問い合わせはまだありません。</td>
+              </tr>
+              <tr th:each="contact, stat : ${contacts}">
+                <td th:text="${(currentPage - 1) * pageSize + stat.count}"></td>
+                <td th:text="${#temporals.format(contact.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td>
+                  <div th:text="${contact.inquiryType == 'workshop' ? 'ワークショップ' : '店舗問い合わせ'}"></div>
+                  <div class="page-admin-inquiries__locale" th:text="${contact.englishPage ? 'EN' : 'JP'}"></div>
+                </td>
+                <td th:text="${contact.name}"></td>
+                <td th:text="${contact.email}"></td>
+                <td th:text="${contact.phoneNumber != null ? contact.phoneNumber : '-'}"></td>
+                <td class="page-admin-inquiries__detail-cell">
+                  <div th:if="${contact.plan != null}" th:text="'プラン: ' + ${contact.plan}"></div>
+                  <div th:if="${contact.preferredDate != null}" th:text="'希望日: ' + ${#temporals.format(contact.preferredDate, 'yyyy-MM-dd')}"></div>
+                  <div th:if="${contact.contactMethod != null}" th:text="'連絡方法: ' + ${contact.contactMethod}"></div>
+                  <div th:if="${contact.requestTypes != null}" th:text="'希望内容: ' + ${contact.requestTypes}"></div>
+                  <div class="page-admin-inquiries__message" th:text="${contact.message}"></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <nav class="page-admin-inquiries__pagination" th:if="${totalPages > 1}" aria-label="お問い合わせ一覧ページネーション">
+          <a class="btn btn--primary"
+             th:if="${hasPrevious}"
+             th:href="@{/admin/inquiries(page=${currentPage - 1})}">前へ</a>
+          <span class="page-admin-inquiries__page-numbers">
+            <a th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+               th:href="@{/admin/inquiries(page=${pageNumber})}"
+               th:text="${pageNumber}"
+               th:classappend="${pageNumber == currentPage} ? ' is-active' : ''"></a>
+          </span>
+          <a class="btn btn--primary"
+             th:if="${hasNext}"
+             th:href="@{/admin/inquiries(page=${currentPage + 1})}">次へ</a>
+        </nav>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

@@ -10,6 +10,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.example.demo.entity.ContactInquiry;
 import com.example.demo.repository.ContactInquiryRepository;
 import java.time.LocalDate;
+import java.util.stream.IntStream;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -40,9 +42,34 @@ class ContactSiteControllerTest {
     @Autowired
     private ContactInquiryRepository contactInquiryRepository;
 
+    @Autowired
+    private JdbcTemplate jdbcTemplate;
+
     @BeforeEach
     void setUp() {
         contactInquiryRepository.deleteAll();
+    }
+
+    @Test
+    void adminInquiriesUsesNewestFirstPaginationWithTenItemsPerPage() throws Exception {
+        IntStream.rangeClosed(1, 12).forEach(this::saveInquiry);
+
+        mockMvc.perform(get("/admin/inquiries"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("<th>No</th>")))
+                .andExpect(content().string(Matchers.containsString(">1</td>")))
+                .andExpect(content().string(Matchers.containsString("Sender 12")))
+                .andExpect(content().string(Matchers.containsString("Sender 3")))
+                .andExpect(content().string(Matchers.not(Matchers.containsString("Sender 2"))))
+                .andExpect(content().string(Matchers.containsString("page=2")));
+
+        mockMvc.perform(get("/admin/inquiries").param("page", "2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString(">11</td>")))
+                .andExpect(content().string(Matchers.containsString(">12</td>")))
+                .andExpect(content().string(Matchers.containsString("Sender 2")))
+                .andExpect(content().string(Matchers.containsString("Sender 1")))
+                .andExpect(content().string(Matchers.not(Matchers.containsString("Sender 12"))));
     }
 
     @Test
@@ -343,5 +370,20 @@ class ContactSiteControllerTest {
         assertThat(inquiry.getContactMethod()).isEqualTo("EMAIL");
         assertThat(inquiry.getPlan()).isEqualTo("CONSULT");
         assertThat(inquiry.getRequestTypes()).isEqualTo("AVAILABILITY_CHECK");
+    }
+
+    private void saveInquiry(int number) {
+        ContactInquiry inquiry = new ContactInquiry();
+        inquiry.setInquiryType("store");
+        inquiry.setName("Sender " + number);
+        inquiry.setEmail("sender" + number + "@example.com");
+        inquiry.setContactMethod("EMAIL");
+        inquiry.setMessage("Message " + number);
+        inquiry.setEnglishPage(false);
+        ContactInquiry saved = contactInquiryRepository.save(inquiry);
+        jdbcTemplate.update(
+                "UPDATE contact_inquiries SET created_at = DATEADD('MINUTE', ?, CURRENT_TIMESTAMP) WHERE id = ?",
+                number,
+                saved.getId());
     }
 }

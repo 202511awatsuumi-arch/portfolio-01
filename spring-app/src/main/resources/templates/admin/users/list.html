@@ -9,10 +9,10 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
   <link rel="stylesheet" href="/css/style.css">
 </head>
-<body class="page-reference">
+<body class="page-reference page-admin-users">
   <main class="main">
     <section class="page-hero">
-      <div class="container" style="display:flex; justify-content:space-between; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+      <div class="container page-admin-users__hero-inner">
         <div>
           <p class="breadcrumbs"><a href="/index.html">ホーム</a> / ユーザー一覧</p>
           <h1 class="page-title">ユーザー一覧</h1>
@@ -33,10 +33,11 @@
       <div class="container">
         <p class="field-note" th:if="${successMessage}" th:text="${successMessage}"></p>
         <p class="field-error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
-        <div class="contact-card" style="overflow:auto;">
+        <div class="contact-card page-admin-users__table-wrap">
           <table style="width:100%; border-collapse:collapse;">
             <thead>
               <tr>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">No</th>
                 <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ID</th>
                 <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ユーザー名</th>
                 <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ロール</th>
@@ -47,9 +48,10 @@
             </thead>
             <tbody>
               <tr th:if="${#lists.isEmpty(users)}">
-                <td colspan="6" style="padding:16px;">ユーザーはまだありません。</td>
+                <td colspan="7" style="padding:16px;">ユーザーはまだありません。</td>
               </tr>
-              <tr th:each="user : ${users}">
+              <tr th:each="user, stat : ${users}">
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${(currentPage - 1) * pageSize + stat.count}"></td>
                 <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.id}"></td>
                 <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.username}"></td>
                 <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.role}"></td>
@@ -68,6 +70,21 @@
             </tbody>
           </table>
         </div>
+
+        <nav class="page-admin-inquiries__pagination" th:if="${totalPages > 1}" aria-label="ユーザー一覧ページネーション">
+          <a class="btn btn--primary"
+             th:if="${hasPrevious}"
+             th:href="@{/admin/users(page=${currentPage - 1})}">前へ</a>
+          <span class="page-admin-inquiries__page-numbers">
+            <a th:each="pageNumber : ${#numbers.sequence(1, totalPages)}"
+               th:href="@{/admin/users(page=${pageNumber})}"
+               th:text="${pageNumber}"
+               th:classappend="${pageNumber == currentPage} ? ' is-active' : ''"></a>
+          </span>
+          <a class="btn btn--primary"
+             th:if="${hasNext}"
+             th:href="@{/admin/users(page=${currentPage + 1})}">次へ</a>
+        </nav>
       </div>
     </section>
   </main>

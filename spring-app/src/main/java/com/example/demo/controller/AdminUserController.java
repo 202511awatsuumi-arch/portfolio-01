@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,8 +30,20 @@ public class AdminUserController {
     }
 
     @GetMapping
-    public String list(Model model) {
-        model.addAttribute("users", userManagementService.findAll());
+    public String list(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Model model) {
+        int pageSize = 10;
+        int currentPage = Math.max(page, 1);
+        long totalUsers = userManagementService.countAllUsers();
+        int totalPages = Math.max((int) Math.ceil((double) totalUsers / pageSize), 1);
+
+        model.addAttribute("users", userManagementService.findPage(currentPage - 1, pageSize));
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("hasPrevious", currentPage > 1);
+        model.addAttribute("hasNext", currentPage < totalPages);
         return "admin/users/list";
     }
 

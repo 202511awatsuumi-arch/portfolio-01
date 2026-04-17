@@ -6,8 +6,11 @@ import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
+import com.example.demo.entity.ContactInquiry;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,6 +18,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -95,9 +99,27 @@ public class ContactSiteController {
     }
 
     @GetMapping({"/admin/contacts", "/admin/inquiries"})
-    public String adminContacts(Model model) {
-        model.addAttribute("contacts", contactInquiryService.findAll());
-        return "admin/contacts-view";
+    public String adminContacts(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Authentication authentication,
+            Model model) {
+        int pageSize = 10;
+        int currentPage = Math.max(page, 1);
+        Page<ContactInquiry> contactPage =
+                contactInquiryService.findPage(currentPage - 1, pageSize);
+
+        model.addAttribute("contacts", contactPage.getContent());
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("pageSize", pageSize);
+        model.addAttribute("totalPages", Math.max(contactPage.getTotalPages(), 1));
+        model.addAttribute("hasPrevious", contactPage.hasPrevious());
+        model.addAttribute("hasNext", contactPage.hasNext());
+        model.addAttribute(
+                "isAdmin",
+                authentication != null
+                        && authentication.getAuthorities().stream()
+                                .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority())));
+        return "admin/inquiries";
     }
 
     @PostMapping("/contact")

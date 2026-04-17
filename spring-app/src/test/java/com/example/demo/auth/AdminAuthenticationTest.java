@@ -6,6 +6,7 @@ import static org.springframework.security.test.web.servlet.request.SecurityMock
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.example.demo.mapper.UserMapper;
@@ -76,6 +77,25 @@ class AdminAuthenticationTest {
     }
 
     @Test
+    void adminSeesUsersLinkOnInquiriesPage() throws Exception {
+        MockHttpSession session = login("admin", "admin1234");
+
+        mockMvc.perform(get("/admin/inquiries").session(session))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/admin/users")));
+    }
+
+    @Test
+    void nonAdminDoesNotSeeUsersLinkOnInquiriesPage() throws Exception {
+        UserAccount user = createUser("inquiry-staff", "USER", true, "password123");
+        MockHttpSession session = login(user.getUsername(), "password123");
+
+        mockMvc.perform(get("/admin/inquiries").session(session))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("/admin/users"))));
+    }
+
+    @Test
     void loginSucceedsWithValidCredentials() throws Exception {
         mockMvc.perform(post("/admin/login")
                         .with(csrf())
@@ -83,6 +103,18 @@ class AdminAuthenticationTest {
                         .param("password", "admin1234"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/admin/users"));
+    }
+
+    @Test
+    void nonAdminLoginRedirectsToInquiries() throws Exception {
+        createUser("staff-login", "USER", true, "password123");
+
+        mockMvc.perform(post("/admin/login")
+                        .with(csrf())
+                        .param("username", "staff-login")
+                        .param("password", "password123"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl("/admin/inquiries"));
     }
 
     @Test
@@ -331,6 +363,36 @@ class AdminAuthenticationTest {
                         .param("password", "admin1234"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(redirectedUrl("/admin/users"));
+    }
+
+    @Test
+    void userListUsesTenItemPagination() throws Exception {
+        MockHttpSession session = login("admin", "admin1234");
+        for (int i = 1; i <= 12; i++) {
+            UserAccount user = createUser("paged-user-" + i, "USER", true, "password123");
+            jdbcTemplate.update(
+                    "UPDATE users SET created_at = DATEADD('MINUTE', ?, CURRENT_TIMESTAMP), updated_at = DATEADD('MINUTE', ?, CURRENT_TIMESTAMP) WHERE id = ?",
+                    i,
+                    i,
+                    user.getId());
+        }
+
+        mockMvc.perform(get("/admin/users").session(session))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(">No<")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(">1</td>")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(">10</td>")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("paged-user-12")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("paged-user-3")))
+                .andExpect(content().string(org.hamcrest.Matchers.not(org.hamcrest.Matchers.containsString("paged-user-2"))))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("/admin/users?page=2")));
+
+        mockMvc.perform(get("/admin/users?page=2").session(session))
+                .andExpect(status().isOk())
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(">11</td>")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString(">12</td>")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("paged-user-2")))
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("paged-user-1")));
     }
 
     private MockHttpSession login(String username, String password) throws Exception {
