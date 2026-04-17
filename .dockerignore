@@ -1,0 +1,9 @@
+.git
+.idea
+.vscode
+target
+build
+out
+spring-app/target
+spring-app/build
+spring-app/out

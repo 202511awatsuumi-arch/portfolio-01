@@ -46,6 +46,13 @@ class ContactSiteControllerTest {
     }
 
     @Test
+    void rootPathReturnsPortfolioTopPage() throws Exception {
+        mockMvc.perform(get("/"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("<!DOCTYPE html>")));
+    }
+
+    @Test
     void jpPageUsesCodeValuesForContactMethodPlanAndRequestTypes() throws Exception {
         mockMvc.perform(get("/contact.html"))
                 .andExpect(status().isOk())
