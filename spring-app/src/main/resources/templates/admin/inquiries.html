@@ -59,6 +59,9 @@
                   <div th:if="${contact.contactMethod != null}" th:text="'連絡方法: ' + ${contact.contactMethod}"></div>
                   <div th:if="${contact.requestTypes != null}" th:text="'希望内容: ' + ${contact.requestTypes}"></div>
                   <div class="page-admin-inquiries__message" th:text="${contact.message}"></div>
+                  <div class="page-admin-inquiries__detail-action">
+                    <a class="btn btn--primary" th:href="@{/admin/inquiries/{id}(id=${contact.id},page=${currentPage})}">詳細</a>
+                  </div>
                 </td>
               </tr>
             </tbody>

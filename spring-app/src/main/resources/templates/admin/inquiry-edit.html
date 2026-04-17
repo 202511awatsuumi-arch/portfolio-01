@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ編集 | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference page-admin-inquiry-edit">
+  <main class="main">
+    <section class="page-section">
+      <div class="container" style="max-width: 500px;">
+        <section class="contact-card" aria-labelledby="inquiry-edit-title">
+          <h1 id="inquiry-edit-title" class="card-title">お問い合わせ編集</h1>
+          <form class="form-grid" th:action="@{/admin/inquiries/{id}(id=${contactInquiryEditForm.id})}" method="post" th:object="${contactInquiryEditForm}">
+            <div class="field">
+              <label for="inquiryType">種別</label>
+              <select id="inquiryType" th:field="*{inquiryType}" class="select">
+                <option value="store">店舗問い合わせ</option>
+                <option value="workshop">ワークショップ予約</option>
+              </select>
+              <span class="field-error" th:errors="*{inquiryType}"></span>
+            </div>
+            <div class="field">
+              <label for="name">名前</label>
+              <input id="name" th:field="*{name}" class="input" type="text">
+              <span class="field-error" th:errors="*{name}"></span>
+            </div>
+            <div class="field">
+              <label for="email">メール</label>
+              <input id="email" th:field="*{email}" class="input" type="email">
+              <span class="field-error" th:errors="*{email}"></span>
+            </div>
+            <div class="field">
+              <label for="phoneNumber">電話番号</label>
+              <input id="phoneNumber" th:field="*{phoneNumber}" class="input" type="text">
+              <span class="field-error" th:errors="*{phoneNumber}"></span>
+            </div>
+            <div class="field">
+              <label for="contactMethod">連絡方法</label>
+              <select id="contactMethod" th:field="*{contactMethod}" class="select">
+                <option value="EMAIL">メール</option>
+                <option value="PHONE">電話</option>
+              </select>
+              <span class="field-error" th:errors="*{contactMethod}"></span>
+            </div>
+            <div class="field">
+              <label for="plan">プラン</label>
+              <select id="plan" th:field="*{plan}" class="select">
+                <option value="">選択してください</option>
+                <option value="STANDARD">スタンダードコース</option>
+                <option value="PREMIUM">プレミアムコース</option>
+                <option value="CONSULT">相談してきめる</option>
+              </select>
+              <span class="field-error" th:errors="*{plan}"></span>
+            </div>
+            <div class="field">
+              <label for="date">希望日</label>
+              <input id="date" th:field="*{date}" class="input" type="date">
+              <span class="field-error" th:errors="*{date}"></span>
+            </div>
+            <div class="field">
+              <label>希望内容</label>
+              <div class="page-admin-inquiry-edit__choices">
+                <label class="choice"><input type="checkbox" th:field="*{requestType}" value="BOOKING_REQUEST">予約希望</label>
+                <label class="choice"><input type="checkbox" th:field="*{requestType}" value="AVAILABILITY_CHECK">空き状況確認</label>
+                <label class="choice"><input type="checkbox" th:field="*{requestType}" value="PLAN_CONSULTATION">プラン相談</label>
+              </div>
+              <span class="field-error" th:errors="*{requestType}"></span>
+            </div>
+            <div class="field">
+              <label for="message">お問い合わせ内容</label>
+              <textarea id="message" th:field="*{message}" class="textarea" rows="6"></textarea>
+              <span class="field-error" th:errors="*{message}"></span>
+            </div>
+            <input type="hidden" th:field="*{id}">
+            <input type="hidden" th:field="*{returnPage}">
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <button class="btn btn--primary" type="submit">更新する</button>
+              <a class="btn btn--primary" th:href="@{/admin/inquiries/{id}(id=${contactInquiryEditForm.id},page=${contactInquiryEditForm.returnPage})}">詳細へ戻る</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

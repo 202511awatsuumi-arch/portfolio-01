@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.form.ContactForm;
+import com.example.demo.form.ContactInquiryEditForm;
 import com.example.demo.service.ContactInquiryService;
 import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
@@ -17,6 +18,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -122,6 +124,77 @@ public class ContactSiteController {
         return "admin/inquiries";
     }
 
+    @GetMapping("/admin/inquiries/{id}")
+    public String adminInquiryDetail(
+            @PathVariable("id") Long id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Authentication authentication,
+            Model model) {
+        ContactInquiry contact = contactInquiryService.findById(id).orElse(null);
+        if (contact == null) {
+            return "redirect:/admin/inquiries?page=" + Math.max(page, 1);
+        }
+
+        model.addAttribute("contact", contact);
+        model.addAttribute("returnPage", Math.max(page, 1));
+        model.addAttribute("rowNumber", contactInquiryService.getDisplayNumber(contact));
+        model.addAttribute(
+                "isAdmin",
+                authentication != null
+                        && authentication.getAuthorities().stream()
+                                .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority())));
+        return "admin/inquiry-detail-view";
+    }
+
+    @GetMapping("/admin/inquiries/{id}/edit")
+    public String adminInquiryEdit(
+            @PathVariable("id") Long id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Model model) {
+        ContactInquiry contact = contactInquiryService.findById(id).orElse(null);
+        if (contact == null) {
+            return "redirect:/admin/inquiries?page=" + Math.max(page, 1);
+        }
+
+        if (!model.containsAttribute("contactInquiryEditForm")) {
+            model.addAttribute(
+                    "contactInquiryEditForm",
+                    contactInquiryService.toEditForm(contact, Math.max(page, 1)));
+        }
+
+        return "admin/inquiry-edit";
+    }
+
+    @PostMapping("/admin/inquiries/{id}")
+    public String updateInquiry(
+            @PathVariable("id") Long id,
+            @Valid
+                    @ModelAttribute("contactInquiryEditForm")
+                    ContactInquiryEditForm contactInquiryEditForm,
+            BindingResult bindingResult,
+            Model model) {
+        validateContactForm(toContactForm(contactInquiryEditForm), bindingResult, false);
+
+        int returnPage =
+                Math.max(
+                        contactInquiryEditForm.getReturnPage() != null
+                                ? contactInquiryEditForm.getReturnPage()
+                                : 1,
+                        1);
+
+        if (bindingResult.hasErrors()) {
+            contactInquiryEditForm.setReturnPage(returnPage);
+            model.addAttribute("contactInquiryEditForm", contactInquiryEditForm);
+            return "admin/inquiry-edit";
+        }
+
+        if (contactInquiryService.update(id, contactInquiryEditForm).isEmpty()) {
+            return "redirect:/admin/inquiries?page=" + returnPage;
+        }
+
+        return "redirect:/admin/inquiries/" + id + "?page=" + returnPage;
+    }
+
     @PostMapping("/contact")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> submitContact(
@@ -145,11 +218,7 @@ public class ContactSiteController {
             BindingResult bindingResult,
             boolean english,
             String requestedWith) {
-        validateWorkshopFields(contactForm, bindingResult, english);
-        validatePreferredDate(contactForm, bindingResult, english);
-        validateContactMethod(contactForm, bindingResult, english);
-        validateRequestType(contactForm, bindingResult, english);
-        validatePhoneNumber(contactForm, bindingResult, english);
+        validateContactForm(contactForm, bindingResult, english);
 
         if (bindingResult.hasErrors()) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
@@ -168,6 +237,15 @@ public class ContactSiteController {
         return ResponseEntity.ok(response);
     }
 
+    private void validateContactForm(
+            ContactForm contactForm, BindingResult bindingResult, boolean english) {
+        validateWorkshopFields(contactForm, bindingResult, english);
+        validatePreferredDate(contactForm, bindingResult, english);
+        validateContactMethod(contactForm, bindingResult, english);
+        validateRequestType(contactForm, bindingResult, english);
+        validatePhoneNumber(contactForm, bindingResult, english);
+    }
+
     private void validateWorkshopFields(
             ContactForm contactForm, BindingResult bindingResult, boolean english) {
         if (!"workshop".equals(contactForm.getInquiryType())) {
@@ -178,7 +256,7 @@ public class ContactSiteController {
         if (isBlank(contactForm.getPlan())) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "plan",
                             english ? "Please select an option." : "選択してください。"));
         } else {
@@ -188,7 +266,7 @@ public class ContactSiteController {
         if (isBlank(contactForm.getDate())) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "date",
                             english ? "Please fill out this field." : "入力してください。"));
         }
@@ -205,7 +283,7 @@ public class ContactSiteController {
         } catch (IllegalArgumentException ex) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "date",
                             english
                                     ? "Please enter the date as YYYY-MM-DD or MM/DD/YYYY."
@@ -222,7 +300,7 @@ public class ContactSiteController {
         if (!ALLOWED_CONTACT_METHODS.contains(contactForm.getContactMethod())) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "contactMethod",
                             english ? "Please select a valid contact method." : "正しいご連絡方法を選んでください。"));
         }
@@ -237,7 +315,7 @@ public class ContactSiteController {
         if ("workshop".equals(contactForm.getInquiryType()) && !hasSelection) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "requestType",
                             english
                                     ? "Please select at least one request detail."
@@ -252,7 +330,7 @@ public class ContactSiteController {
         if (hasInvalidCode) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "requestType",
                             english ? "Please select valid request details." : "正しいご希望内容を選んでください。"));
         }
@@ -267,7 +345,7 @@ public class ContactSiteController {
         if (!ALLOWED_PLANS.contains(contactForm.getPlan())) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "plan",
                             english ? "Please select a valid option." : "正しい選択肢を選んでください。"));
         }
@@ -282,7 +360,7 @@ public class ContactSiteController {
         if (isBlank(contactForm.getPhoneNumber())) {
             bindingResult.addError(
                     new FieldError(
-                            "contactForm",
+                            bindingResult.getObjectName(),
                             "phoneNumber",
                             english
                                     ? "Please enter your phone number if you prefer to be contacted by phone."
@@ -328,5 +406,19 @@ public class ContactSiteController {
 
     private boolean isNotBlank(String value) {
         return !isBlank(value);
+    }
+
+    private ContactForm toContactForm(ContactInquiryEditForm editForm) {
+        ContactForm contactForm = new ContactForm();
+        contactForm.setInquiryType(editForm.getInquiryType());
+        contactForm.setName(editForm.getName());
+        contactForm.setEmail(editForm.getEmail());
+        contactForm.setPhoneNumber(editForm.getPhoneNumber());
+        contactForm.setPlan(editForm.getPlan());
+        contactForm.setDate(editForm.getDate());
+        contactForm.setContactMethod(editForm.getContactMethod());
+        contactForm.setRequestType(editForm.getRequestType());
+        contactForm.setMessage(editForm.getMessage());
+        return contactForm;
     }
 }

@@ -3243,13 +3243,17 @@ html[lang="en"] .page-skills .skills-gallery-card img {
 .page-admin-users .page-title,
 .page-admin-user-create .card-title,
 .page-admin-user-edit .card-title,
-.page-admin-login .card-title {
+.page-admin-login .card-title,
+.page-admin-inquiry-detail .card-title,
+.page-admin-inquiry-edit .card-title {
   font-size: clamp(12px, 1.75vw, 19px);
 }
 
 .page-admin-user-create .page-section,
 .page-admin-user-edit .page-section,
-.page-admin-login .page-section {
+.page-admin-login .page-section,
+.page-admin-inquiry-detail .page-section,
+.page-admin-inquiry-edit .page-section {
   padding-top: 50px;
 }
 
@@ -3257,7 +3261,9 @@ html[lang="en"] .page-skills .skills-gallery-card img {
 .page-admin-users .btn,
 .page-admin-user-create .btn,
 .page-admin-user-edit .btn,
-.page-admin-login .btn {
+.page-admin-login .btn,
+.page-admin-inquiry-detail .btn,
+.page-admin-inquiry-edit .btn {
   min-height: 31px;
   padding: 9px 18px;
   font-size: 11.2px;
@@ -3339,6 +3345,10 @@ html[lang="en"] .page-skills .skills-gallery-card img {
   margin-top: 8px;
 }
 
+.page-admin-inquiries__detail-action {
+  margin-top: 12px;
+}
+
 .page-admin-inquiries__locale {
   margin-top: 4px;
   font-size: 11px;
@@ -3387,6 +3397,85 @@ html[lang="en"] .page-skills .skills-gallery-card img {
 
 .page-admin-users__table-wrap {
   overflow-x: auto;
+}
+
+.page-admin-inquiry-detail__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+.page-admin-inquiry-detail__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-admin-inquiry-detail__card {
+  padding: 24px;
+}
+
+.page-admin-inquiry-detail__grid {
+  margin: 0;
+}
+
+.page-admin-inquiry-detail__row {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: 16px;
+  padding: 10px 0;
+  border-bottom: 1px solid #e6ddd5;
+  font-size: 12.8px;
+  line-height: 1.7;
+}
+
+.page-admin-inquiry-detail__row:last-child {
+  border-bottom: none;
+}
+
+.page-admin-inquiry-detail__row dt,
+.page-admin-inquiry-detail__row dd {
+  margin: 0;
+}
+
+.page-admin-inquiry-detail__row dt {
+  color: var(--reference-text);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.page-admin-inquiry-detail__row dd {
+  min-width: 0;
+  word-break: break-word;
+}
+
+.page-admin-inquiry-detail__row--message dd {
+  white-space: pre-wrap;
+}
+
+.page-admin-inquiry-edit__choices {
+  display: grid;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+@media (max-width: 767px) {
+  .page-admin-inquiry-detail__header {
+    margin-bottom: 32px;
+  }
+
+  .page-admin-inquiry-detail__card {
+    padding: 18px;
+  }
+
+  .page-admin-inquiry-detail__row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 12px 0;
+  }
 }
 
 .page-home .btn {

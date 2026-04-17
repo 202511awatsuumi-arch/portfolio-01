@@ -58,6 +58,7 @@ class ContactSiteControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(Matchers.containsString("<th>No</th>")))
                 .andExpect(content().string(Matchers.containsString(">1</td>")))
+                .andExpect(content().string(Matchers.containsString("詳細")))
                 .andExpect(content().string(Matchers.containsString("Sender 12")))
                 .andExpect(content().string(Matchers.containsString("Sender 3")))
                 .andExpect(content().string(Matchers.not(Matchers.containsString("Sender 2"))))
@@ -70,6 +71,87 @@ class ContactSiteControllerTest {
                 .andExpect(content().string(Matchers.containsString("Sender 2")))
                 .andExpect(content().string(Matchers.containsString("Sender 1")))
                 .andExpect(content().string(Matchers.not(Matchers.containsString("Sender 12"))));
+    }
+
+    @Test
+    void adminInquiryDetailDisplaysSingleInquiry() throws Exception {
+        saveInquiry(1);
+        ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
+
+        mockMvc.perform(get("/admin/inquiries/" + inquiry.getId()).param("page", "2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("お問い合わせ詳細")))
+                .andExpect(content().string(Matchers.containsString(">1</dd>")))
+                .andExpect(content().string(Matchers.containsString("Sender 1")))
+                .andExpect(content().string(Matchers.containsString("sender1@example.com")))
+                .andExpect(content().string(Matchers.containsString("/admin/inquiries?page=2")));
+    }
+
+    @Test
+    void adminInquiryEditDisplaysExistingData() throws Exception {
+        saveInquiry(1);
+        ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
+
+        mockMvc.perform(get("/admin/inquiries/" + inquiry.getId() + "/edit").param("page", "2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("お問い合わせ編集")))
+                .andExpect(content().string(Matchers.containsString("Sender 1")))
+                .andExpect(content().string(Matchers.containsString("sender1@example.com")))
+                .andExpect(content().string(Matchers.containsString("value=\"2\"")));
+    }
+
+    @Test
+    void adminInquiryUpdateSavesChangesAndRedirectsToDetail() throws Exception {
+        saveInquiry(1);
+        ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
+
+        mockMvc.perform(post("/admin/inquiries/" + inquiry.getId())
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", inquiry.getId().toString())
+                        .param("returnPage", "2")
+                        .param("inquiryType", "workshop")
+                        .param("name", "Updated Sender")
+                        .param("email", "updated@example.com")
+                        .param("phoneNumber", "090-9999-0000")
+                        .param("plan", "PREMIUM")
+                        .param("date", "2026-05-01")
+                        .param("contactMethod", "PHONE")
+                        .param("requestType", "BOOKING_REQUEST", "PLAN_CONSULTATION")
+                        .param("message", "Updated message"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl(
+                        "/admin/inquiries/" + inquiry.getId() + "?page=2"));
+
+        ContactInquiry updated = contactInquiryRepository.findById(inquiry.getId()).orElseThrow();
+        assertThat(updated.getInquiryType()).isEqualTo("workshop");
+        assertThat(updated.getName()).isEqualTo("Updated Sender");
+        assertThat(updated.getEmail()).isEqualTo("updated@example.com");
+        assertThat(updated.getPhoneNumber()).isEqualTo("090-9999-0000");
+        assertThat(updated.getPlan()).isEqualTo("PREMIUM");
+        assertThat(updated.getPreferredDate()).isEqualTo(LocalDate.of(2026, 5, 1));
+        assertThat(updated.getContactMethod()).isEqualTo("PHONE");
+        assertThat(updated.getRequestTypes()).isEqualTo("BOOKING_REQUEST, PLAN_CONSULTATION");
+        assertThat(updated.getMessage()).isEqualTo("Updated message");
+    }
+
+    @Test
+    void adminInquiryUpdateRerendersEditWhenWorkshopRequestTypeIsMissing() throws Exception {
+        saveInquiry(1);
+        ContactInquiry inquiry = contactInquiryRepository.findAll().get(0);
+
+        mockMvc.perform(post("/admin/inquiries/" + inquiry.getId())
+                        .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                        .param("id", inquiry.getId().toString())
+                        .param("returnPage", "1")
+                        .param("inquiryType", "workshop")
+                        .param("name", "Updated Sender")
+                        .param("email", "updated@example.com")
+                        .param("plan", "STANDARD")
+                        .param("date", "2026-05-01")
+                        .param("contactMethod", "EMAIL")
+                        .param("message", "Updated message"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(Matchers.containsString("お問い合わせ編集")));
     }
 
     @Test
