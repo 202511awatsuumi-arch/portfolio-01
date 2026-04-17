@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ユーザー登録 | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference">
+  <main class="main">
+    <section class="page-section">
+      <div class="container" style="max-width: 720px;">
+        <section class="contact-card" aria-labelledby="user-create-title">
+          <h1 id="user-create-title" class="card-title">新規ユーザー登録</h1>
+          <form class="form-grid" th:action="@{/admin/users}" method="post" th:object="${userCreateForm}">
+            <div class="field">
+              <label for="username">ユーザー名</label>
+              <input id="username" th:field="*{username}" class="input" type="text" autocomplete="username">
+              <span class="field-error" th:errors="*{username}"></span>
+            </div>
+            <div class="field">
+              <label for="password">パスワード</label>
+              <input id="password" th:field="*{password}" class="input" type="password" autocomplete="new-password">
+              <span class="field-error" th:errors="*{password}"></span>
+            </div>
+            <div class="field">
+              <label for="confirmPassword">確認用パスワード</label>
+              <input id="confirmPassword" th:field="*{confirmPassword}" class="input" type="password" autocomplete="new-password">
+              <span class="field-error" th:errors="*{confirmPassword}"></span>
+            </div>
+            <div class="field">
+              <label for="role">ロール</label>
+              <select id="role" th:field="*{role}" class="select">
+                <option value="USER">USER</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+              <span class="field-error" th:errors="*{role}"></span>
+            </div>
+            <div class="field">
+              <label class="choice"><input th:field="*{enabled}" type="checkbox">有効</label>
+            </div>
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+            <div style="display:flex; gap:12px; flex-wrap:wrap;">
+              <button class="btn btn--primary" type="submit">登録する</button>
+              <a class="btn btn--primary" th:href="@{/admin/users}">一覧へ戻る</a>
+            </div>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

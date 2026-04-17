@@ -94,7 +94,7 @@ public class ContactSiteController {
         return "en/contact";
     }
 
-    @GetMapping("/admin/contacts")
+    @GetMapping({"/admin/contacts", "/admin/inquiries"})
     public String adminContacts(Model model) {
         model.addAttribute("contacts", contactInquiryService.findAll());
         return "admin/contacts-view";

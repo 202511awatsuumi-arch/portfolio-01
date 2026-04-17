@@ -69,6 +69,7 @@
           <h2 id="contact-form-title" class="card-title">ご予約・お問い合わせフォーム</h2>
           <p class="card-text">ワークショップのご予約・ご相談から、営業時間やアクセスなど店舗全般のお問い合わせまで承っています。内容を確認のうえ、通常1〜2営業日以内を目安にご連絡します。</p>
           <form id="contact-form" class="form-grid" data-contact-form action="/contact" method="post" novalidate>
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
             <div class="field">
               <label for="inquiryType">お問い合わせの種類</label>
               <select id="inquiryType" name="inquiryType" class="select" data-inquiry-type aria-describedby="note-inquiryType">

@@ -71,6 +71,7 @@
           <h2 id="contact-form-title" class="card-title">Booking / Contact Form</h2>
           <p class="card-text">We accept workshop reservations and consultation requests, as well as general store inquiries such as opening hours and access. After checking your message, we will usually reply within 1 to 2 business days.</p>
           <form id="contact-form" class="form-grid" data-contact-form action="/en/contact" method="post" novalidate>
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
             <div class="field">
               <label for="inquiryType">Inquiry Type</label>
               <select id="inquiryType" name="inquiryType" class="select" data-inquiry-type aria-describedby="note-inquiryType">

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ユーザー一覧 | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference">
+  <main class="main">
+    <section class="page-hero">
+      <div class="container" style="display:flex; justify-content:space-between; gap:24px; align-items:flex-start; flex-wrap:wrap;">
+        <div>
+          <p class="breadcrumbs"><a href="/index.html">ホーム</a> / ユーザー一覧</p>
+          <h1 class="page-title">ユーザー一覧</h1>
+          <p class="page-lead">管理者がログインできるユーザーを管理します。</p>
+        </div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn--primary" th:href="@{/admin/users/new}">新規登録</a>
+          <a class="btn btn--primary" th:href="@{/admin/inquiries}">お問い合わせ一覧</a>
+          <form th:action="@{/admin/logout}" method="post" style="margin:0;">
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+            <button class="btn btn--primary" type="submit">ログアウト</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="page-section">
+      <div class="container">
+        <p class="field-note" th:if="${successMessage}" th:text="${successMessage}"></p>
+        <p class="field-error" th:if="${errorMessage}" th:text="${errorMessage}"></p>
+        <div class="contact-card" style="overflow:auto;">
+          <table style="width:100%; border-collapse:collapse;">
+            <thead>
+              <tr>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ID</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ユーザー名</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">ロール</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">状態</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">作成日時</th>
+                <th style="text-align:left; padding:12px; border-bottom:1px solid #ddd;">操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr th:if="${#lists.isEmpty(users)}">
+                <td colspan="6" style="padding:16px;">ユーザーはまだありません。</td>
+              </tr>
+              <tr th:each="user : ${users}">
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.id}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.username}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.role}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${user.enabled ? '有効' : '無効'}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;" th:text="${#temporals.format(user.createdAt, 'yyyy-MM-dd HH:mm')}"></td>
+                <td style="padding:12px; border-bottom:1px solid #eee;">
+                  <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                    <a class="btn btn--primary" th:href="@{/admin/users/{id}/edit(id=${user.id})}">編集</a>
+                    <form th:action="@{/admin/users/{id}/delete(id=${user.id})}" method="post" style="margin:0;" onsubmit="return confirm('このユーザーを削除しますか？');">
+                      <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+                      <button class="btn btn--primary" type="submit">削除</button>
+                    </form>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

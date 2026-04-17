@@ -21,7 +21,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
 
 @SpringBootTest
-@AutoConfigureMockMvc
+@AutoConfigureMockMvc(addFilters = false)
 @TestPropertySource(
         properties = {
             "spring.datasource.url=jdbc:h2:mem:contact-site-test;DB_CLOSE_DELAY=-1;MODE=LEGACY",
@@ -29,7 +29,8 @@ import org.springframework.test.web.servlet.MockMvc;
             "spring.datasource.username=sa",
             "spring.datasource.password=",
             "spring.jpa.hibernate.ddl-auto=create-drop",
-            "spring.flyway.enabled=false"
+            "spring.flyway.enabled=false",
+            "app.admin.seed.enabled=false"
         })
 class ContactSiteControllerTest {
 

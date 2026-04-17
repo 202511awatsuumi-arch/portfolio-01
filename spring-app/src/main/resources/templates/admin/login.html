@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>管理ログイン | KAORI MUSUBI Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="page-reference">
+  <main class="main">
+    <section class="page-section">
+      <div class="container" style="max-width: 560px;">
+        <section class="contact-card" aria-labelledby="admin-login-title">
+          <h1 id="admin-login-title" class="card-title">管理ログイン</h1>
+          <p class="card-text">ユーザー名とパスワードを入力してください。</p>
+          <p class="field-error" th:if="${loginError}" aria-live="polite">ユーザー名またはパスワードが正しくありません。</p>
+          <p class="field-note" th:if="${loggedOut}">ログアウトしました。</p>
+          <form class="form-grid" th:action="@{/admin/login}" method="post" th:object="${loginForm}">
+            <div class="field">
+              <label for="username">ユーザー名</label>
+              <input id="username" th:field="*{username}" class="input" type="text" autocomplete="username" required>
+            </div>
+            <div class="field">
+              <label for="password">パスワード</label>
+              <input id="password" th:field="*{password}" class="input" type="password" autocomplete="current-password" required>
+            </div>
+            <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
+            <button class="btn btn--primary" type="submit">ログイン</button>
+          </form>
+        </section>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
