@@ -66,29 +66,34 @@
             <pre>
 【ER図】
 
-[users]
-  id (PK)
-  username
-  email
-  password
-  role
-  created_at
-  updated_at
+[USERS]
+  ID (PK)
+  USERNAME
+  PASSWORD_HASH
+  ROLE
+  ENABLED
+  CREATED_AT
+  UPDATED_AT
 
-[inquiries]
-  id (PK)
-  name
-  email
-  subject
-  message
-  is_deleted
-  created_at
-  updated_at
+[CONTACT_INQUIRIES]
+  ID (PK)
+  CONTACT_METHOD
+  CREATED_AT
+  EMAIL
+  ENGLISH_PAGE
+  INQUIRY_TYPE
+  MESSAGE
+  NAME
+  PLAN
+  REQUEST_TYPES
+  PREFERRED_DATE
+  PHONE_NUMBER
+  DELETED_AT
 
 【リレーション】
-・users：管理者および管理対象ユーザー情報を管理
-・inquiries：公開サイトから送信されたお問い合わせ情報を管理
-・現状は users と inquiries を直接関連付けない独立テーブル構成
+・USERS：管理者および管理対象ユーザー情報を管理
+・CONTACT_INQUIRIES：公開サイトから送信されたお問い合わせ情報を管理
+・現状は USERS と CONTACT_INQUIRIES を直接関連付けない独立テーブル構成
 </pre>
           
         </div>
@@ -97,43 +102,46 @@
 
         <section class="section" id="sec2">
           <h2 class="section-title"><span class="section-icon">2</span> テーブル定義</h2>
-
-
           <div class="fill-block">
-            <div class="fill-label">テーブル名：users <span class="required">必須</span></div>
+            <div class="fill-label">テーブル名：USERS <span class="required">必須</span></div>
             <div class="fill-hint">テーブルの目的：管理者および管理対象ユーザー情報を管理</div>
             <table class="doc-table">
               <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
               <tbody>
-                <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
-                <tr class="template-row"><td>username</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>-</td><td>ユーザー名</td></tr>
-                <tr class="template-row"><td>email</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>メールアドレス</td></tr>
-                <tr class="template-row"><td>password</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>パスワード（ハッシュ化）</td></tr>
-                <tr class="template-row"><td>role</td><td>VARCHAR(50)</td><td>NO</td><td>-</td><td>-</td><td>権限</td></tr>
-                <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>作成日時</td></tr>
-                <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>更新日時</td></tr>
+                <tr class="template-row"><td>ID</td><td>BIGINT</td><td>NO</td><td>-</td><td>PK</td><td>主キー</td></tr>
+                <tr class="template-row"><td>USERNAME</td><td>CHARACTER VARYING(50)</td><td>NO</td><td>-</td><td>UNIQUE</td><td>ユーザーID</td></tr>
+                <tr class="template-row"><td>PASSWORD_HASH</td><td>CHARACTER VARYING(255)</td><td>NO</td><td>-</td><td>-</td><td>パスワードハッシュ</td></tr>
+                <tr class="template-row"><td>ROLE</td><td>CHARACTER VARYING(20)</td><td>NO</td><td>-</td><td>-</td><td>権限</td></tr>
+                <tr class="template-row"><td>ENABLED</td><td>BOOLEAN</td><td>NO</td><td>-</td><td>-</td><td>有効フラグ</td></tr>
+                <tr class="template-row"><td>CREATED_AT</td><td>TIMESTAMP</td><td>NO</td><td>-</td><td>-</td><td>作成日時</td></tr>
+                <tr class="template-row"><td>UPDATED_AT</td><td>TIMESTAMP</td><td>NO</td><td>-</td><td>-</td><td>更新日時</td></tr>
               </tbody>
             </table>
           </div>
-
           <div class="fill-block">
-            <div class="fill-label">テーブル名：inquiries <span class="required">必須</span></div>
+            <div class="fill-label">テーブル名：CONTACT_INQUIRIES <span class="required">必須</span></div>
             <div class="fill-hint">テーブルの目的：公開サイトから送信されたお問い合わせ情報を管理</div>
             <table class="doc-table">
               <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
               <tbody>
-                <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
-                <tr class="template-row"><td>name</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>-</td><td>氏名</td></tr>
-                <tr class="template-row"><td>email</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>メールアドレス</td></tr>
-                <tr class="template-row"><td>subject</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>件名</td></tr>
-                <tr class="template-row"><td>message</td><td>TEXT</td><td>NO</td><td>-</td><td>-</td><td>本文</td></tr>
-                <tr class="template-row"><td>is_deleted</td><td>BOOLEAN</td><td>NO</td><td>FALSE</td><td>-</td><td>削除フラグ</td></tr>
-                <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>作成日時</td></tr>
-                <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>更新日時</td></tr>
+                <tr class="template-row"><td>ID</td><td>BIGINT</td><td>NO</td><td>-</td><td>PK</td><td>主キー</td></tr>
+                <tr class="template-row"><td>CONTACT_METHOD</td><td>CHARACTER VARYING(50)</td><td>YES</td><td>-</td><td>-</td><td>連絡方法</td></tr>
+                <tr class="template-row"><td>CREATED_AT</td><td>TIMESTAMP(6)</td><td>NO</td><td>-</td><td>-</td><td>受信日時</td></tr>
+                <tr class="template-row"><td>EMAIL</td><td>CHARACTER VARYING(255)</td><td>NO</td><td>-</td><td>-</td><td>メールアドレス</td></tr>
+                <tr class="template-row"><td>ENGLISH_PAGE</td><td>BOOLEAN</td><td>NO</td><td>-</td><td>-</td><td>英語ページ経由フラグ</td></tr>
+                <tr class="template-row"><td>INQUIRY_TYPE</td><td>CHARACTER VARYING(20)</td><td>NO</td><td>-</td><td>-</td><td>問い合わせ種別</td></tr>
+                <tr class="template-row"><td>MESSAGE</td><td>CHARACTER VARYING(4000)</td><td>NO</td><td>-</td><td>-</td><td>お問い合わせ内容</td></tr>
+                <tr class="template-row"><td>NAME</td><td>CHARACTER VARYING(120)</td><td>NO</td><td>-</td><td>-</td><td>名前</td></tr>
+                <tr class="template-row"><td>PLAN</td><td>CHARACTER VARYING(120)</td><td>YES</td><td>-</td><td>-</td><td>希望プラン</td></tr>
+                <tr class="template-row"><td>REQUEST_TYPES</td><td>CHARACTER VARYING(255)</td><td>YES</td><td>-</td><td>-</td><td>希望内容</td></tr>
+                <tr class="template-row"><td>PREFERRED_DATE</td><td>DATE</td><td>YES</td><td>-</td><td>-</td><td>希望日</td></tr>
+                <tr class="template-row"><td>PHONE_NUMBER</td><td>CHARACTER VARYING(30)</td><td>YES</td><td>-</td><td>-</td><td>電話番号</td></tr>
+                <tr class="template-row"><td>DELETED_AT</td><td>TIMESTAMP</td><td>YES</td><td>-</td><td>-</td><td>削除日時</td></tr>
               </tbody>
             </table>
           </div>
-        </section>
+            <p>本システムのDBスキーマ変更管理は Flyway で実施する。flyway_schema_history テーブルは Flyway の内部管理用のため、本設計書の業務テーブル定義対象外とする。</p>
+          </section>
 
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> インデックス設計</h2>
@@ -143,12 +151,10 @@
         <table class="doc-table">
           <thead><tr><th>テーブル名</th><th>インデックス名</th><th>対象カラム</th><th>種類</th><th>設定理由</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>users</td><td>uq_users_email</td><td>email</td><td>UNIQUE</td><td>メールアドレス重複防止</td></tr>
-          <tr class="template-row"><td>users</td><td>idx_users_username</td><td>username</td><td>INDEX</td><td>ユーザー検索用</td></tr>
-          <tr class="template-row"><td>users</td><td>idx_users_created_at</td><td>created_at</td><td>INDEX</td><td>登録順ソート用</td></tr>
-          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_email</td><td>email</td><td>INDEX</td><td>問い合わせ検索用</td></tr>
-          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_is_deleted</td><td>is_deleted</td><td>INDEX</td><td>論理削除絞り込み用</td></tr>
-          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_created_at</td><td>created_at</td><td>INDEX</td><td>新着順ソート用</td></tr>
+          <tr class="template-row"><td>USERS</td><td>uq_users_username</td><td>USERNAME</td><td>UNIQUE</td><td>ログインID重複防止</td></tr>
+          <tr class="template-row"><td>USERS</td><td>idx_users_created_at</td><td>CREATED_AT</td><td>INDEX</td><td>ユーザー一覧の作成日時順表示用</td></tr>
+          <tr class="template-row"><td>CONTACT_INQUIRIES</td><td>idx_contact_inquiries_created_at</td><td>CREATED_AT</td><td>INDEX</td><td>お問い合わせ一覧の受信日時順表示用</td></tr>
+          <tr class="template-row"><td>CONTACT_INQUIRIES</td><td>idx_contact_inquiries_deleted_at</td><td>DELETED_AT</td><td>INDEX</td><td>削除済み一覧の絞り込み用</td></tr>
           </tbody>
         </table>
 
@@ -162,7 +168,17 @@
           <div class="fill-label">マスタデータ・テストデータ <span class="required">必須</span></div>
           <div class="fill-hint">初期投入するデータ（カテゴリマスタ、管理者ユーザー等）</div>
           <div class="fill-content">
-            <p>（初期データのSQL INSERT文を記載）</p>
+            <pre>INSERT INTO USERS (USERNAME, PASSWORD_HASH, ROLE, ENABLED, CREATED_AT, UPDATED_AT) VALUES
+('admin', '$2a$10$CLMMmQnY6nJI9V3w2r5tWeq8W.qJ2FqTN2xkZDXIZsr0QTmOwqGV2', 'ADMIN', TRUE, '2026-04-01 09:00:00', '2026-04-01 09:00:00'),
+('testuser', '$2a$10$EXtuxznqGSsu9J.rwBXQbu1ZF6S63YW8YoNZtDZgNSX8fvpmx14BC', 'USER', TRUE, '2026-04-01 09:10:00', '2026-04-01 09:10:00'),
+('test12', '$2a$10$BYEezMwpFlcB9uSBBVGKyusMMbPCpSzNOjEOXGckbqKF.C9ctvKHO', 'USER', FALSE, '2026-04-01 09:20:00', '2026-04-01 09:20:00');
+
+INSERT INTO CONTACT_INQUIRIES (CONTACT_METHOD, CREATED_AT, EMAIL, ENGLISH_PAGE, INQUIRY_TYPE, MESSAGE, NAME, PLAN, REQUEST_TYPES, PREFERRED_DATE, PHONE_NUMBER, DELETED_AT) VALUES
+('EMAIL', '2026-04-10 10:00:00', 'sato@example.com', FALSE, 'workshop', 'ワークショップ参加について問い合わせします。', '佐藤 花子', 'PREMIUM', 'BOOKING_REQUEST', '2026-05-15', '090-1111-2222', NULL),
+('PHONE', '2026-04-10 11:00:00', 'tanaka@example.com', TRUE, 'store', '店舗の空き状況を確認したいです。', 'Tanaka John', 'STANDARD', 'AVAILABILITY_CHECK', '2026-05-20', '03-1234-5678', NULL),
+('EMAIL', '2026-04-10 12:00:00', 'yamada@example.com', FALSE, 'workshop', 'プラン相談を希望します。', '山田 太郎', NULL, 'PLAN_CONSULTATION', NULL, NULL, NULL),
+('PHONE', '2026-04-10 13:00:00', 'suzuki@example.com', TRUE, 'store', '予約の確認をお願いします。', 'Suzuki Mei', 'CONSULT', NULL, '2026-06-01', '080-3333-4444', '2026-04-15 09:30:00'),
+('EMAIL', '2026-04-10 14:00:00', 'kato@example.com', FALSE, 'workshop', '空き状況確認と予約希望です。', '加藤 一郎', NULL, 'BOOKING_REQUEST', '2026-06-10', NULL, NULL);</pre>
           </div>
         </div>
 
