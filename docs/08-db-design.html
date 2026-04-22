@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -63,8 +63,34 @@
           <div class="fill-label">ER図 <span class="required">必須</span></div>
           <div class="fill-hint">テーブル間のリレーション図（テキストベースまたは画像で記載）</div>
           <div class="fill-content">
-            <p>（ER図を記載）</p>
-          </div>
+            <pre>
+【ER図】
+
+[users]
+  id (PK)
+  username
+  email
+  password
+  role
+  created_at
+  updated_at
+
+[inquiries]
+  id (PK)
+  name
+  email
+  subject
+  message
+  is_deleted
+  created_at
+  updated_at
+
+【リレーション】
+・users：管理者および管理対象ユーザー情報を管理
+・inquiries：公開サイトから送信されたお問い合わせ情報を管理
+・現状は users と inquiries を直接関連付けない独立テーブル構成
+</pre>
+          
         </div>
 
         </section>
@@ -74,18 +100,38 @@
 
 
           <div class="fill-block">
-            <div class="fill-label">テーブル名：（テーブル名を入力） <span class="required">必須</span></div>
-            <div class="fill-hint">テーブルの目的：（このテーブルが管理するデータの説明）</div>
-        <table class="doc-table">
-          <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
-          <tr class="template-row"><td>（カラム名）</td><td>（VARCHAR(255) 等）</td><td>（YES/NO）</td><td>（デフォルト値）</td><td>（PK/FK/UNIQUE/NOT NULL）</td><td>（説明）</td></tr>
-          <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>作成日時</td></tr>
-          <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>NOT NULL</td><td>更新日時</td></tr>
-          </tbody>
-        </table>
+            <div class="fill-label">テーブル名：users <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：管理者および管理対象ユーザー情報を管理</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr class="template-row"><td>username</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>-</td><td>ユーザー名</td></tr>
+                <tr class="template-row"><td>email</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>メールアドレス</td></tr>
+                <tr class="template-row"><td>password</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>パスワード（ハッシュ化）</td></tr>
+                <tr class="template-row"><td>role</td><td>VARCHAR(50)</td><td>NO</td><td>-</td><td>-</td><td>権限</td></tr>
+                <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>作成日時</td></tr>
+                <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
+          </div>
 
+          <div class="fill-block">
+            <div class="fill-label">テーブル名：inquiries <span class="required">必須</span></div>
+            <div class="fill-hint">テーブルの目的：公開サイトから送信されたお問い合わせ情報を管理</div>
+            <table class="doc-table">
+              <thead><tr><th>カラム名</th><th>データ型</th><th>NULL</th><th>デフォルト</th><th>制約</th><th>説明</th></tr></thead>
+              <tbody>
+                <tr class="template-row"><td>id</td><td>BIGINT</td><td>NO</td><td>AUTO_INCREMENT</td><td>PK</td><td>主キー</td></tr>
+                <tr class="template-row"><td>name</td><td>VARCHAR(100)</td><td>NO</td><td>-</td><td>-</td><td>氏名</td></tr>
+                <tr class="template-row"><td>email</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>メールアドレス</td></tr>
+                <tr class="template-row"><td>subject</td><td>VARCHAR(255)</td><td>NO</td><td>-</td><td>-</td><td>件名</td></tr>
+                <tr class="template-row"><td>message</td><td>TEXT</td><td>NO</td><td>-</td><td>-</td><td>本文</td></tr>
+                <tr class="template-row"><td>is_deleted</td><td>BOOLEAN</td><td>NO</td><td>FALSE</td><td>-</td><td>削除フラグ</td></tr>
+                <tr class="template-row"><td>created_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>作成日時</td></tr>
+                <tr class="template-row"><td>updated_at</td><td>DATETIME</td><td>NO</td><td>CURRENT_TIMESTAMP</td><td>-</td><td>更新日時</td></tr>
+              </tbody>
+            </table>
           </div>
         </section>
 
@@ -97,8 +143,12 @@
         <table class="doc-table">
           <thead><tr><th>テーブル名</th><th>インデックス名</th><th>対象カラム</th><th>種類</th><th>設定理由</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>（テーブル名）</td><td>idx_（テーブル）_（カラム）</td><td>（カラム名）</td><td>（UNIQUE / INDEX）</td><td>（検索で頻繁に使用するため等）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr class="template-row"><td>users</td><td>uq_users_email</td><td>email</td><td>UNIQUE</td><td>メールアドレス重複防止</td></tr>
+          <tr class="template-row"><td>users</td><td>idx_users_username</td><td>username</td><td>INDEX</td><td>ユーザー検索用</td></tr>
+          <tr class="template-row"><td>users</td><td>idx_users_created_at</td><td>created_at</td><td>INDEX</td><td>登録順ソート用</td></tr>
+          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_email</td><td>email</td><td>INDEX</td><td>問い合わせ検索用</td></tr>
+          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_is_deleted</td><td>is_deleted</td><td>INDEX</td><td>論理削除絞り込み用</td></tr>
+          <tr class="template-row"><td>inquiries</td><td>idx_inquiries_created_at</td><td>created_at</td><td>INDEX</td><td>新着順ソート用</td></tr>
           </tbody>
         </table>
 

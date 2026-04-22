@@ -1,20 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>仕様書（機能仕様書） -  プロジェクトアーカイブ</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+  <title>仕様書（機能仕様書） - プロジェクトアーカイブ</title>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="docs.css">
 </head>
+
 <body class="docs-page">
   <button class="hamburger" aria-label="メニュー">
     <span></span><span></span><span></span>
   </button>
 
   <div class="page-wrapper">
-  <aside class="sidebar" data-nav-level="docs"></aside>
+    <aside class="sidebar" data-nav-level="docs"></aside>
 
     <main class="main-content">
       <header class="doc-header">
@@ -39,7 +42,8 @@
           </div>
           <div class="external-link-input">
             <input type="text" placeholder="https://docs.google.com/spreadsheets/d/xxxxx" id="external-link-07">
-            <a href="#" class="link-btn" onclick="window.open(document.getElementById('external-link-07').value || 'https://docs.google.com', '_blank'); return false;">
+            <a href="#" class="link-btn"
+              onclick="window.open(document.getElementById('external-link-07').value || 'https://docs.google.com', '_blank'); return false;">
               <span class="material-symbols-outlined">open_in_new</span>
               開く
             </a>
@@ -60,20 +64,51 @@
         <section class="section" id="sec1">
           <h2 class="section-title"><span class="section-icon">1</span> システム概要</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">システムの目的 <span class="required">必須</span></div>
-          <div class="fill-hint">このシステムが解決する課題と提供する価値</div>
-          <div class="fill-content">
-            <p>（システムの目的を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">システムの目的</div>
+            <div class="fill-hint">このシステムが解決する課題と提供する価値</div>
+            <div class="fill-content">
+              <p>
+                「香り結び」の管理システムは、店舗管理者が予約希望や各種お問い合わせを一元管理し、
+                確認・編集・削除や<br>
+                ユーザー管理を行うことで、対応漏れ防止と顧客対応の品質向上、運営効率化を実現するためのシステムです。
+              </p>
+            </div>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">システム構成図 <span class="required">必須</span></div>
-          <div class="fill-hint">フロントエンド ↔ バックエンド ↔ データベースの関係を図示</div>
-          <div class="fill-content">
-            <p>（システム構成図を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">システム構成図</div>
+            <div class="fill-hint">フロントエンド ↔ バックエンド ↔ データベースの関係を図示</div>
+            <div class="fill-content">
+              <pre>【システム構成図】
+
+┌────────────┐
+│ 利用者 / ブラウザ │
+└────────────┘
+         ↓
+┌─────────────────────────────┐
+│ フロントエンド                          │
+│ HTML / CSS / JavaScript                │
+│ （Thymeleaf）                          │
+└─────────────────────────────┘
+         ↓ リクエスト送信
+┌─────────────────────────────┐
+│ バックエンド：Spring Boot               │
+│   Controller                           │
+│      ↓                                 │
+│   Service                              │
+│      ↓                                 │
+│   Repository                           │
+└─────────────────────────────┘
+         ↓ SQL実行
+┌─────────────────────────────┐
+│ データベース：H2                        │
+└─────────────────────────────┘
+         ↑
+      データ取得
+         ↑
+   画面へレスポンス返却</pre>
+            </div>
           </div>
-        </div>
 
         </section>
 
@@ -81,22 +116,125 @@
           <h2 class="section-title"><span class="section-icon">2</span> 機能一覧</h2>
 
           <div class="fill-block">
-            <div class="fill-label">機能一覧表 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>No.</th><th>機能名</th><th>概要</th><th>対応画面</th><th>優先度</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>F-001</td><td>（ログイン）</td><td>（メール/パスワードで認証）</td><td>（ログイン画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-002</td><td>（一覧表示）</td><td>（データの一覧表示・ページネーション）</td><td>（一覧画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-003</td><td>（新規登録）</td><td>（フォームから新規データ登録）</td><td>（登録画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-004</td><td>（詳細表示）</td><td>（データの詳細情報表示）</td><td>（詳細画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-005</td><td>（編集）</td><td>（既存データの更新）</td><td>（編集画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-006</td><td>（削除）</td><td>（データの削除・確認ダイアログ）</td><td>（一覧画面）</td><td><span class="badge badge-must">Must</span></td></tr>
-          <tr class="template-row"><td>F-007</td><td>（検索）</td><td>（キーワード・条件検索）</td><td>（一覧画面）</td><td><span class="badge badge-should">Should</span></td></tr>
-          <tr class="template-row"><td>F-008</td><td>（ソート）</td><td>（カラムクリックでの並び替え）</td><td>（一覧画面）</td><td><span class="badge badge-should">Should</span></td></tr>
-          <tr class="template-row"><td>F-009</td><td>（CSV出力）</td><td>（データのCSVエクスポート）</td><td>（一覧画面）</td><td><span class="badge badge-could">Could</span></td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
+            <div class="fill-label">機能一覧表</div>
+            <table class="doc-table">
+              <thead>
+                <tr>
+                  <th>No.</th>
+                  <th>機能名</th>
+                  <th>概要</th>
+                  <th>対応画面</th>
+                  <th>優先度</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="template-row">
+                  <td>F-001</td>
+                  <td>ログイン</td>
+                  <td>管理者がユーザーIDとパスワードを入力して認証し、管理画面へログインする</td>
+                  <td>管理者ログイン画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-002</td>
+                  <td>ログアウト</td>
+                  <td>管理者が管理画面からログアウトする</td>
+                  <td>管理画面共通</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-003</td>
+                  <td>ユーザー一覧表示</td>
+                  <td>管理者がユーザー一覧を表示する</td>
+                  <td>管理者ユーザー一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-004</td>
+                  <td>ユーザー新規登録</td>
+                  <td>管理者が新しいユーザーを登録する</td>
+                  <td>管理者ユーザー登録画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-005</td>
+                  <td>ユーザー編集</td>
+                  <td>管理者が既存ユーザー情報を更新する</td>
+                  <td>管理者ユーザー編集画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-006</td>
+                  <td>ユーザー削除</td>
+                  <td>管理者がユーザーを削除する</td>
+                  <td>管理者ユーザー一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-007</td>
+                  <td>お問い合わせ一覧表示</td>
+                  <td>管理者が一般ユーザーからのお問い合わせを一覧表示する</td>
+                  <td>管理者お問い合わせ一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-008</td>
+                  <td>削除済みお問い合わせ一覧表示</td>
+                  <td>管理者が削除済みのお問い合わせ一覧を表示する</td>
+                  <td>管理者削除済みお問い合わせ一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-009</td>
+                  <td>お問い合わせ詳細表示</td>
+                  <td>管理者がお問い合わせの詳細を確認する</td>
+                  <td>管理者お問い合わせ詳細画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-010</td>
+                  <td>お問い合わせ編集</td>
+                  <td>管理者がお問い合わせ内容を更新する</td>
+                  <td>管理者お問い合わせ編集画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-011</td>
+                  <td>お問い合わせ削除</td>
+                  <td>管理者がお問い合わせを論理削除する</td>
+                  <td>管理者お問い合わせ一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-012</td>
+                  <td>お問い合わせ復元</td>
+                  <td>管理者が削除済みお問い合わせを復元する</td>
+                  <td>管理者削除済みお問い合わせ一覧画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-013</td>
+                  <td>お問い合わせ送信</td>
+                  <td>一般ユーザーがサイトの問い合わせフォームから送信する</td>
+                  <td>公開サイトお問い合わせ画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-014</td>
+                  <td>入力バリデーション</td>
+                  <td>ログイン・ユーザー登録編集・お問い合わせ送信編集で入力チェックを行う</td>
+                  <td>各入力画面</td>
+                  <td><span class="badge badge-must">Must</span></td>
+                </tr>
+                <tr class="template-row">
+                  <td>F-015</td>
+                  <td>ページネーション</td>
+                  <td>ユーザー一覧・お問い合わせ一覧をページ分割で表示する</td>
+                  <td>管理者ユーザー一覧画面 / 管理者お問い合わせ一覧画面</td>
+                  <td><span class="badge badge-should">Should</span></td>
+                </tr>
+              </tbody>
+            </table>
 
           </div>
         </section>
@@ -104,13 +242,66 @@
         <section class="section" id="sec3">
           <h2 class="section-title"><span class="section-icon">3</span> 画面遷移図</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">画面遷移図 <span class="required">必須</span></div>
-          <div class="fill-hint">各画面間の遷移関係を図示</div>
-          <div class="fill-content">
-            <p>（画面遷移図を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">画面遷移図</div>
+            <div class="fill-hint">各画面間の遷移関係を図示</div>
+            <div class="fill-content">
+              <pre>【画面遷移図】
+
+[公開トップ画面]
+   └─「予約する」「お問い合わせ」クリック
+      ↓
+[公開お問い合わせ画面]
+   ├─「送信」押下
+   │   ↓
+   │ （お問い合わせ登録完了）
+   │   ↓
+   │ [公開お問い合わせ画面]
+   └─ メニュー操作
+       ↓
+     [公開トップ画面]
+
+[管理者ログイン画面]
+   ├─「ログイン」押下（認証成功）
+   │   ↓
+   │ [管理者ユーザー一覧画面]
+   │      ├─ メニュー「お問い合わせ管理」クリック
+   │      │    ↓
+   │      │  [管理者お問い合わせ一覧画面]
+   │      ├─「新規登録」押下
+   │      │    ↓
+   │      │  [管理者ユーザー登録画面]
+   │      │    ├─「登録」押下 → [管理者ユーザー一覧画面]
+   │      │    └─「戻る」押下 → [管理者ユーザー一覧画面]
+   │      ├─「編集」押下
+   │      │    ↓
+   │      │  [管理者ユーザー編集画面]
+   │      │    ├─「更新」押下 → [管理者ユーザー一覧画面]
+   │      │    └─「戻る」押下 → [管理者ユーザー一覧画面]
+   │      ├─「削除」押下 → [管理者ユーザー一覧画面]
+   │      └─「ログアウト」押下 → [管理者ログイン画面]
+   └─「ログイン」押下（認証失敗）→ [管理者ログイン画面]
+
+[管理者お問い合わせ一覧画面]
+   ├─「詳細」押下
+   │    ↓
+   │  [管理者お問い合わせ詳細画面]
+   │    ├─「編集」押下
+   │    │    ↓
+   │    │  [管理者お問い合わせ編集画面]
+   │    │    ├─「更新」押下 → [管理者お問い合わせ一覧画面]
+   │    │    └─「戻る」押下 → [管理者お問い合わせ一覧画面]
+   │    └─「一覧へ戻る」押下 → [管理者お問い合わせ一覧画面]
+   ├─「削除」押下 → [管理者お問い合わせ一覧画面]
+   ├─「削除済み一覧」押下
+   │    ↓
+   │  [管理者削除済みお問い合わせ一覧画面]
+   │    ├─「復元」押下 → [管理者削除済みお問い合わせ一覧画面]
+   │    └─「一覧へ戻る」押下 → [管理者お問い合わせ一覧画面]
+   ├─ メニュー「ユーザー管理」クリック → [管理者ユーザー一覧画面]
+   └─「ログアウト」押下 → [管理者ログイン画面]</pre>
+            </div>
           </div>
-        </div>
 
         </section>
 
@@ -119,25 +310,736 @@
 
 
           <div class="subsection">
-            <h3 class="subsection-title">機能仕様テンプレート（コピーして使用）</h3>
-
-        <div class="fill-block">
-          <div class="fill-label">機能名：（機能名を入力） <span class="required">必須</span></div>
-          <div class="fill-hint">機能ID：F-XXX</div>
-          <div class="fill-content">
-            <p>（機能の詳細仕様を記載）</p>
-          </div>
-        </div>
+            <h3 class="subsection-title">ログイン</h3>
 
             <div class="fill-block">
-              <div class="fill-label">入力項目一覧 <span class="required">必須</span></div>
-        <table class="doc-table">
-          <thead><tr><th>項目名</th><th>データ型</th><th>必須</th><th>バリデーション</th><th>備考</th></tr></thead>
-          <tbody>
-          <tr class="template-row"><td>（項目名）</td><td>（String / Integer / Date 等）</td><td>（○ / —）</td><td>（必須チェック / 文字数制限 等）</td><td>（備考）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
-          </tbody>
-        </table>
+              <div class="fill-label">機能名：ログイン</div>
+              <div class="fill-hint">機能ID：F-001</div>
+              <div class="fill-content">
+                <p>管理者がユーザーIDとパスワードを入力して認証を行い、管理画面へログインする機能。</p>
+                <p>【画面レイアウト】<br>・管理ログインタイトルを表示<br>・ユーザー名入力欄、パスワード入力欄を配置<br>・ログインボタンを配置<br>・エラー時はメッセージを表示</p>
+                <p>【処理フロー】<br>1. ユーザー名とパスワードを入力<br>2. ログインボタン押下<br>3. システムが認証処理を実行<br>4. 成功時は管理画面へ遷移<br>5. 失敗時はログイン画面を再表示</p>
+                <p>【正常時の動作】<br>・管理者ユーザー一覧画面を表示</p>
+                <p>【エラー時の動作】<br>・入力不備または認証失敗時、エラーメッセージを表示</p>
+                <p>【画面遷移先】<br>・成功時：管理者ユーザー一覧画面<br>・失敗時：管理者ログイン画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>ユーザー名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>認証時に使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>パスワード</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>認証時に使用</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ログアウト</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ログアウト</div>
+              <div class="fill-hint">機能ID：F-002</div>
+              <div class="fill-content">
+                <p>管理者が管理画面上のログアウト操作を行い、セッションを終了してログイン画面へ戻る機能。</p>
+                <p>【画面レイアウト】<br>・管理画面のヘッダーまたはメニュー内にログアウト導線を配置<br>・ログアウト実行後はログイン画面を表示<br>・ログイン画面上にログアウト完了メッセージを表示</p>
+                <p>【処理フロー】<br>1. 管理者がログアウトを押下<br>2. システムがセッションを無効化<br>3. 認証情報を破棄<br>4. ログイン画面へ遷移<br>5. ログアウト完了メッセージを表示</p>
+                <p>【正常時の動作】<br>・ログアウト成功後、管理者ログイン画面を表示する<br>・ログイン画面に「ログアウトしました。」を表示する</p>
+                <p>【エラー時の動作】<br>・通常はログイン画面へ遷移する<br>・システムエラー時は標準エラー処理に従う</p>
+                <p>【画面遷移先】<br>・遷移先：管理者ログイン画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>ボタン押下で実行</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ユーザー一覧表示</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ユーザー一覧表示</div>
+              <div class="fill-hint">機能ID：F-003</div>
+              <div class="fill-content">
+                <p>管理者が登録済みユーザー情報を一覧で確認する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・一覧テーブルを配置<br>・各行に編集ボタン、削除ボタンを配置<br>・新規登録ボタンを配置<br>・ページネーションを下部に配置</p>
+                <p>【処理フロー】<br>1. 管理者がユーザー一覧画面を開く<br>2. システムが登録済みユーザー情報を取得する<br>3. 一覧テーブルに表示する<br>4. 必要に応じて編集・削除・新規登録へ遷移する</p>
+                <p>【正常時の動作】<br>・登録済みユーザー情報を一覧表示する<br>・ページ単位で表示する</p>
+                <p>【エラー時の動作】<br>・データ取得失敗時はエラーメッセージを表示する</p>
+                <p>【画面遷移先】<br>・新規登録押下：管理者ユーザー登録画面<br>・編集押下：管理者ユーザー編集画面<br>・削除押下：管理者ユーザー一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧表示機能</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ユーザー新規登録</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ユーザー新規登録</div>
+              <div class="fill-hint">機能ID：F-004</div>
+              <div class="fill-content">
+                <p>管理者が新しいユーザー情報を入力し、登録する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・ユーザー名入力欄を配置<br>・メールアドレス入力欄を配置<br>・パスワード入力欄を配置<br>・パスワード確認入力欄を配置<br>・権限選択欄を配置<br>・登録ボタン、戻るボタンを配置<br>・エラー時は入力欄付近または画面上部にメッセージを表示</p>
+                <p>【処理フロー】<br>1. 管理者が登録画面を開く<br>2. 必要項目を入力する<br>3. 登録ボタンを押下する<br>4. システムが入力チェックを行う<br>5. 問題がなければユーザー情報を登録する<br>6. 登録完了後、ユーザー一覧画面へ遷移する</p>
+                <p>【正常時の動作】<br>・入力内容が正しい場合、ユーザー情報を登録する<br>・登録完了後、管理者ユーザー一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・必須未入力、形式不正、確認用パスワード不一致時はエラーメッセージを表示する<br>・登録失敗時は入力画面を再表示する</p>
+                <p>【画面遷移先】<br>・登録成功時：管理者ユーザー一覧画面<br>・エラー時：管理者ユーザー登録画面<br>・戻る押下時：管理者ユーザー一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>ユーザー名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>ログイン時に使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>メールアドレス</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>連絡先として使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>パスワード</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>認証時に使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>パスワード確認</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可、一致必須</td>
+                    <td>パスワード確認用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>権限</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未選択不可</td>
+                    <td>管理者/一般ユーザー区分</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ユーザー編集</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ユーザー編集</div>
+              <div class="fill-hint">機能ID：F-005</div>
+              <div class="fill-content">
+                <p>管理者が登録済みユーザー情報を修正し、更新する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・ユーザー名入力欄を配置<br>・メールアドレス入力欄を配置<br>・パスワード入力欄を配置<br>・パスワード確認入力欄を配置<br>・権限選択欄を配置<br>・更新ボタン、戻るボタンを配置<br>・エラー時は入力欄付近または画面上部にメッセージを表示</p>
+                <p>【処理フロー】<br>1. 管理者がユーザー一覧画面から編集を押下する<br>2. システムが対象ユーザー情報を取得して編集画面に表示する<br>3. 管理者が内容を修正する<br>4. 更新ボタンを押下する<br>5. システムが入力チェックを行う<br>6. 問題がなければユーザー情報を更新する<br>7. 更新完了後、ユーザー一覧画面へ遷移する</p>
+                <p>【正常時の動作】<br>・入力内容が正しい場合、ユーザー情報を更新する<br>・更新完了後、管理者ユーザー一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・必須未入力、形式不正、確認用パスワード不一致時はエラーメッセージを表示する<br>・更新失敗時は入力画面を再表示する</p>
+                <p>【画面遷移先】<br>・更新成功時：管理者ユーザー一覧画面<br>・エラー時：管理者ユーザー編集画面<br>・戻る押下時：管理者ユーザー一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>ユーザー名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>ログイン時に使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>メールアドレス</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>連絡先として使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>パスワード</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>認証時に使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>パスワード確認</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可、一致必須</td>
+                    <td>パスワード確認用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>権限</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未選択不可</td>
+                    <td>管理者/一般ユーザー区分</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ユーザー削除</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ユーザー削除</div>
+              <div class="fill-hint">機能ID：F-006</div>
+              <div class="fill-content">
+                <p>管理者が登録済みユーザー情報を削除する機能。</p>
+                <p>【画面レイアウト】<br>・ユーザー一覧テーブルの各行に削除ボタンを配置<br>・必要に応じて確認メッセージを表示<br>・削除後は一覧画面を再表示する</p>
+                <p>【処理フロー】<br>1. 管理者がユーザー一覧画面を開く<br>2. 削除対象ユーザーの削除ボタンを押下する<br>3. システムが対象ユーザー情報を削除する<br>4. 削除後、ユーザー一覧画面を再表示する</p>
+                <p>【正常時の動作】<br>・対象ユーザー情報を削除する<br>・削除後、最新状態の管理者ユーザー一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・削除対象が存在しない場合や削除処理失敗時はエラーメッセージを表示する<br>・削除できない場合は一覧画面を再表示する</p>
+                <p>【画面遷移先】<br>・削除実行後：管理者ユーザー一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧画面の削除ボタン押下で実行</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ一覧表示</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ一覧表示</div>
+              <div class="fill-hint">機能ID：F-007</div>
+              <div class="fill-content">
+                <p>管理者が一般ユーザーから送信されたお問い合わせ情報を一覧で確認する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・お問い合わせ一覧テーブルを配置<br>・各行に詳細ボタン、削除ボタンを配置<br>・削除済み一覧への導線を配置<br>・ページネーションを下部に配置</p>
+                <p>【処理フロー】<br>1. 管理者がお問い合わせ一覧画面を開く<br>2. システムがお問い合わせ情報を取得する<br>3. 一覧テーブルに表示する<br>4. 必要に応じて詳細確認、削除、削除済み一覧表示へ遷移する</p>
+                <p>【正常時の動作】<br>・登録済みのお問い合わせ情報を一覧表示する<br>・ページ単位で表示する</p>
+                <p>【エラー時の動作】<br>・データ取得失敗時はエラーメッセージを表示する</p>
+                <p>【画面遷移先】<br>・詳細押下：管理者お問い合わせ詳細画面<br>・削除押下：管理者お問い合わせ一覧画面<br>・削除済み一覧押下：管理者削除済みお問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧表示機能</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">削除済みお問い合わせ一覧表示</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：削除済みお問い合わせ一覧表示</div>
+              <div class="fill-hint">機能ID：F-008</div>
+              <div class="fill-content">
+                <p>管理者が削除済みのお問い合わせ情報を一覧で確認する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・削除済みお問い合わせ一覧テーブルを配置<br>・各行に復元ボタンを配置<br>・一覧へ戻る導線を配置</p>
+                <p>【処理フロー】<br>1. 管理者が削除済みお問い合わせ一覧画面を開く<br>2. システムが削除済みお問い合わせ情報を取得する<br>3. 一覧テーブルに表示する<br>4. 必要に応じて復元処理を実行する<br>5. 一覧へ戻る操作で通常のお問い合わせ一覧画面へ遷移する</p>
+                <p>【正常時の動作】<br>・削除済みのお問い合わせ情報を一覧表示する<br>・復元後は最新状態の削除済み一覧または通常一覧を表示する</p>
+                <p>【エラー時の動作】<br>・データ取得失敗時や復元失敗時はエラーメッセージを表示する</p>
+                <p>【画面遷移先】<br>・復元押下：管理者削除済みお問い合わせ一覧画面<br>・一覧へ戻る押下：管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧表示機能</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ詳細表示</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ詳細表示</div>
+              <div class="fill-hint">機能ID：F-009</div>
+              <div class="fill-content">
+                <p>管理者が選択したお問い合わせの詳細内容を確認する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・お問い合わせ内容の詳細表示エリアを配置<br>・氏名、メールアドレス、件名、本文などを表示<br>・編集ボタンを配置<br>・一覧へ戻るボタンを配置</p>
+                <p>【処理フロー】<br>1. 管理者がお問い合わせ一覧画面で詳細を押下する<br>2. システムが対象のお問い合わせ情報を取得する<br>3. 詳細画面に内容を表示する<br>4. 必要に応じて編集画面または一覧画面へ遷移する</p>
+                <p>【正常時の動作】<br>・対象のお問い合わせ詳細を表示する</p>
+                <p>【エラー時の動作】<br>・対象データが存在しない場合や取得失敗時はエラーメッセージを表示する</p>
+                <p>【画面遷移先】<br>・編集押下：管理者お問い合わせ編集画面<br>・一覧へ戻る押下：管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>詳細表示機能</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ編集</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ編集</div>
+              <div class="fill-hint">機能ID：F-010</div>
+              <div class="fill-content">
+                <p>管理者が登録済みのお問い合わせ内容を修正し、更新する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・氏名入力欄を配置<br>・メールアドレス入力欄を配置<br>・件名入力欄を配置<br>・お問い合わせ内容入力欄を配置<br>・更新ボタン、戻るボタンを配置<br>・エラー時は入力欄付近または画面上部にメッセージを表示</p>
+                <p>【処理フロー】<br>1. 管理者が詳細画面または一覧画面から編集を押下する<br>2. システムが対象のお問い合わせ情報を取得し、編集画面に表示する<br>3. 管理者が内容を修正する<br>4. 更新ボタンを押下する<br>5. システムが入力チェックを行う<br>6. 問題がなければお問い合わせ情報を更新する<br>7. 更新完了後、お問い合わせ一覧画面へ遷移する</p>
+                <p>【正常時の動作】<br>・入力内容が正しい場合、お問い合わせ情報を更新する<br>・更新完了後、管理者お問い合わせ一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・必須未入力や形式不正時はエラーメッセージを表示する<br>・更新失敗時は入力画面を再表示する</p>
+                <p>【画面遷移先】<br>・更新成功時：管理者お問い合わせ一覧画面<br>・エラー時：管理者お問い合わせ編集画面<br>・戻る押下時：管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>氏名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ者名</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>メールアドレス</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>連絡先として使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>件名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ件名</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>お問い合わせ内容</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ本文</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ削除</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ削除</div>
+              <div class="fill-hint">機能ID：F-011</div>
+              <div class="fill-content">
+                <p>管理者が登録済みのお問い合わせ情報を論理削除する機能。</p>
+                <p>【画面レイアウト】<br>・お問い合わせ一覧テーブルの各行に削除ボタンを配置<br>・必要に応じて確認メッセージを表示<br>・削除後は一覧画面を再表示する</p>
+                <p>【処理フロー】<br>1. 管理者がお問い合わせ一覧画面を開く<br>2. 削除対象のお問い合わせの削除ボタンを押下する<br>3. システムが対象のお問い合わせ情報を論理削除する<br>4. 削除後、お問い合わせ一覧画面を再表示する</p>
+                <p>【正常時の動作】<br>・対象のお問い合わせ情報を削除済み状態にする<br>・削除後、最新状態の管理者お問い合わせ一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・削除対象が存在しない場合や削除処理失敗時はエラーメッセージを表示する<br>・削除できない場合は一覧画面を再表示する</p>
+                <p>【画面遷移先】<br>・削除実行後：管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧画面の削除ボタン押下で実行</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ復元</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ復元</div>
+              <div class="fill-hint">機能ID：F-012</div>
+              <div class="fill-content">
+                <p>管理者が削除済みのお問い合わせ情報を復元する機能。</p>
+                <p>【画面レイアウト】<br>・削除済みお問い合わせ一覧テーブルの各行に復元ボタンを配置<br>・一覧へ戻る導線を配置<br>・復元後は一覧を再表示する</p>
+                <p>【処理フロー】<br>1. 管理者が削除済みお問い合わせ一覧画面を開く<br>2. 復元対象のお問い合わせの復元ボタンを押下する<br>3. システムが対象のお問い合わせ情報を復元する<br>4. 復元後、削除済みお問い合わせ一覧画面を再表示する</p>
+                <p>【正常時の動作】<br>・対象のお問い合わせ情報を通常状態に戻す<br>・復元後、最新状態の削除済みお問い合わせ一覧画面を表示する</p>
+                <p>【エラー時の動作】<br>・復元対象が存在しない場合や復元処理失敗時はエラーメッセージを表示する<br>・復元できない場合は削除済み一覧画面を再表示する</p>
+                <p>【画面遷移先】<br>・復元実行後：管理者削除済みお問い合わせ一覧画面<br>・一覧へ戻る押下時：管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>なし</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>一覧画面の復元ボタン押下で実行</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">お問い合わせ送信</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：お問い合わせ送信</div>
+              <div class="fill-hint">機能ID：F-013</div>
+              <div class="fill-content">
+                <p>一般ユーザーが公開サイトのお問い合わせフォームに必要事項を入力し、送信する機能。</p>
+                <p>【画面レイアウト】<br>・画面上部にタイトルを表示<br>・氏名入力欄を配置<br>・メールアドレス入力欄を配置<br>・件名入力欄を配置<br>・お問い合わせ内容入力欄を配置<br>・送信ボタンを配置<br>・エラー時は入力欄付近または画面上部にメッセージを表示</p>
+                <p>【処理フロー】<br>1. 一般ユーザーがお問い合わせ画面を開く<br>2. 必要項目を入力する<br>3. 送信ボタンを押下する<br>4. システムが入力チェックを行う<br>5. 問題がなければお問い合わせ情報を登録する<br>6. 送信完了後、お問い合わせ画面を再表示する</p>
+                <p>【正常時の動作】<br>・入力内容が正しい場合、お問い合わせ情報を登録する<br>・送信完了後、完了状態の画面を表示する</p>
+                <p>【エラー時の動作】<br>・必須未入力や形式不正時はエラーメッセージを表示する<br>・送信失敗時は入力画面を再表示する</p>
+                <p>【画面遷移先】<br>・送信成功時：公開サイトお問い合わせ画面<br>・エラー時：公開サイトお問い合わせ画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>氏名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ者名</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>メールアドレス</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>連絡先として使用</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>件名</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ件名</td>
+                  </tr>
+                  <tr class="template-row">
+                    <td>お問い合わせ内容</td>
+                    <td>文字列</td>
+                    <td>必須</td>
+                    <td>未入力不可</td>
+                    <td>問い合わせ本文</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">入力バリデーション</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：入力バリデーション</div>
+              <div class="fill-hint">機能ID：F-014</div>
+              <div class="fill-content">
+                <p>ログイン、ユーザー登録・編集、お問い合わせ送信・編集の各入力画面で、必須項目や入力形式をチェックする機能。</p>
+                <p>【画面レイアウト】<br>・各入力画面の入力欄付近にエラーメッセージ表示領域を配置<br>・必要に応じて画面上部にもエラーメッセージを表示<br>・エラー発生時も入力画面を保持する</p>
+                <p>【処理フロー】<br>1. ユーザーが各入力画面で必要項目を入力する<br>2. 送信または登録、更新ボタンを押下する<br>3. システムが必須項目、入力内容、一致条件などをチェックする<br>4. 問題があればエラーメッセージを表示する<br>5. 問題がなければ次の処理へ進む</p>
+                <p>【正常時の動作】<br>・入力内容が正しい場合、登録、更新、送信、認証処理を続行する</p>
+                <p>【エラー時の動作】<br>・必須未入力、形式不正、不一致時はエラーメッセージを表示する<br>・エラー時は同じ画面を再表示する</p>
+                <p>【画面遷移先】<br>・正常時：各機能の完了先画面<br>・エラー時：各入力画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>各入力項目</td>
+                    <td>文字列等</td>
+                    <td>必須/任意</td>
+                    <td>未入力不可、形式不正、不一致チェック</td>
+                    <td>対象画面ごとに適用</td>
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+
+          <div class="subsection">
+            <h3 class="subsection-title">ページネーション</h3>
+
+            <div class="fill-block">
+              <div class="fill-label">機能名：ページネーション</div>
+              <div class="fill-hint">機能ID：F-015</div>
+              <div class="fill-content">
+                <p>管理者がユーザー一覧画面およびお問い合わせ一覧画面でデータを複数ページに分けて確認する機能。</p>
+                <p>【画面レイアウト】<br>・一覧テーブルの下部にページ番号や前へ、次へ導線を配置<br>・現在表示中のページが分かるようにする</p>
+                <p>【処理フロー】<br>1. 管理者が一覧画面を開く<br>2. システムが対象データをページ単位で取得する<br>3. 一覧テーブルに表示する<br>4. 管理者がページ番号または前へ、次へを押下する<br>5. システムが該当ページのデータを再取得して表示する</p>
+                <p>【正常時の動作】<br>・一覧データを複数ページに分けて表示する<br>・選択したページの内容を表示する</p>
+                <p>【エラー時の動作】<br>・ページ取得失敗時はエラーメッセージを表示する<br>・取得できない場合は一覧画面を再表示する</p>
+                <p>【画面遷移先】<br>・ページ切替時：管理者ユーザー一覧画面 / 管理者お問い合わせ一覧画面</p>
+              </div>
+            </div>
+
+            <div class="fill-block">
+              <div class="fill-label">入力項目一覧</div>
+              <table class="doc-table">
+                <thead>
+                  <tr>
+                    <th>項目名</th>
+                    <th>データ型</th>
+                    <th>必須</th>
+                    <th>バリデーション</th>
+                    <th>備考</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="template-row">
+                    <td>ページ番号</td>
+                    <td>数値</td>
+                    <td>任意</td>
+                    <td>不正な値は不可</td>
+                    <td>一覧画面の表示切替に使用</td>
+                  </tr>
+                </tbody>
+              </table>
 
             </div>
           </div>
@@ -146,22 +1048,27 @@
         <section class="section" id="sec5">
           <h2 class="section-title"><span class="section-icon">5</span> 非機能要件</h2>
 
-        <div class="fill-block">
-          <div class="fill-label">セキュリティ要件 <span class="required">必須</span></div>
-          <div class="fill-hint">認証・認可・データ保護に関する要件</div>
-          <div class="fill-content">
-            <p>（セキュリティ要件を記載）</p>
+          <div class="fill-block">
+            <div class="fill-label">セキュリティ要件</div>
+            <div class="fill-hint">認証・認可・データ保護に関する要件</div>
+            <div class="fill-content">
+              <p>・認証方式：Spring Securityによるフォーム認証を採用し、管理画面は認証済みユーザーのみアクセス可能とする。<br>
+                ・パスワードの暗号化方式：パスワードは BCrypt によりハッシュ化して保存し、平文では保持しない。<br>
+                ・CSRF対策：Spring Security の CSRF 保護を有効とし、状態変更を伴うリクエストでは CSRF トークンを検証する。<br>
+                ・XSS対策：Thymeleaf のHTMLエスケープを利用し、入力値表示時はエスケープ処理を行うことでスクリプト実行を防止する。<br>
+                ・SQLインジェクション対策：Spring Data JPA / Repository を利用し、プレースホルダ付きクエリでDBアクセスを行うことで不正なSQL実行を防止する。<br>
+                ・セッション管理：ログイン成功時にセッションを開始し、ログアウト時はセッションを無効化して認証情報を破棄する。</p>
+            </div>
           </div>
-        </div>
-        <div class="fill-block">
-          <div class="fill-label">対応環境 <span class="required">必須</span></div>
-          <div class="fill-hint">対応ブラウザ・デバイス</div>
-          <div class="fill-content">
-            <p>・対応ブラウザ：Chrome（最新版）/ Firefox（最新版）/ Edge（最新版）
-・対応デバイス：PC / タブレット / スマートフォン
-（自分の実際の対応範囲に合わせて編集してください）</p>
+          <div class="fill-block">
+            <div class="fill-label">対応環境</div>
+            <div class="fill-hint">対応ブラウザ・デバイス</div>
+            <div class="fill-content">
+              <p>・対応ブラウザ：Google Chrome（最新版） / Microsoft Edge（最新版） / Firefox（最新版）<br>
+                ・対応デバイス：PC / タブレット / スマートフォン<br>
+                ・対応OS：Windows / macOS / iOS / Android</p>
+            </div>
           </div>
-        </div>
 
         </section>
 
@@ -172,4 +1079,5 @@
   <script src="../js/main.js"></script>
   <script src="docs.js"></script>
 </body>
+
 </html>
