@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -21,8 +21,8 @@
         <div class="doc-category">DOCUMENT 09</div>
         <h1 class="doc-title">テスト報告書</h1>
         <div class="doc-meta">
-          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 作成日：2026-XX-XX</span>
-          <span><span class="material-symbols-outlined icon-sm">person</span> 作成者：（氏名を入力）</span>
+          <span><span class="material-symbols-outlined icon-sm">calendar_today</span> 2026-04-22</span>
+          <span><span class="material-symbols-outlined icon-sm">person</span> 厚海　洋子</span>
           <span><span class="material-symbols-outlined icon-sm">push_pin</span> Ver 1.0</span>
         </div>
       </header>
@@ -57,14 +57,43 @@
           </ol>
         </div>
 
-        <section class="section" id="sec1">
-          <h2 class="section-title"><span class="section-icon">1</span> テスト計画</h2>
+                <section class="section" id="sec1">
+          <h2 class="section-title"><span class="section-icon">1</span> テスト対象の範囲</h2>
 
         <div class="fill-block">
-          <div class="fill-label">テスト対象・範囲 <span class="required">必須</span></div>
-          <div class="fill-hint">テストの対象となる機能・画面と、テストの種類</div>
+          <div class="fill-label">テスト対象の範囲 <span class="required">必須</span></div>
+          <div class="fill-hint">対象機能とテスト種別、テスト環境、テスト期間を記載してください。</div>
           <div class="fill-content">
-            <p>（テスト計画を記載）</p>
+            <p>【テスト対象の範囲】<br>
+本テストでは、「香り結び」の管理システムおよび公開お問い合わせ機能を対象とする。<br>
+対象機能は以下のとおり。<br>
+・F-001 ログイン<br>
+・F-002 ログアウト<br>
+・F-003 ユーザー一覧表示<br>
+・F-004 ユーザー新規登録<br>
+・F-005 ユーザー編集<br>
+・F-006 ユーザー削除<br>
+・F-007 お問い合わせ一覧表示<br>
+・F-008 削除済みお問い合わせ一覧表示<br>
+・F-009 お問い合わせ詳細表示<br>
+・F-010 お問い合わせ編集<br>
+・F-011 お問い合わせ削除<br>
+・F-012 お問い合わせ復元<br>
+・F-013 お問い合わせ送信<br>
+・F-014 入力バリデーション<br>
+・F-015 ページネーション</p>
+
+            <p>【テスト種別】<br>
+・機能テスト：各機能が仕様どおりに動作することを確認する<br>
+・画面テスト：画面表示、入力欄、ボタン、一覧表示、画面遷移が正しいことを確認する<br>
+・セキュリティテスト：ログイン認証、未認証アクセス制御、入力値のバリデーション、CSRF対策の基本動作を確認する</p>
+
+            <p>【テスト環境】<br>
+・ブラウザ：Google Chrome、Microsoft Edge、Firefox<br>
+・OS：Windows、macOS、iOS、Android</p>
+
+            <p>【テスト期間】<br>
+・2026-04-22 ～ 2026-04-24</p>
           </div>
         </div>
 
@@ -79,13 +108,26 @@
         <table class="doc-table">
           <thead><tr><th>ID</th><th>対象機能</th><th>テスト種別</th><th>テスト内容</th><th>期待結果</th><th>結果</th></tr></thead>
           <tbody>
-          <tr class="template-row"><td>TC-001</td><td>（ログイン）</td><td>正常系</td><td>（正しいメール/パスワードでログイン）</td><td>（ダッシュボードに遷移）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-002</td><td>（ログイン）</td><td>異常系</td><td>（パスワード未入力でログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-003</td><td>（ログイン）</td><td>異常系</td><td>（存在しないメールでログイン）</td><td>（エラーメッセージ表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-004</td><td>（新規登録）</td><td>正常系</td><td>（全項目入力して登録）</td><td>（一覧に追加、成功メッセージ）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-005</td><td>（新規登録）</td><td>異常系</td><td>（必須項目未入力で登録）</td><td>（バリデーションエラー表示）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>TC-006</td><td>（新規登録）</td><td>境界値</td><td>（最大文字数で入力して登録）</td><td>（正常に登録される）</td><td>（OK/NG）</td></tr>
-          <tr class="template-row"><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td><td>…</td></tr>
+          <tr class="template-row"><td>TC-001</td><td>ログイン</td><td>正常系</td><td>正しいユーザーIDとパスワードでログインする</td><td>管理者ユーザー一覧画面へ遷移する</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-002</td><td>ログイン</td><td>異常系</td><td>ユーザーID未入力でログインする</td><td>エラーメッセージが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-003</td><td>ログイン</td><td>異常系</td><td>パスワード未入力でログインする</td><td>エラーメッセージが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-004</td><td>ログアウト</td><td>正常系</td><td>ログアウトボタンを押下する</td><td>ログイン画面へ遷移する</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-005</td><td>ユーザー一覧表示</td><td>正常系</td><td>ユーザー一覧画面を開く</td><td>登録済みユーザーが一覧表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-006</td><td>ユーザー新規登録</td><td>正常系</td><td>必須項目を入力して登録する</td><td>ユーザーが登録され、一覧画面へ遷移する</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-007</td><td>ユーザー新規登録</td><td>異常系</td><td>必須項目未入力で登録する</td><td>バリデーションエラーが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-008</td><td>ユーザー編集</td><td>正常系</td><td>既存ユーザー情報を修正して更新する</td><td>更新内容が保存され、一覧画面へ遷移する</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-009</td><td>ユーザー削除</td><td>正常系</td><td>一覧画面で削除ボタンを押下する</td><td>対象ユーザーが削除され、一覧が再表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-010</td><td>お問い合わせ一覧表示</td><td>正常系</td><td>お問い合わせ一覧画面を開く</td><td>お問い合わせが一覧表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-011</td><td>削除済みお問い合わせ一覧表示</td><td>正常系</td><td>削除済み一覧画面を開く</td><td>削除済みお問い合わせが一覧表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-012</td><td>お問い合わせ詳細表示</td><td>正常系</td><td>一覧画面で詳細ボタンを押下する</td><td>対象お問い合わせの詳細が表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-013</td><td>お問い合わせ編集</td><td>正常系</td><td>お問い合わせ内容を修正して更新する</td><td>更新内容が保存され、一覧画面へ遷移する</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-014</td><td>お問い合わせ編集</td><td>異常系</td><td>必須項目未入力で更新する</td><td>バリデーションエラーが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-015</td><td>お問い合わせ削除</td><td>正常系</td><td>一覧画面で削除ボタンを押下する</td><td>対象データのDELETED_ATが設定される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-016</td><td>お問い合わせ復元</td><td>正常系</td><td>削除済み一覧で復元ボタンを押下する</td><td>対象データのDELETED_ATがNULLに戻る</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-017</td><td>お問い合わせ送信</td><td>正常系</td><td>必須項目を入力して送信する</td><td>お問い合わせが登録される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-018</td><td>お問い合わせ送信</td><td>異常系</td><td>必須項目未入力で送信する</td><td>バリデーションエラーが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-019</td><td>入力バリデーション</td><td>異常系</td><td>各入力画面で必須項目を未入力にする</td><td>対象項目ごとにエラーメッセージが表示される</td><td>（OK/NG）</td></tr>
+          <tr class="template-row"><td>TC-020</td><td>ページネーション</td><td>正常系</td><td>一覧画面で次ページを押下する</td><td>次ページの一覧が表示される</td><td>（OK/NG）</td></tr>
           </tbody>
         </table>
 
