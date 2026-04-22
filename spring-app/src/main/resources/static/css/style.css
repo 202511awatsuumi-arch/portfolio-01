@@ -3347,6 +3347,10 @@ html[lang="en"] .page-skills .skills-gallery-card img {
 
 .page-admin-inquiries__detail-action {
   margin-top: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  align-items: center;
 }
 
 .page-admin-inquiries__locale {

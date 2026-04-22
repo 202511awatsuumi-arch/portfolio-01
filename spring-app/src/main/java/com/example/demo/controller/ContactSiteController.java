@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.ContactInquiry;
 import com.example.demo.form.ContactForm;
 import com.example.demo.form.ContactInquiryEditForm;
 import com.example.demo.service.ContactInquiryService;
@@ -7,7 +8,6 @@ import jakarta.validation.Valid;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
-import com.example.demo.entity.ContactInquiry;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,9 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class ContactSiteController {
@@ -105,23 +106,22 @@ public class ContactSiteController {
             @RequestParam(name = "page", defaultValue = "1") int page,
             Authentication authentication,
             Model model) {
-        int pageSize = 10;
+        int currentPage = Math.max(page, 1);
+        Page<ContactInquiry> contactPage = contactInquiryService.findPage(currentPage - 1, 10);
+        populateInquiryListModel(currentPage, authentication, model, contactPage);
+        return "admin/inquiries";
+    }
+
+    @GetMapping("/admin/inquiries/deleted")
+    public String adminDeletedInquiries(
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            Authentication authentication,
+            Model model) {
         int currentPage = Math.max(page, 1);
         Page<ContactInquiry> contactPage =
-                contactInquiryService.findPage(currentPage - 1, pageSize);
-
-        model.addAttribute("contacts", contactPage.getContent());
-        model.addAttribute("currentPage", currentPage);
-        model.addAttribute("pageSize", pageSize);
-        model.addAttribute("totalPages", Math.max(contactPage.getTotalPages(), 1));
-        model.addAttribute("hasPrevious", contactPage.hasPrevious());
-        model.addAttribute("hasNext", contactPage.hasNext());
-        model.addAttribute(
-                "isAdmin",
-                authentication != null
-                        && authentication.getAuthorities().stream()
-                                .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority())));
-        return "admin/inquiries";
+                contactInquiryService.findDeletedPage(currentPage - 1, 10);
+        populateInquiryListModel(currentPage, authentication, model, contactPage);
+        return "admin/inquiries-deleted";
     }
 
     @GetMapping("/admin/inquiries/{id}")
@@ -195,6 +195,28 @@ public class ContactSiteController {
         return "redirect:/admin/inquiries/" + id + "?page=" + returnPage;
     }
 
+    @PostMapping("/admin/inquiries/{id}/delete")
+    public String deleteInquiry(
+            @PathVariable("id") Long id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            RedirectAttributes redirectAttributes) {
+        if (contactInquiryService.softDelete(id)) {
+            redirectAttributes.addFlashAttribute("successMessage", "お問い合わせを削除しました");
+        }
+        return "redirect:/admin/inquiries?page=" + Math.max(page, 1);
+    }
+
+    @PostMapping("/admin/inquiries/{id}/restore")
+    public String restoreInquiry(
+            @PathVariable("id") Long id,
+            @RequestParam(name = "page", defaultValue = "1") int page,
+            RedirectAttributes redirectAttributes) {
+        if (contactInquiryService.restore(id)) {
+            redirectAttributes.addFlashAttribute("successMessage", "お問い合わせを復元しました");
+        }
+        return "redirect:/admin/inquiries/deleted?page=" + Math.max(page, 1);
+    }
+
     @PostMapping("/contact")
     @ResponseBody
     public ResponseEntity<Map<String, Object>> submitContact(
@@ -232,7 +254,7 @@ public class ContactSiteController {
                 "message",
                 english
                         ? "Thank you for your message. We will review it and get back to you shortly."
-                        : "送信ありがとうございました。内容を確認のうえ、折り返しご連絡します。");
+                        : "お問い合わせありがとうございます。内容を確認のうえ、通常1〜2営業日以内を目安にご連絡します。");
         response.put("requestedWith", requestedWith);
         return ResponseEntity.ok(response);
     }
@@ -323,10 +345,11 @@ public class ContactSiteController {
             return;
         }
 
-        boolean hasInvalidCode = hasSelection
-                && contactForm.getRequestType().stream()
-                        .filter(this::isNotBlank)
-                        .anyMatch(value -> !ALLOWED_REQUEST_TYPES.contains(value));
+        boolean hasInvalidCode =
+                hasSelection
+                        && contactForm.getRequestType().stream()
+                                .filter(this::isNotBlank)
+                                .anyMatch(value -> !ALLOWED_REQUEST_TYPES.contains(value));
         if (hasInvalidCode) {
             bindingResult.addError(
                     new FieldError(
@@ -406,6 +429,24 @@ public class ContactSiteController {
 
     private boolean isNotBlank(String value) {
         return !isBlank(value);
+    }
+
+    private void populateInquiryListModel(
+            int currentPage,
+            Authentication authentication,
+            Model model,
+            Page<ContactInquiry> contactPage) {
+        model.addAttribute("contacts", contactPage.getContent());
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("pageSize", 10);
+        model.addAttribute("totalPages", Math.max(contactPage.getTotalPages(), 1));
+        model.addAttribute("hasPrevious", contactPage.hasPrevious());
+        model.addAttribute("hasNext", contactPage.hasNext());
+        model.addAttribute(
+                "isAdmin",
+                authentication != null
+                        && authentication.getAuthorities().stream()
+                                .anyMatch(authority -> "ROLE_ADMIN".equals(authority.getAuthority())));
     }
 
     private ContactForm toContactForm(ContactInquiryEditForm editForm) {

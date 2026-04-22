@@ -5,12 +5,12 @@ import com.example.demo.form.ContactForm;
 import com.example.demo.form.ContactInquiryEditForm;
 import com.example.demo.repository.ContactInquiryRepository;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -45,17 +45,30 @@ public class ContactInquiryService {
     }
 
     public Page<ContactInquiry> findPage(int page, int size) {
-        return contactInquiryRepository.findAllByOrderByCreatedAtDesc(
+        return contactInquiryRepository.findAllByDeletedAtIsNullOrderByCreatedAtDesc(
+                PageRequest.of(page, size));
+    }
+
+    public Page<ContactInquiry> findDeletedPage(int page, int size) {
+        return contactInquiryRepository.findAllByDeletedAtIsNotNullOrderByDeletedAtDescCreatedAtDesc(
                 PageRequest.of(page, size));
     }
 
     public List<ContactInquiry> findAll() {
-        return contactInquiryRepository.findAll(
-                Sort.by(Sort.Order.desc("createdAt"), Sort.Order.desc("id")));
+        return contactInquiryRepository.findAll().stream()
+                .filter(inquiry -> inquiry.getDeletedAt() == null)
+                .sorted((left, right) -> {
+                    int createdAtComparison = right.getCreatedAt().compareTo(left.getCreatedAt());
+                    if (createdAtComparison != 0) {
+                        return createdAtComparison;
+                    }
+                    return right.getId().compareTo(left.getId());
+                })
+                .toList();
     }
 
     public Optional<ContactInquiry> findById(Long id) {
-        return contactInquiryRepository.findById(id);
+        return contactInquiryRepository.findByIdAndDeletedAtIsNull(id);
     }
 
     public ContactInquiryEditForm toEditForm(ContactInquiry inquiry, int returnPage) {
@@ -76,7 +89,7 @@ public class ContactInquiryService {
     }
 
     public Optional<ContactInquiry> update(Long id, ContactInquiryEditForm form) {
-        return contactInquiryRepository.findById(id)
+        return contactInquiryRepository.findByIdAndDeletedAtIsNull(id)
                 .map(
                         inquiry -> {
                             inquiry.setInquiryType(form.getInquiryType());
@@ -90,6 +103,28 @@ public class ContactInquiryService {
                             inquiry.setMessage(form.getMessage());
                             return contactInquiryRepository.save(inquiry);
                         });
+    }
+
+    public boolean softDelete(Long id) {
+        return contactInquiryRepository.findByIdAndDeletedAtIsNull(id)
+                .map(
+                        inquiry -> {
+                            inquiry.setDeletedAt(LocalDateTime.now());
+                            contactInquiryRepository.save(inquiry);
+                            return true;
+                })
+                .orElse(false);
+    }
+
+    public boolean restore(Long id) {
+        return contactInquiryRepository.findByIdAndDeletedAtIsNotNull(id)
+                .map(
+                        inquiry -> {
+                            inquiry.setDeletedAt(null);
+                            contactInquiryRepository.save(inquiry);
+                            return true;
+                        })
+                .orElse(false);
     }
 
     public long getDisplayNumber(ContactInquiry inquiry) {

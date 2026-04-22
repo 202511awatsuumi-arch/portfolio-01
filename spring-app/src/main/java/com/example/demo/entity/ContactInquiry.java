@@ -50,6 +50,8 @@ public class ContactInquiry {
     @Column(nullable = false)
     private LocalDateTime createdAt;
 
+    private LocalDateTime deletedAt;
+
     @PrePersist
     void prePersist() {
         createdAt = LocalDateTime.now();
@@ -141,5 +143,13 @@ public class ContactInquiry {
 
     public LocalDateTime getCreatedAt() {
         return createdAt;
+    }
+
+    public LocalDateTime getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(LocalDateTime deletedAt) {
+        this.deletedAt = deletedAt;
     }
 }
