@@ -67,37 +67,20 @@
             <div class="fill-hint">トップページから各公開ページへの遷移構造を整理したものです。</div>
             <div class="fill-content">
               <p>
-                トップページ<br>
-                ├── ワークショップ紹介ページ<br>
-                │　├── 体験の流れ<br>
-                │　├── 作れるもの<br>
-                │　├── 所要時間・料金<br>
-                │　└── 参加方法<br>
-                ├── 予約ページ<br>
-                │　├── 開催日程<br>
-                │　├── 予約フォーム<br>
-                │　├── 注意事項<br>
-                │　└── キャンセルポリシー<br>
-                ├── 香り結びのこだわりページ<br>
-                │　├── コンセプト<br>
-                │　├── 香りへのこだわり<br>
-                │　├── 浅草という立地の魅力<br>
-                │　└── ものづくり体験としての価値<br>
-                ├── アクセスページ<br>
-                │　├── 店舗情報<br>
-                │　├── 地図<br>
-                │　├── 最寄り駅からのアクセス<br>
-                │　└── 営業時間<br>
-                ├── よくある質問ページ<br>
-                │　├── 参加について<br>
-                │　├── 持ち物・対象年齢<br>
-                │　├── 言語対応<br>
-                │　└── 予約変更・キャンセル<br>
-                └── お知らせページ<br>
-                　├── 開催情報<br>
-                　├── 季節限定ワークショップ<br>
-                　├── キャンペーン情報<br>
-                　└── 営業時間変更・イベント告知
+                トップページ（/）<br>
+                ├── About（/about.html）<br>
+                ├── Access（/access.html）<br>
+                ├── Skills（/skills.html）<br>
+                ├── Works（/works.html）<br>
+                └── Contact（/contact.html）<br><br>
+
+                英語ページ（/en/*）<br>
+                ├── Top（/en/index.html）<br>
+                ├── About（/en/about.html）<br>
+                ├── Access（/en/access.html）<br>
+                ├── Skills（/en/skills.html）<br>
+                ├── Works（/en/works.html）<br>
+                └── Contact（/en/contact.html）
               </p>
             </div>
           </div>
@@ -109,46 +92,20 @@
               <p>
                 ログイン前<br>
                 ├── ログイン画面<br>
-                └── パスワード再設定画面<br><br>
+                └── （認証処理）ログインPOST（/admin/login）<br><br>
 
                 ログイン後<br>
-                ├── ダッシュボード<br>
-                ├── 予約管理<br>
-                │　├── 予約一覧<br>
-                │　├── 詳細表示<br>
-                │　├── 新規登録<br>
-                │　├── 編集<br>
-                │　├── 削除<br>
-                │　├── 検索<br>
-                │　└── キャンセル・変更対応<br>
-                ├── 開催スケジュール管理<br>
-                │　├── 一覧<br>
-                │　├── 検索<br>
-                │　├── 新規登録<br>
-                │　├── 編集<br>
-                │　└── 削除<br>
-                ├── 顧客管理<br>
-                │　├── 一覧<br>
-                │　├── 検索<br>
-                │　├── 詳細表示<br>
-                │　├── 新規登録<br>
-                │　├── 編集<br>
-                │　└── 削除<br>
-                ├── お知らせ管理<br>
-                │　├── 一覧<br>
-                │　├── 新規登録<br>
-                │　├── 編集<br>
-                │　└── 削除<br>
-                ├── FAQ・固定ページ管理<br>
-                │　├── FAQ管理<br>
-                │　├── トップページ編集<br>
-                │　├── こだわりページ編集<br>
-                │　├── アクセスページ編集<br>
-                │　└── 多言語文言管理<br>
-                ├── 自動返信メール管理<br>
-                └── アカウント設定<br>
-                　　├── パスワード変更<br>
-                　　└── ログアウト
+                ├── 問い合わせ管理<br>
+                │　├── 一覧（/admin/inquiries または /admin/contacts）<br>
+                │　├── 削除済一覧（/admin/inquiries/deleted）<br>
+                │　├── 詳細（/admin/inquiries/{id}）<br>
+                │　├── 編集（/admin/inquiries/{id}/edit）<br>
+                │　└── 削除/復元（/admin/inquiries/{id}/delete, /admin/inquiries/{id}/restore）<br>
+                ├── ユーザー管理（管理者のみ）<br>
+                │　├── 一覧（/admin/users）<br>
+                │　├── 新規作成（/admin/users/new）<br>
+                │　└── 編集（/admin/users/{id}/edit）<br>
+                └── ログアウト（/admin/logout）
               </p>
             </div>
           </div>
@@ -169,48 +126,18 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>トップページ</td>
-                  <td>香り結び - Kaori Musubi - の魅力を第一印象で伝え、各ページや予約ページへスムーズに誘導する。</td>
-                  <td>キャッチコピー、メインビジュアル、サービス概要、体験の魅力、利用シーン紹介、予約導線、お知らせへのリンク</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>ワークショップ紹介ページ</td>
-                  <td>ワークショップで体験できる内容を具体的に伝え、参加意欲を高める。</td>
-                  <td>体験の流れ、作れるもの、香り選びの楽しさ、所要時間、料金、完成イメージ写真、参加方法</td>
-                </tr>
-                <tr>
-                  <td>3</td>
-                  <td>予約ページ</td>
-                  <td>ユーザーが迷わず予約まで進めるようにし、離脱を防ぐ。</td>
-                  <td>開催日程、予約ボタンまたは予約フォーム、料金、注意事項、キャンセルポリシー、予約手順の案内</td>
-                </tr>
-                <tr>
-                  <td>4</td>
-                  <td>香り結びのこだわりページ</td>
-                  <td>サービスの世界観や他サービスとの違いを伝え、ブランド価値を高める。</td>
-                  <td>コンセプト、香りへのこだわり、日本らしい感性、浅草という立地の魅力、ものづくり体験としての価値</td>
-                </tr>
-                <tr>
-                  <td>5</td>
-                  <td>アクセスページ</td>
-                  <td>店舗までの行き方を分かりやすく示し、来店への不安を減らす。</td>
-                  <td>住所、地図、最寄り駅からのアクセス、徒歩時間、店舗外観写真、営業時間、周辺案内</td>
-                </tr>
-                <tr>
-                  <td>6</td>
-                  <td>よくある質問ページ</td>
-                  <td>参加前の疑問や不安を解消し、安心して予約できるようにする。</td>
-                  <td>所要時間、対象年齢、1人参加の可否、持ち物、言語対応、予約変更、キャンセルに関するQ&amp;A</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>お知らせページ</td>
-                  <td>最新情報を発信し、再訪問や継続的な集客につなげる。</td>
-                  <td>開催情報、季節限定ワークショップ、キャンペーン情報、営業時間変更、イベント告知</td>
-                </tr>
+                <tr><td>1</td><td>トップページ（日本語）</td><td>サイトの入口として体験価値を伝え、各ページへ誘導する。</td><td>メインビジュアル、体験概要、料金プラン、FAQ、予約導線</td></tr>
+                <tr><td>2</td><td>こだわり（日本語）</td><td>ブランドの世界観や体験価値を伝え、期待感を高める。</td><td>コンセプト、和モダン、上質感、ときめき、予約導線</td></tr>
+                <tr><td>3</td><td>アクセス（日本語）</td><td>店舗の所在地や来店方法を案内する。</td><td>店舗情報、最寄り駅、道順、周辺案内</td></tr>
+                <tr><td>4</td><td>香りの魅力（日本語）</td><td>香り体験の楽しさや持ち帰る価値を整理して提示する。</td><td>体験の魅力、おすすめ対象、ワークショップ導線</td></tr>
+                <tr><td>5</td><td>ワークショップ（日本語）</td><td>体験内容や所要時間、料金を提示し、参加を促す。</td><td>体験の流れ、プラン一覧、料金、予約導線</td></tr>
+                <tr><td>6</td><td>お問い合わせ（日本語）</td><td>予約受付や事前相談を受け付ける。</td><td>問い合わせフォーム、予約相談、希望内容入力</td></tr>
+                <tr><td>7</td><td>トップページ（英語）</td><td>英語で同等の情報を提供し、予約導線へつなげる。</td><td>英語版メインビジュアル、体験概要、料金、予約導線</td></tr>
+                <tr><td>8</td><td>About（英語）</td><td>英語でブランドの世界観や体験価値を伝える。</td><td>英語版コンセプト、和の雰囲気、体験価値</td></tr>
+                <tr><td>9</td><td>Access（英語）</td><td>英語で店舗の所在地や来店方法を案内する。</td><td>英語版店舗情報、最寄り駅、道順案内</td></tr>
+                <tr><td>10</td><td>Skills（英語）</td><td>英語で香り体験の魅力やおすすめ対象を伝える。</td><td>英語版体験価値、魅力紹介、導線ボタン</td></tr>
+                <tr><td>11</td><td>Workshops（英語）</td><td>英語で体験内容や料金を提示し、参加を促す。</td><td>英語版体験フロー、料金プラン、予約導線</td></tr>
+                <tr><td>12</td><td>Contact（英語）</td><td>英語で予約受付や事前相談を受け付ける。</td><td>英語版問い合わせフォーム、予約相談、入力項目</td></tr>
               </tbody>
             </table>
           </div>
@@ -230,62 +157,50 @@
                 <tr>
                   <td>1</td>
                   <td>ログイン画面</td>
-                  <td>管理者のみがシステムを利用できるようにする。</td>
-                  <td>ID・パスワード入力、ログイン認証、エラーメッセージ表示</td>
+                  <td>管理画面にアクセスするための認証を行う。</td>
+                  <td>ユーザー名・パスワード入力、ログイン</td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>パスワード再設定画面</td>
-                  <td>ログインできない管理者がパスワードを再設定できるようにする。</td>
-                  <td>メールアドレス入力、再設定送信、再設定案内表示</td>
+                  <td>問い合わせ一覧</td>
+                  <td>問い合わせを一覧で確認する。</td>
+                  <td>一覧、ページング、詳細リンク（/admin/inquiries, /admin/contacts）</td>
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>ダッシュボード画面</td>
-                  <td>予約状況や運営状況をひと目で確認できるようにする。</td>
-                  <td>本日の予約件数表示、最新情報表示、各管理画面への導線</td>
+                  <td>問い合わせ詳細</td>
+                  <td>問い合わせの内容を確認する。</td>
+                  <td>詳細、編集導線、削除導線</td>
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>予約管理画面</td>
-                  <td>予約情報を管理し、確認・更新・対応を行えるようにする。</td>
-                  <td>一覧表示、詳細表示、新規登録、編集、削除、検索、キャンセル・変更対応</td>
+                  <td>問い合わせ編集</td>
+                  <td>問い合わせの管理情報を更新する。</td>
+                  <td>編集フォーム、保存</td>
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>開催スケジュール管理画面</td>
-                  <td>ワークショップの開催日程や受付状況を管理できるようにする。</td>
-                  <td>一覧表示、検索、新規登録、編集、削除</td>
+                  <td>削除済問い合わせ一覧</td>
+                  <td>削除済の問い合わせを確認・復元する。</td>
+                  <td>一覧、復元</td>
                 </tr>
                 <tr>
                   <td>6</td>
-                  <td>顧客管理画面</td>
-                  <td>予約者情報を管理し、来店確認や連絡対応をしやすくする。</td>
-                  <td>一覧表示、検索、詳細表示、新規登録、編集、削除</td>
+                  <td>ユーザー一覧（管理者のみ）</td>
+                  <td>管理ユーザーを一覧で管理する。</td>
+                  <td>一覧、作成・編集・削除導線</td>
                 </tr>
                 <tr>
                   <td>7</td>
-                  <td>お知らせ管理画面</td>
-                  <td>公開サイトのお知らせページを更新できるようにする。</td>
-                  <td>一覧表示、新規登録、編集、削除</td>
+                  <td>ユーザー作成（管理者のみ）</td>
+                  <td>管理ユーザーを新規作成する。</td>
+                  <td>作成フォーム、登録</td>
                 </tr>
                 <tr>
                   <td>8</td>
-                  <td>FAQ・固定ページ管理画面</td>
-                  <td>FAQや固定ページの内容を更新し、公開サイトの情報を最新に保つ。</td>
-                  <td>FAQ管理、トップページ編集、こだわりページ編集、アクセスページ編集、多言語文言管理</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>自動返信メール管理画面</td>
-                  <td>予約完了時の案内メール内容を確認・管理できるようにする。</td>
-                  <td>自動返信メール設定、送信内容確認、案内文管理</td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>アカウント設定画面</td>
-                  <td>管理者アカウント情報を管理し、安全に利用できるようにする。</td>
-                  <td>パスワード変更、ログアウト</td>
+                  <td>ユーザー編集（管理者のみ）</td>
+                  <td>管理ユーザーを編集する。</td>
+                  <td>編集フォーム、更新</td>
                 </tr>
               </tbody>
             </table>
@@ -297,7 +212,7 @@
 
           <div class="fill-block">
             <div class="fill-label">メインシナリオ</div>
-            <div class="fill-hint">認知から予約完了、来店までの代表的な行動フローです。</div>
+            <div class="fill-hint">認知から問い合わせ・予約相談までの代表的な行動フローです。</div>
             <table class="doc-table">
               <thead>
                 <tr>
@@ -310,57 +225,39 @@
               <tbody>
                 <tr>
                   <td>1</td>
-                  <td>InstagramやGoogle検索で浅草の体験スポットを探し、「香り結び - Kaori Musubi -」を見つけて公式サイトに訪問する。</td>
+                  <td>トップページを訪問し、サイト全体の概要を把握する。</td>
                   <td>トップページ</td>
-                  <td>サービス概要と体験の魅力を確認し、ワークショップ紹介ページへ進む</td>
+                  <td>About / Skills / Workshops / Contact へ移動する</td>
                 </tr>
                 <tr>
                   <td>2</td>
-                  <td>香りづくり体験の内容が自分に合っているか確認する。</td>
-                  <td>ワークショップ紹介ページ</td>
-                  <td>体験の流れ、作れるもの、所要時間、料金を確認し、予約ページへ進む</td>
+                  <td>ブランドの世界観や体験価値を確認し、期待感を高める。</td>
+                  <td>About</td>
+                  <td>体験内容や魅力を確認するため Skills / Workshops へ移動する</td>
                 </tr>
                 <tr>
                   <td>3</td>
-                  <td>観光の合間に参加できるかを判断するため、開催日程や予約方法を確認する。</td>
-                  <td>予約ページ</td>
-                  <td>希望日時、料金、注意事項、キャンセルポリシーを確認し、不安があればFAQページへ進む</td>
+                  <td>体験内容・料金プランを確認し、参加イメージを具体化する。</td>
+                  <td>Skills / Workshops</td>
+                  <td>不明点があれば Contact へ移動して相談する</td>
                 </tr>
                 <tr>
                   <td>4</td>
-                  <td>参加前の不安を解消するため、気になる点を確認する。</td>
-                  <td>よくある質問ページ</td>
-                  <td>所要時間、1人参加の可否、持ち物、言語対応、予約変更・キャンセルについて確認し、予約ページへ戻る</td>
+                  <td>問い合わせフォームを入力して送信する。</td>
+                  <td>Contact</td>
+                  <td>送信結果（成功/エラー）を確認する</td>
                 </tr>
                 <tr>
                   <td>5</td>
-                  <td>店舗の場所と移動しやすさを確認し、当日の行動をイメージする。</td>
-                  <td>アクセスページ</td>
-                  <td>住所、地図、最寄り駅からのアクセス、営業時間を確認し、予約ページへ戻る</td>
+                  <td>管理者がログインし、問い合わせを確認する。</td>
+                  <td>管理ログイン / 問い合わせ一覧</td>
+                  <td>詳細確認・編集・削除（必要に応じて復元）</td>
                 </tr>
                 <tr>
                   <td>6</td>
-                  <td>ブランドの雰囲気や浅草らしさ、自分だけの香りを作る特別感を確認し、体験したい気持ちを高める。</td>
-                  <td>香り結びのこだわりページ</td>
-                  <td>コンセプトや香りへのこだわりを確認し、予約ページへ進む</td>
-                </tr>
-                <tr>
-                  <td>7</td>
-                  <td>内容・所要時間・料金・場所に納得し、スマホで予約を完了する。</td>
-                  <td>予約ページ</td>
-                  <td>予約フォームを入力して送信し、予約完了後の案内を確認する</td>
-                </tr>
-                <tr>
-                  <td>8</td>
-                  <td>予約後、当日の最新情報がないかを確認する。</td>
-                  <td>お知らせページ</td>
-                  <td>開催情報や営業時間変更がないことを確認し、当日来店する</td>
-                </tr>
-                <tr>
-                  <td>9</td>
-                  <td>予約日時に店舗を訪れ、自分だけの香りづくり体験を楽しむ。</td>
-                  <td>店舗での体験利用</td>
-                  <td>体験後、完成した香りを持ち帰り、SNSやLINEで共有する</td>
+                  <td>（管理者のみ）管理ユーザーを作成・更新・削除する。</td>
+                  <td>ユーザー一覧 / 作成 / 編集</td>
+                  <td>ログアウトする</td>
                 </tr>
               </tbody>
             </table>
@@ -386,358 +283,199 @@
                 <tr>
                   <td>/</td>
                   <td>GET</td>
-                  <td>トップページ</td>
-                  <td>香り結び - Kaori Musubi - のトップページを表示する</td>
+                  <td>トップ</td>
+                  <td>トップページ（日本語）</td>
                 </tr>
                 <tr>
-                  <td>/workshops</td>
+                  <td>/index.html</td>
                   <td>GET</td>
-                  <td>ワークショップ紹介ページ</td>
-                  <td>体験の流れ、作れるもの、所要時間、料金、参加方法を表示する</td>
+                  <td>トップ（別名）</td>
+                  <td>トップページ（日本語）</td>
                 </tr>
                 <tr>
-                  <td>/reservations/new</td>
+                  <td>/about.html</td>
                   <td>GET</td>
-                  <td>予約ページ</td>
-                  <td>開催日程、料金、注意事項、キャンセルポリシー、予約フォームを表示する</td>
+                  <td>About</td>
+                  <td>自己紹介ページ</td>
                 </tr>
                 <tr>
-                  <td>/reservations</td>
-                  <td>POST</td>
-                  <td>予約登録機能</td>
-                  <td>予約情報を送信し、新規予約を登録する</td>
-                </tr>
-                <tr>
-                  <td>/concept</td>
+                  <td>/access.html</td>
                   <td>GET</td>
-                  <td>香り結びのこだわりページ</td>
-                  <td>コンセプト、香りへのこだわり、浅草らしさ、体験価値を表示する</td>
-                </tr>
-                <tr>
-                  <td>/access</td>
-                  <td>GET</td>
+                  <td>Access</td>
                   <td>アクセスページ</td>
-                  <td>住所、地図、最寄り駅からのアクセス、営業時間を表示する</td>
                 </tr>
                 <tr>
-                  <td>/faq</td>
+                  <td>/skills.html</td>
                   <td>GET</td>
-                  <td>よくある質問ページ</td>
-                  <td>所要時間、対象年齢、持ち物、言語対応、予約変更・キャンセルに関するQ&amp;Aを表示する</td>
+                  <td>Skills</td>
+                  <td>スキルページ</td>
                 </tr>
                 <tr>
-                  <td>/news</td>
+                  <td>/works.html</td>
                   <td>GET</td>
-                  <td>お知らせページ</td>
-                  <td>開催情報、キャンペーン情報、営業時間変更などのお知らせ一覧を表示する</td>
+                  <td>Works</td>
+                  <td>制作実績ページ</td>
                 </tr>
                 <tr>
-                  <td>/news/{id}</td>
+                  <td>/contact.html</td>
                   <td>GET</td>
-                  <td>お知らせ詳細表示</td>
-                  <td>選択したお知らせの詳細を表示する</td>
+                  <td>Contact</td>
+                  <td>お問い合わせページ（日本語）</td>
                 </tr>
+                <tr>
+                  <td>/contact</td>
+                  <td>POST</td>
+                  <td>問い合わせ送信</td>
+                  <td>お問い合わせフォーム送信（日本語）</td>
+                </tr>
+
+                <tr>
+                  <td>/en/index.html</td>
+                  <td>GET</td>
+                  <td>Top (EN)</td>
+                  <td>トップページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/about.html</td>
+                  <td>GET</td>
+                  <td>About (EN)</td>
+                  <td>自己紹介ページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/access.html</td>
+                  <td>GET</td>
+                  <td>Access (EN)</td>
+                  <td>アクセスページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/skills.html</td>
+                  <td>GET</td>
+                  <td>Skills (EN)</td>
+                  <td>スキルページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/works.html</td>
+                  <td>GET</td>
+                  <td>Works (EN)</td>
+                  <td>制作実績ページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/contact.html</td>
+                  <td>GET</td>
+                  <td>Contact (EN)</td>
+                  <td>お問い合わせページ（英語）</td>
+                </tr>
+                <tr>
+                  <td>/en/contact</td>
+                  <td>POST</td>
+                  <td>Contact submit (EN)</td>
+                  <td>お問い合わせフォーム送信（英語）</td>
+                </tr>
+
                 <tr>
                   <td>/admin/login</td>
                   <td>GET</td>
+                  <td>管理ログイン</td>
                   <td>ログイン画面</td>
-                  <td>管理アプリのログインフォームを表示する</td>
                 </tr>
                 <tr>
                   <td>/admin/login</td>
                   <td>POST</td>
-                  <td>ログイン機能</td>
-                  <td>管理者認証を行い、管理画面へ遷移する</td>
-                </tr>
-                <tr>
-                  <td>/admin/password-reset</td>
-                  <td>GET</td>
-                  <td>パスワード再設定画面</td>
-                  <td>パスワード再設定フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/password-reset</td>
-                  <td>POST</td>
-                  <td>パスワード再設定機能</td>
-                  <td>再設定依頼を受け付ける</td>
-                </tr>
-                <tr>
-                  <td>/admin</td>
-                  <td>GET</td>
-                  <td>ダッシュボード画面</td>
-                  <td>本日の予約状況や主要機能への導線を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations</td>
-                  <td>GET</td>
-                  <td>予約管理画面</td>
-                  <td>予約一覧を表示し、検索や確認を行う</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}</td>
-                  <td>GET</td>
-                  <td>予約詳細表示</td>
-                  <td>個別の予約内容を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations</td>
-                  <td>POST</td>
-                  <td>予約新規登録</td>
-                  <td>管理側で予約を新規登録する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}/edit</td>
-                  <td>GET</td>
-                  <td>予約編集画面</td>
-                  <td>予約編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}</td>
-                  <td>POST</td>
-                  <td>予約更新</td>
-                  <td>予約内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}/delete</td>
-                  <td>POST</td>
-                  <td>予約削除</td>
-                  <td>予約を削除する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}/cancel</td>
-                  <td>POST</td>
-                  <td>キャンセル対応</td>
-                  <td>予約をキャンセル状態に更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/reservations/{id}/change</td>
-                  <td>POST</td>
-                  <td>変更対応</td>
-                  <td>日時変更など予約内容の変更を反映する</td>
-                </tr>
-                <tr>
-                  <td>/admin/schedules</td>
-                  <td>GET</td>
-                  <td>開催スケジュール管理画面</td>
-                  <td>開催日程・時間・定員・受付状況の一覧を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/schedules</td>
-                  <td>POST</td>
-                  <td>開催スケジュール新規登録</td>
-                  <td>新しい開催枠を登録する</td>
-                </tr>
-                <tr>
-                  <td>/admin/schedules/{id}/edit</td>
-                  <td>GET</td>
-                  <td>開催スケジュール編集画面</td>
-                  <td>開催枠の編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/schedules/{id}</td>
-                  <td>POST</td>
-                  <td>開催スケジュール更新</td>
-                  <td>開催枠の内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/schedules/{id}/delete</td>
-                  <td>POST</td>
-                  <td>開催スケジュール削除</td>
-                  <td>開催枠を削除する</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers</td>
-                  <td>GET</td>
-                  <td>顧客管理画面</td>
-                  <td>顧客一覧を表示し、検索や確認を行う</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers/{id}</td>
-                  <td>GET</td>
-                  <td>顧客詳細表示</td>
-                  <td>顧客の氏名、連絡先、参加人数などを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers</td>
-                  <td>POST</td>
-                  <td>顧客新規登録</td>
-                  <td>顧客情報を新規登録する</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers/{id}/edit</td>
-                  <td>GET</td>
-                  <td>顧客編集画面</td>
-                  <td>顧客編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers/{id}</td>
-                  <td>POST</td>
-                  <td>顧客更新</td>
-                  <td>顧客情報を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/customers/{id}/delete</td>
-                  <td>POST</td>
-                  <td>顧客削除</td>
-                  <td>顧客情報を削除する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news</td>
-                  <td>GET</td>
-                  <td>お知らせ管理画面</td>
-                  <td>お知らせ一覧を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news/new</td>
-                  <td>GET</td>
-                  <td>お知らせ新規登録画面</td>
-                  <td>お知らせ登録フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news</td>
-                  <td>POST</td>
-                  <td>お知らせ登録</td>
-                  <td>お知らせを新規投稿する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news/{id}/edit</td>
-                  <td>GET</td>
-                  <td>お知らせ編集画面</td>
-                  <td>お知らせ編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news/{id}</td>
-                  <td>POST</td>
-                  <td>お知らせ更新</td>
-                  <td>お知らせ内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/news/{id}/delete</td>
-                  <td>POST</td>
-                  <td>お知らせ削除</td>
-                  <td>お知らせを削除する</td>
-                </tr>
-                <tr>
-                  <td>/admin/faqs</td>
-                  <td>GET</td>
-                  <td>FAQ管理画面</td>
-                  <td>FAQ一覧を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/faqs</td>
-                  <td>POST</td>
-                  <td>FAQ登録</td>
-                  <td>FAQを新規登録する</td>
-                </tr>
-                <tr>
-                  <td>/admin/faqs/{id}/edit</td>
-                  <td>GET</td>
-                  <td>FAQ編集画面</td>
-                  <td>FAQ編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/faqs/{id}</td>
-                  <td>POST</td>
-                  <td>FAQ更新</td>
-                  <td>FAQ内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/faqs/{id}/delete</td>
-                  <td>POST</td>
-                  <td>FAQ削除</td>
-                  <td>FAQを削除する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/home/edit</td>
-                  <td>GET</td>
-                  <td>トップページ編集画面</td>
-                  <td>トップページの固定文言を編集する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/home</td>
-                  <td>POST</td>
-                  <td>トップページ更新</td>
-                  <td>トップページ内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/concept/edit</td>
-                  <td>GET</td>
-                  <td>こだわりページ編集画面</td>
-                  <td>こだわりページの固定文言を編集する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/concept</td>
-                  <td>POST</td>
-                  <td>こだわりページ更新</td>
-                  <td>こだわりページ内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/access/edit</td>
-                  <td>GET</td>
-                  <td>アクセスページ編集画面</td>
-                  <td>アクセスページの固定文言を編集する</td>
-                </tr>
-                <tr>
-                  <td>/admin/pages/access</td>
-                  <td>POST</td>
-                  <td>アクセスページ更新</td>
-                  <td>アクセスページ内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/translations</td>
-                  <td>GET</td>
-                  <td>多言語文言管理画面</td>
-                  <td>多言語文言の一覧と設定内容を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/translations/{id}/edit</td>
-                  <td>GET</td>
-                  <td>多言語文言編集画面</td>
-                  <td>多言語文言の編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/translations/{id}</td>
-                  <td>POST</td>
-                  <td>多言語文言更新</td>
-                  <td>多言語文言を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/mail-templates</td>
-                  <td>GET</td>
-                  <td>自動返信メール管理画面</td>
-                  <td>予約完了メールのテンプレート一覧を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/mail-templates/{id}/edit</td>
-                  <td>GET</td>
-                  <td>自動返信メール編集画面</td>
-                  <td>メール文面の編集フォームを表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/mail-templates/{id}</td>
-                  <td>POST</td>
-                  <td>自動返信メール更新</td>
-                  <td>自動返信メールの内容を更新する</td>
-                </tr>
-                <tr>
-                  <td>/admin/account</td>
-                  <td>GET</td>
-                  <td>アカウント設定画面</td>
-                  <td>管理者アカウント設定を表示する</td>
-                </tr>
-                <tr>
-                  <td>/admin/account/password</td>
-                  <td>POST</td>
-                  <td>パスワード変更機能</td>
-                  <td>管理者パスワードを変更する</td>
+                  <td>管理ログイン処理</td>
+                  <td>Spring Security（認証処理）</td>
                 </tr>
                 <tr>
                   <td>/admin/logout</td>
                   <td>POST</td>
-                  <td>ログアウト機能</td>
-                  <td>管理画面からログアウトする</td>
+                  <td>ログアウト</td>
+                  <td>Spring Security（ログアウト処理）</td>
                 </tr>
-              </tbody>
+
+                <tr>
+                  <td>/admin/inquiries</td>
+                  <td>GET</td>
+                  <td>問い合わせ一覧</td>
+                  <td>管理画面：問い合わせ一覧</td>
+                </tr>
+                <tr>
+                  <td>/admin/contacts</td>
+                  <td>GET</td>
+                  <td>問い合わせ一覧（別名）</td>
+                  <td>/admin/inquiries と同一画面</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/deleted</td>
+                  <td>GET</td>
+                  <td>問い合わせ一覧（削除済）</td>
+                  <td>管理画面：削除済の問い合わせ一覧</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/{id}</td>
+                  <td>GET</td>
+                  <td>問い合わせ詳細</td>
+                  <td>管理画面：問い合わせ詳細</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/{id}/edit</td>
+                  <td>GET</td>
+                  <td>問い合わせ編集</td>
+                  <td>管理画面：問い合わせ編集</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/{id}</td>
+                  <td>POST</td>
+                  <td>問い合わせ更新</td>
+                  <td>管理画面：問い合わせ更新</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/{id}/delete</td>
+                  <td>POST</td>
+                  <td>問い合わせ削除</td>
+                  <td>管理画面：問い合わせを削除済へ</td>
+                </tr>
+                <tr>
+                  <td>/admin/inquiries/{id}/restore</td>
+                  <td>POST</td>
+                  <td>問い合わせ復元</td>
+                  <td>管理画面：削除済から復元</td>
+                </tr>
+
+                <tr>
+                  <td>/admin/users</td>
+                  <td>GET</td>
+                  <td>ユーザー一覧</td>
+                  <td>管理画面：ユーザー一覧（管理者のみ）</td>
+                </tr>
+                <tr>
+                  <td>/admin/users/new</td>
+                  <td>GET</td>
+                  <td>ユーザー作成</td>
+                  <td>管理画面：ユーザー作成フォーム（管理者のみ）</td>
+                </tr>
+                <tr>
+                  <td>/admin/users</td>
+                  <td>POST</td>
+                  <td>ユーザー作成</td>
+                  <td>管理画面：ユーザー作成（管理者のみ）</td>
+                </tr>
+                <tr>
+                  <td>/admin/users/{id}/edit</td>
+                  <td>GET</td>
+                  <td>ユーザー編集</td>
+                  <td>管理画面：ユーザー編集フォーム（管理者のみ）</td>
+                </tr>
+                <tr>
+                  <td>/admin/users/{id}</td>
+                  <td>POST</td>
+                  <td>ユーザー更新</td>
+                  <td>管理画面：ユーザー更新（管理者のみ）</td>
+                </tr>
+                <tr>
+                  <td>/admin/users/{id}/delete</td>
+                  <td>POST</td>
+                  <td>ユーザー削除</td>
+                  <td>管理画面：ユーザー削除（管理者のみ）</td>
+                </tr></tbody>
             </table>
           </div>
         </section>
