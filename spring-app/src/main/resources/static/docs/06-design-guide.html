@@ -164,8 +164,7 @@
 
           <div class="fill-block">
             <div class="fill-label">フォント設定</div>
-            <div class="fill-hint">見出し用フォントは Noto Serif JP、本文・キャプション・ボタンは Noto Sans JP
-              を使用する。見出しは和の情緒と上質感を表現し、本文はスマホでも読みやすい可読性を重視する。ボタンは視認性と操作性を高めるため、本文よりやや太めに設定する。</div>
+            <div class="fill-hint">本文は Noto Sans JP、主要な見出しは Noto Serif JP を使用する。ページタイトルは可変（clamp）で、スマホからPCまで読みやすさを優先する。ボタンは視認性と操作性を高めるため太字にする。</div>
             <table class="doc-table">
               <thead>
                 <tr>
@@ -179,60 +178,52 @@
               </thead>
               <tbody>
                 <tr class="template-row">
-                  <td>h1</td>
-                  <td>Noto Serif JP</td>
-                  <td>40px</td>
-                  <td>700</td>
-                  <td>1.4</td>
-                  <td>ページタイトル</td>
-                </tr>
-                <tr class="template-row">
-                  <td>h2</td>
-                  <td>Noto Serif JP</td>
-                  <td>32px</td>
-                  <td>700</td>
-                  <td>1.5</td>
-                  <td>セクション見出し</td>
-                </tr>
-                <tr class="template-row">
-                  <td>h3</td>
-                  <td>Noto Serif JP</td>
-                  <td>24px</td>
-                  <td>600</td>
-                  <td>1.6</td>
-                  <td>サブセクション</td>
-                </tr>
-                <tr class="template-row">
-                  <td>本文</td>
+                  <td>ページ本文（body）</td>
                   <td>Noto Sans JP</td>
-                  <td>16px</td>
+                  <td>15px</td>
                   <td>400</td>
                   <td>1.9</td>
                   <td>通常テキスト</td>
                 </tr>
                 <tr class="template-row">
-                  <td>キャプション</td>
-                  <td>Noto Sans JP</td>
-                  <td>13px</td>
-                  <td>400</td>
-                  <td>1.7</td>
-                  <td>画像の説明等</td>
+                  <td>ページタイトル（.page-title）</td>
+                  <td>Noto Serif JP</td>
+                  <td>clamp(30px, 5vw, 46px)</td>
+                  <td>700</td>
+                  <td>1.35</td>
+                  <td>ページタイトル</td>
                 </tr>
                 <tr class="template-row">
-                  <td>ボタン</td>
-                  <td>Noto Sans JP</td>
-                  <td>16px</td>
+                  <td>ヒーロータイトル（.reference-hero__title）</td>
+                  <td>Noto Serif JP</td>
+                  <td>clamp(39px, 3.2vw, 53px)</td>
                   <td>700</td>
-                  <td>1.0</td>
+                  <td>1.14</td>
+                  <td>トップのメインコピー</td>
+                </tr>
+                <tr class="template-row">
+                  <td>セクション見出し（.reference-section__heading h2）</td>
+                  <td>Noto Serif JP</td>
+                  <td>clamp(25px, 2.5vw, 35px)</td>
+                  <td>700</td>
+                  <td>1.38</td>
+                  <td>セクション見出し</td>
+                </tr>
+                <tr class="template-row">
+                  <td>ボタン（.btn）</td>
+                  <td>Noto Sans JP</td>
+                  <td>20px</td>
+                  <td>700</td>
+                  <td>1</td>
                   <td>ボタンテキスト</td>
                 </tr>
                 <tr class="template-row">
                   <td>letter-spacing</td>
-                  <td>h1 0.08em</td>
-                  <td>h2 0.06em</td>
-                  <td>h3 0.04em</td>
-                  <td>本文 0.02em</td>
-                  <td>キャプション 0.03em / ボタン 0.04em</td>
+                  <td>.page-title 0.08em</td>
+                  <td>.reference-hero__title 0.02em</td>
+                  <td>ボタン 0.04em</td>
+                  <td>本文（未指定）</td>
+                  <td>用途に応じて調整</td>
                 </tr>
               </tbody>
             </table>
@@ -240,19 +231,18 @@
           </div>
         </section>
 
-        <section class="section" id="sec4">
+        <section class="section ui-guide" id="sec4">
           <h2 class="section-title"><span class="section-icon">4</span> UIコンポーネント</h2>
 
 
           <div class="fill-block">
           <div class="fill-label">ボタン</div>
-            <div class="fill-hint">プライマリ・セカンダリ・デンジャーの3種類のボタンスタイル（実物のHTMLサンプル付き）</div>
+            <div class="fill-hint">プライマリ・セカンダリ・サーフェスの3種類のボタンスタイル（実物のHTMLサンプル付き）</div>
             <div class="fill-content">
-              <p>ボタンは Noto Sans JP・16px・700・角丸8px を基本とし、プライマリはメインカラー
-                #A64B5A、セカンダリは枠線ボタン、デンジャーは赤系カラーで区別する。ホバー時は背景色を少し濃くし、操作性を高める。</p>
+              <p>ボタンは Noto Sans JP・20px・700・角丸（--radius-md）を基本とし、プライマリ（.btn--primary）／セカンダリ（.btn--secondary）／サーフェス（.btn--surface）で役割を区別する。ホバー時は背景色・枠線色を調整して操作性を高める。</p>
 
               <style>
-                .guide-button-showcase {
+                .ui-guide .guide-button-showcase {
                   margin-top: 20px;
                   padding: 24px;
                   border: 1px solid #E6D8D4;
@@ -260,67 +250,19 @@
                   background: #FBF8F5;
                 }
 
-                .button-group {
+                .ui-guide .button-group {
                   display: flex;
                   gap: 16px;
                   flex-wrap: wrap;
                 }
 
-                .btn {
-                  font-family: "Noto Sans JP", sans-serif;
-                  font-size: 16px;
-                  font-weight: 700;
-                  line-height: 1;
-                  letter-spacing: 0.04em;
-                  padding: 14px 28px;
-                  border-radius: 8px;
-                  border: 1px solid transparent;
-                  cursor: pointer;
-                  transition: all 0.3s ease;
-                  text-decoration: none;
-                  display: inline-block;
-                }
-
-                .btn-primary {
-                  background-color: #944654;
-                  color: #FFFFFF;
-                  border-color: #944654;
-                }
-
-                .btn-primary:hover {
-                  background-color: #853E4B;
-                  border-color: #853E4B;
-                }
-
-                .btn-secondary {
-                  background-color: transparent;
-                  color: #944654;
-                  border-color: #944654;
-                }
-
-                .btn-secondary:hover {
-                  background-color: #944654;
-                  color: #FFFFFF;
-                }
-
-                .btn-danger {
-                  background-color: #B85C5C;
-                  color: #FFFFFF;
-                  border-color: #B85C5C;
-                }
-
-                .btn-danger:hover {
-                  background-color: #A95050;
-                  border-color: #A95050;
-                }
-
-                .guide-code-title {
+                .ui-guide .guide-code-title {
                   margin: 24px 0 10px;
                   font-weight: 700;
                   color: #2F2A28;
                 }
 
-                .guide-code-block {
+                .ui-guide .guide-code-block {
                   margin: 0;
                   padding: 18px 20px;
                   border-radius: 12px;
@@ -331,7 +273,7 @@
                   line-height: 1.7;
                 }
 
-                .guide-code-block code {
+                .ui-guide .guide-code-block code {
                   font-family: Consolas, "Courier New", monospace;
                   white-space: pre;
                 }
@@ -339,17 +281,17 @@
 
               <div class="guide-button-showcase">
                 <div class="button-group">
-                  <button class="btn btn-primary">予約する</button>
-                  <button class="btn btn-secondary">詳細を見る</button>
-                  <button class="btn btn-danger">削除する</button>
+                  <a class="btn btn--primary" href="#">予約する</a>
+                  <a class="btn btn--secondary" href="#">詳細を見る</a>
+                  <a class="btn btn--surface" href="#">内容を確認</a>
                 </div>
               </div>
 
               <p class="guide-code-title">HTML</p>
               <pre class="guide-code-block"><code>&lt;div class="button-group"&gt;
-  &lt;button class="btn btn-primary"&gt;予約する&lt;/button&gt;
-  &lt;button class="btn btn-secondary"&gt;詳細を見る&lt;/button&gt;
-  &lt;button class="btn btn-danger"&gt;削除する&lt;/button&gt;
+  &lt;a class="btn btn--primary" href="#"&gt;予約する&lt;/a&gt;
+  &lt;a class="btn btn--secondary" href="#"&gt;詳細を見る&lt;/a&gt;
+  &lt;a class="btn btn--surface" href="#"&gt;内容を確認&lt;/a&gt;
 &lt;/div&gt;</code></pre>
 
               <p class="guide-code-title">CSS</p>
@@ -359,557 +301,137 @@
   flex-wrap: wrap;
 }
 
-.btn {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  padding: 14px 28px;
-  border-radius: 8px;
-  border: 1px solid transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-primary {
-  background-color: #944654;
-  color: #FFFFFF;
-  border-color: #944654;
-}
-
-.btn-primary:hover {
-  background-color: #853E4B;
-  border-color: #853E4B;
-}
-
-.btn-secondary {
-  background-color: transparent;
-  color: #944654;
-  border-color: #944654;
-}
-
-.btn-secondary:hover {
-  background-color: #944654;
-  color: #FFFFFF;
-}
-
-.btn-danger {
-  background-color: #B85C5C;
-  color: #FFFFFF;
-  border-color: #B85C5C;
-}
-
-.btn-danger:hover {
-  background-color: #A95050;
-  border-color: #A95050;
-}</code></pre>
+/* ボタン本体（.btn）とバリエーション（.btn--primary 等）は css/style.css を参照 */</code></pre>
             </div>
           </div>
           <div class="fill-block">
           <div class="fill-label">フォーム要素</div>
             <div class="fill-hint">テキスト入力・セレクト・テキストエリア・チェックボックス・ラジオボタン（実物のHTMLサンプル付き）</div>
             <div class="fill-content">
-              <p>フォーム要素は Noto Sans JP
-                を使用し、入力欄は白背景・角丸8px・薄い境界線で上品に整える。フォーカス時はえんじ系の枠線と淡いシャドウで操作中であることを示し、エラー時は赤系で状態を明確に伝える。チェックボックスとラジオボタンもブランドカラーに合わせて統一する。
-              </p>
+              <p>フォーム要素は .field / .input / .select / .textarea を基本とし、フォーカス時はメインカラーで強調、エラー時は .is-error と .field-error で状態を明確にする。チェックボックスとラジオボタンは .choice を使用し、accent-color をブランドカラーに合わせて統一する。</p>
 
               <style>
-                .form-demo {
+                .ui-guide .form-demo {
                   max-width: 720px;
                   background-color: #FBF8F5;
                   border: 1px solid #E6D8D4;
                   border-radius: 12px;
                   padding: 24px;
                 }
-
-                .form-group {
-                  margin-bottom: 20px;
-                }
-
-                .form-label {
-                  display: block;
-                  margin-bottom: 8px;
-                  font-size: 14px;
-                  font-weight: 700;
-                  color: #2F2A28;
-                  letter-spacing: 0.03em;
-                }
-
-                .form-input,
-                .form-select,
-                .form-textarea {
-                  width: 100%;
-                  box-sizing: border-box;
-                  font-family: "Noto Sans JP", sans-serif;
-                  font-size: 16px;
-                  font-weight: 400;
-                  line-height: 1.6;
-                  letter-spacing: 0.02em;
-                  color: #2F2A28;
-                  background-color: #FFFFFF;
-                  border: 1px solid #D8CCC7;
-                  border-radius: 8px;
-                  padding: 12px 14px;
-                  transition: all 0.3s ease;
-                  outline: none;
-                }
-
-                .form-textarea {
-                  min-height: 140px;
-                  resize: vertical;
-                }
-
-                .form-input::placeholder,
-                .form-textarea::placeholder {
-                  color: #7A6A6A;
-                }
-
-                .form-input:focus,
-                .form-select:focus,
-                .form-textarea:focus {
-                  border-color: #944654;
-                  box-shadow: 0 0 0 3px rgba(148, 70, 84, 0.12);
-                  background-color: #FFFDFC;
-                }
-
-                .form-input.error,
-                .form-select.error,
-                .form-textarea.error {
-                  border-color: #B85C5C;
-                  background-color: #FFF8F8;
-                }
-
-                .form-input.error:focus,
-                .form-select.error:focus,
-                .form-textarea.error:focus {
-                  border-color: #A95050;
-                  box-shadow: 0 0 0 3px rgba(185, 92, 92, 0.14);
-                }
-
-                .error-text {
-                  margin-top: 6px;
-                  font-size: 13px;
-                  color: #A95050;
-                  letter-spacing: 0.03em;
-                }
-
-                .choice-group {
-                  display: flex;
-                  flex-wrap: wrap;
-                  gap: 16px 24px;
-                  margin-top: 8px;
-                }
-
-                .choice-item {
-                  display: inline-flex;
-                  align-items: center;
-                  gap: 8px;
-                  font-size: 15px;
-                  color: #2F2A28;
-                  cursor: pointer;
-                }
-
-                .choice-item input[type="checkbox"],
-                .choice-item input[type="radio"] {
-                  accent-color: #944654;
-                  width: 18px;
-                  height: 18px;
-                  cursor: pointer;
-                }
-
-                .choice-item input[type="checkbox"]:focus,
-                .choice-item input[type="radio"]:focus {
-                  outline: 2px solid rgba(148, 70, 84, 0.2);
-                  outline-offset: 2px;
-                }
               </style>
 
               <div class="form-demo">
-                <div class="form-group">
-                  <label class="form-label" for="name">お名前</label>
-                  <input id="name" class="form-input" type="text" placeholder="例：山田 花子">
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="plan">体験プラン</label>
-                  <select id="plan" class="form-select">
-                    <option>プランを選択してください</option>
-                    <option>香りづくり体験</option>
-                    <option>季節限定ワークショップ</option>
-                    <option>ペア体験プラン</option>
-                  </select>
-                </div>
-
-                <div class="form-group">
-                  <label class="form-label" for="message">ご要望</label>
-                  <textarea id="message" class="form-textarea" placeholder="ご質問やご要望をご記入ください"></textarea>
-                </div>
-
-                <div class="form-group">
-                  <span class="form-label">オプション</span>
-                  <div class="choice-group">
-                    <label class="choice-item">
-                      <input type="checkbox" name="option">
-                      ギフト包装
-                    </label>
-                    <label class="choice-item">
-                      <input type="checkbox" name="option">
-                      写真撮影サポート
-                    </label>
+                <form class="form-grid">
+                  <div class="field">
+                    <label for="name">お名前</label>
+                    <input id="name" class="input" type="text" placeholder="例：山田 花子">
+                    <span class="field-error" aria-live="polite"></span>
                   </div>
-                </div>
 
-                <div class="form-group">
-                  <span class="form-label">ご連絡方法</span>
-                  <div class="choice-group">
-                    <label class="choice-item">
-                      <input type="radio" name="contact" checked>
-                      メール
-                    </label>
-                    <label class="choice-item">
-                      <input type="radio" name="contact">
-                      電話
-                    </label>
+                  <div class="field">
+                    <label for="plan">体験プラン</label>
+                    <select id="plan" class="select">
+                      <option value="">選択してください</option>
+                      <option value="STANDARD">スタンダード</option>
+                      <option value="PREMIUM">プレミアム</option>
+                      <option value="CONSULT">相談したい</option>
+                    </select>
+                    <span class="field-error" aria-live="polite"></span>
                   </div>
-                </div>
 
-                <div class="form-group">
-                  <label class="form-label" for="email">メールアドレス（エラー例）</label>
-                  <input id="email" class="form-input error" type="email" value="sample@"
-                    placeholder="example@mail.com">
-                  <p class="error-text">正しいメールアドレスを入力してください。</p>
-                </div>
+                  <div class="field">
+                    <label for="message">ご要望</label>
+                    <textarea id="message" class="textarea" placeholder="ご質問やご要望をご記入ください"></textarea>
+                    <span class="field-error" aria-live="polite"></span>
+                  </div>
+
+                  <fieldset class="field">
+                    <legend class="legend">オプション</legend>
+                    <div class="checkbox-group">
+                      <label class="choice"><input type="checkbox" name="option"> ギフト包装</label>
+                      <label class="choice"><input type="checkbox" name="option"> 写真撮影サポート</label>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="field">
+                    <legend class="legend">ご連絡方法</legend>
+                    <div class="radio-group">
+                      <label class="choice"><input type="radio" name="contact" checked> メール</label>
+                      <label class="choice"><input type="radio" name="contact"> 電話</label>
+                    </div>
+                  </fieldset>
+
+                  <div class="field">
+                    <label for="email">メールアドレス（エラー例）</label>
+                    <input id="email" class="input is-error" type="email" value="sample@" placeholder="example@mail.com">
+                    <span class="field-error" aria-live="polite">正しいメールアドレスを入力してください。</span>
+                  </div>
+                </form>
               </div>
 
               <p class="guide-code-title">HTML</p>
-              <pre class="guide-code-block"><code>&lt;div class="form-demo"&gt;
-  &lt;div class="form-group"&gt;
-    &lt;label class="form-label" for="name"&gt;お名前&lt;/label&gt;
-    &lt;input id="name" class="form-input" type="text" placeholder="例：山田 花子"&gt;
+              <pre class="guide-code-block"><code>&lt;form class="form-grid"&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="name"&gt;お名前&lt;/label&gt;
+    &lt;input id="name" class="input" type="text" placeholder="例：山田 花子"&gt;
+    &lt;span class="field-error"&gt;&lt;/span&gt;
   &lt;/div&gt;
 
-  &lt;div class="form-group"&gt;
-    &lt;label class="form-label" for="plan"&gt;体験プラン&lt;/label&gt;
-    &lt;select id="plan" class="form-select"&gt;
-      &lt;option&gt;プランを選択してください&lt;/option&gt;
-      &lt;option&gt;香りづくり体験&lt;/option&gt;
-      &lt;option&gt;季節限定ワークショップ&lt;/option&gt;
-      &lt;option&gt;ペア体験プラン&lt;/option&gt;
-    &lt;/select&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="plan"&gt;体験プラン&lt;/label&gt;
+    &lt;select id="plan" class="select"&gt;...&lt;/select&gt;
+    &lt;span class="field-error"&gt;&lt;/span&gt;
   &lt;/div&gt;
 
-  &lt;div class="form-group"&gt;
-    &lt;label class="form-label" for="message"&gt;ご要望&lt;/label&gt;
-    &lt;textarea id="message" class="form-textarea" placeholder="ご質問やご要望をご記入ください"&gt;&lt;/textarea&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="message"&gt;ご要望&lt;/label&gt;
+    &lt;textarea id="message" class="textarea"&gt;&lt;/textarea&gt;
+    &lt;span class="field-error"&gt;&lt;/span&gt;
   &lt;/div&gt;
 
-  &lt;div class="form-group"&gt;
-    &lt;span class="form-label"&gt;オプション&lt;/span&gt;
-    &lt;div class="choice-group"&gt;
-      &lt;label class="choice-item"&gt;
-        &lt;input type="checkbox" name="option"&gt;
-        ギフト包装
-      &lt;/label&gt;
-      &lt;label class="choice-item"&gt;
-        &lt;input type="checkbox" name="option"&gt;
-        写真撮影サポート
-      &lt;/label&gt;
+  &lt;fieldset class="field"&gt;
+    &lt;legend class="legend"&gt;オプション&lt;/legend&gt;
+    &lt;div class="checkbox-group"&gt;
+      &lt;label class="choice"&gt;&lt;input type="checkbox" name="option"&gt; ギフト包装&lt;/label&gt;
+      &lt;label class="choice"&gt;&lt;input type="checkbox" name="option"&gt; 写真撮影サポート&lt;/label&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/fieldset&gt;
 
-  &lt;div class="form-group"&gt;
-    &lt;span class="form-label"&gt;ご連絡方法&lt;/span&gt;
-    &lt;div class="choice-group"&gt;
-      &lt;label class="choice-item"&gt;
-        &lt;input type="radio" name="contact" checked&gt;
-        メール
-      &lt;/label&gt;
-      &lt;label class="choice-item"&gt;
-        &lt;input type="radio" name="contact"&gt;
-        電話
-      &lt;/label&gt;
+  &lt;fieldset class="field"&gt;
+    &lt;legend class="legend"&gt;ご連絡方法&lt;/legend&gt;
+    &lt;div class="radio-group"&gt;
+      &lt;label class="choice"&gt;&lt;input type="radio" name="contact"&gt; メール&lt;/label&gt;
+      &lt;label class="choice"&gt;&lt;input type="radio" name="contact"&gt; 電話&lt;/label&gt;
     &lt;/div&gt;
-  &lt;/div&gt;
+  &lt;/fieldset&gt;
 
-  &lt;div class="form-group"&gt;
-    &lt;label class="form-label" for="email"&gt;メールアドレス（エラー例）&lt;/label&gt;
-    &lt;input id="email" class="form-input error" type="email" value="sample@" placeholder="example@mail.com"&gt;
-    &lt;p class="error-text"&gt;正しいメールアドレスを入力してください。&lt;/p&gt;
+  &lt;div class="field"&gt;
+    &lt;label for="email"&gt;メールアドレス（エラー例）&lt;/label&gt;
+    &lt;input id="email" class="input is-error" type="email" value="sample@" placeholder="example@mail.com"&gt;
+    &lt;span class="field-error"&gt;正しいメールアドレスを入力してください。&lt;/span&gt;
   &lt;/div&gt;
-&lt;/div&gt;</code></pre>
+&lt;/form&gt;</code></pre>
 
               <p class="guide-code-title">CSS</p>
-              <pre class="guide-code-block"><code>.form-demo {
-  max-width: 720px;
-  background-color: #FBF8F5;
-  border: 1px solid #E6D8D4;
-  border-radius: 12px;
-  padding: 24px;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #2F2A28;
-  letter-spacing: 0.03em;
-}
-
-.form-input,
-.form-select,
-.form-textarea {
-  width: 100%;
-  box-sizing: border-box;
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
-  color: #2F2A28;
-  background-color: #FFFFFF;
-  border: 1px solid #D8CCC7;
-  border-radius: 8px;
-  padding: 12px 14px;
-  transition: all 0.3s ease;
-  outline: none;
-}
-
-.form-textarea {
-  min-height: 140px;
-  resize: vertical;
-}
-
-.form-input::placeholder,
-.form-textarea::placeholder {
-  color: #7A6A6A;
-}
-
-.form-input:focus,
-.form-select:focus,
-.form-textarea:focus {
-  border-color: #944654;
-  box-shadow: 0 0 0 3px rgba(148, 70, 84, 0.12);
-  background-color: #FFFDFC;
-}
-
-.form-input.error,
-.form-select.error,
-.form-textarea.error {
-  border-color: #B85C5C;
-  background-color: #FFF8F8;
-}
-
-.form-input.error:focus,
-.form-select.error:focus,
-.form-textarea.error:focus {
-  border-color: #A95050;
-  box-shadow: 0 0 0 3px rgba(185, 92, 92, 0.14);
-}
-
-.error-text {
-  margin-top: 6px;
-  font-size: 13px;
-  color: #A95050;
-  letter-spacing: 0.03em;
-}
-
-.choice-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px 24px;
-  margin-top: 8px;
-}
-
-.choice-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 15px;
-  color: #2F2A28;
-  cursor: pointer;
-}
-
-.choice-item input[type="checkbox"],
-.choice-item input[type="radio"] {
-  accent-color: #944654;
-  width: 18px;
-  height: 18px;
-  cursor: pointer;
-}
-
-.choice-item input[type="checkbox"]:focus,
-.choice-item input[type="radio"]:focus {
-  outline: 2px solid rgba(148, 70, 84, 0.2);
-  outline-offset: 2px;
-}</code></pre>
+              <pre class="guide-code-block"><code>実装のフォームUIは css/style.css の .field / .input / .select / .textarea / .field-error / .choice を利用する。</code></pre>
             </div>
           </div>
           <div class="fill-block">
           <div class="fill-label">カード・テーブル・その他</div>
-            <div class="fill-hint">カードコンポーネント・テーブルスタイル・アラート等（実物のHTMLサンプル付き）</div>
+            <div class="fill-hint">カードコンポーネント・テーブルスタイル・ステータス表示（実物のHTMLサンプル付き）</div>
             <div class="fill-content">
-              <p>
-                カード・テーブル・アラートは、和モダンで上質感のある統一トーンで設計する。カードはやわらかな背景と繊細な境界線で情報を整理し、テーブルは見出しとストライプ表示で見やすく整える。アラートは情報・成功・警告・エラーの状態がひと目で伝わるよう、落ち着いた配色で区別する。
-              </p>
+              <p>実装で使用しているカードは <code>.hero-card</code> や <code>.panel</code> を基本とし、テーブルは <code>.simple-table</code>（枠・背景・シャドウ）で統一する。ステータス表示は <code>.form-status</code>（成功は <code>.is-success</code>）と <code>.field-error</code> を利用する。</p>
 
-              <style>
-                .components-demo {
-                  display: grid;
-                  gap: 24px;
-                }
-
-                .card-demo {
-                  max-width: 420px;
-                  background-color: #FFFFFF;
-                  border: 1px solid #E6D8D4;
-                  border-radius: 12px;
-                  overflow: hidden;
-                  box-shadow: 0 8px 24px rgba(47, 42, 40, 0.06);
-                }
-
-                .card-image {
-                  display: block;
-                  width: 100%;
-                  height: auto;
-                }
-
-                .card-body {
-                  padding: 20px;
-                }
-
-                .card-title {
-                  margin: 0 0 10px;
-                  font-size: 20px;
-                  font-weight: 700;
-                  line-height: 1.5;
-                  color: #2F2A28;
-                  letter-spacing: 0.04em;
-                }
-
-                .card-text {
-                  margin: 0 0 16px;
-                  font-size: 15px;
-                  line-height: 1.8;
-                  color: #7A6A6A;
-                  letter-spacing: 0.02em;
-                }
-
-                .component-btn {
-                  font-family: "Noto Sans JP", sans-serif;
-                  font-size: 16px;
-                  font-weight: 700;
-                  line-height: 1;
-                  letter-spacing: 0.04em;
-                  padding: 14px 24px;
-                  border-radius: 8px;
-                  border: 1px solid #944654;
-                  background-color: #944654;
-                  color: #FFFFFF;
-                  cursor: pointer;
-                  transition: all 0.3s ease;
-                }
-
-                .component-btn:hover {
-                  background-color: #853E4B;
-                  border-color: #853E4B;
-                }
-
-                .table-demo-wrap {
-                  overflow-x: auto;
-                }
-
-                .component-table {
-                  width: 100%;
-                  border-collapse: collapse;
-                  font-family: "Noto Sans JP", sans-serif;
-                  background-color: #FFFFFF;
-                  border: 1px solid #E6D8D4;
-                  border-radius: 12px;
-                  overflow: hidden;
-                }
-
-                .component-table thead th {
-                  background-color: #944654;
-                  color: #FFFFFF;
-                  font-size: 15px;
-                  font-weight: 700;
-                  letter-spacing: 0.04em;
-                  padding: 14px 16px;
-                  text-align: left;
-                }
-
-                .component-table tbody td {
-                  padding: 14px 16px;
-                  border-top: 1px solid #E6D8D4;
-                  font-size: 15px;
-                  color: #2F2A28;
-                  line-height: 1.7;
-                }
-
-                .component-table tbody tr:nth-child(even) {
-                  background-color: #FBF8F5;
-                }
-
-                .alerts-demo {
-                  display: grid;
-                  gap: 12px;
-                }
-
-                .alert {
-                  padding: 14px 16px;
-                  border-radius: 12px;
-                  font-size: 14px;
-                  line-height: 1.7;
-                  letter-spacing: 0.02em;
-                  border-left: 4px solid transparent;
-                }
-
-                .alert-info {
-                  background-color: #F6F1EC;
-                  color: #6B5B57;
-                  border-left-color: #944654;
-                }
-
-                .alert-success {
-                  background-color: #F1F6F2;
-                  color: #4F6654;
-                  border-left-color: #6F8B74;
-                }
-
-                .alert-warning {
-                  background-color: #FCF6EC;
-                  color: #8A6A32;
-                  border-left-color: #C79A4A;
-                }
-
-                .alert-error {
-                  background-color: #FDF1F1;
-                  color: #8A4A4A;
-                  border-left-color: #B85C5C;
-                }
-              </style>
-
-              <div class="components-demo">
-                <div class="card-demo">
-                  <img src="https://via.placeholder.com/640x360/F3ECE7/7A6A6A?text=Kaori+Musubi" alt="香りづくり体験イメージ"
-                    class="card-image">
-                  <div class="card-body">
-                    <h3 class="card-title">香りづくり体験</h3>
-                    <p class="card-text">浅草らしい和の空間で、自分だけの香りを作る特別な体験を楽しめます。</p>
-                    <button class="component-btn">詳細を見る</button>
-                  </div>
+              <div class="feature-grid">
+                <div class="hero-card">
+                  <h3 class="hero-card__title">香りづくり体験</h3>
+                  <p class="hero-card__text">浅草らしい和の空気感の中で、自分だけの香りを作る特別な体験を提供します。</p>
+                  <a class="btn btn--secondary" href="#">詳細を見る</a>
                 </div>
 
-                <div class="table-demo-wrap">
-                  <table class="component-table">
+                <div class="panel">
+                  <h3 class="subsection-title">プラン一覧</h3>
+                  <table class="simple-table">
                     <thead>
                       <tr>
                         <th>プラン名</th>
@@ -935,199 +457,29 @@
                       </tr>
                     </tbody>
                   </table>
-                </div>
-
-                <div class="alerts-demo">
-                  <div class="alert alert-info">ご予約は3日前まで受け付けています。</div>
-                  <div class="alert alert-success">ご予約が完了しました。</div>
-                  <div class="alert alert-warning">選択した日時は残りわずかです。</div>
-                  <div class="alert alert-error">入力内容に不備があります。ご確認ください。</div>
+                  <p class="form-status is-success">ご予約が完了しました。</p>
+                  <p class="field-error">入力内容に不備があります。ご確認ください。</p>
                 </div>
               </div>
 
               <p class="guide-code-title">HTML</p>
-              <pre class="guide-code-block"><code>&lt;div class="components-demo"&gt;
-  &lt;div class="card-demo"&gt;
-    &lt;img src="https://via.placeholder.com/640x360/F3ECE7/7A6A6A?text=Kaori+Musubi" alt="香りづくり体験イメージ" class="card-image"&gt;
-    &lt;div class="card-body"&gt;
-      &lt;h3 class="card-title"&gt;香りづくり体験&lt;/h3&gt;
-      &lt;p class="card-text"&gt;浅草らしい和の空間で、自分だけの香りを作る特別な体験を楽しめます。&lt;/p&gt;
-      &lt;button class="component-btn"&gt;詳細を見る&lt;/button&gt;
-    &lt;/div&gt;
+              <pre class="guide-code-block"><code>&lt;div class="feature-grid"&gt;
+  &lt;div class="hero-card"&gt;
+    &lt;h3 class="hero-card__title"&gt;香りづくり体験&lt;/h3&gt;
+    &lt;p class="hero-card__text"&gt;...&lt;/p&gt;
+    &lt;a class="btn btn--secondary" href="#"&gt;詳細を見る&lt;/a&gt;
   &lt;/div&gt;
 
-  &lt;div class="table-demo-wrap"&gt;
-    &lt;table class="component-table"&gt;
-      &lt;thead&gt;
-        &lt;tr&gt;
-          &lt;th&gt;プラン名&lt;/th&gt;
-          &lt;th&gt;所要時間&lt;/th&gt;
-          &lt;th&gt;料金&lt;/th&gt;
-        &lt;/tr&gt;
-      &lt;/thead&gt;
-      &lt;tbody&gt;
-        &lt;tr&gt;
-          &lt;td&gt;香りづくり体験&lt;/td&gt;
-          &lt;td&gt;60分&lt;/td&gt;
-          &lt;td&gt;4,500円&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;季節限定ワークショップ&lt;/td&gt;
-          &lt;td&gt;75分&lt;/td&gt;
-          &lt;td&gt;5,500円&lt;/td&gt;
-        &lt;/tr&gt;
-        &lt;tr&gt;
-          &lt;td&gt;ペア体験プラン&lt;/td&gt;
-          &lt;td&gt;90分&lt;/td&gt;
-          &lt;td&gt;8,000円&lt;/td&gt;
-        &lt;/tr&gt;
-      &lt;/tbody&gt;
-    &lt;/table&gt;
-  &lt;/div&gt;
-
-  &lt;div class="alerts-demo"&gt;
-    &lt;div class="alert alert-info"&gt;ご予約は3日前まで受け付けています。&lt;/div&gt;
-    &lt;div class="alert alert-success"&gt;ご予約が完了しました。&lt;/div&gt;
-    &lt;div class="alert alert-warning"&gt;選択した日時は残りわずかです。&lt;/div&gt;
-    &lt;div class="alert alert-error"&gt;入力内容に不備があります。ご確認ください。&lt;/div&gt;
+  &lt;div class="panel"&gt;
+    &lt;h3 class="subsection-title"&gt;プラン一覧&lt;/h3&gt;
+    &lt;table class="simple-table"&gt;...&lt;/table&gt;
+    &lt;p class="form-status is-success"&gt;ご予約が完了しました。&lt;/p&gt;
+    &lt;p class="field-error"&gt;入力内容に不備があります。ご確認ください。&lt;/p&gt;
   &lt;/div&gt;
 &lt;/div&gt;</code></pre>
 
               <p class="guide-code-title">CSS</p>
-              <pre class="guide-code-block"><code>.components-demo {
-  display: grid;
-  gap: 24px;
-}
-
-.card-demo {
-  max-width: 420px;
-  background-color: #FFFFFF;
-  border: 1px solid #E6D8D4;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 8px 24px rgba(47, 42, 40, 0.06);
-}
-
-.card-image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-.card-body {
-  padding: 20px;
-}
-
-.card-title {
-  margin: 0 0 10px;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 1.5;
-  color: #2F2A28;
-  letter-spacing: 0.04em;
-}
-
-.card-text {
-  margin: 0 0 16px;
-  font-size: 15px;
-  line-height: 1.8;
-  color: #7A6A6A;
-  letter-spacing: 0.02em;
-}
-
-.component-btn {
-  font-family: "Noto Sans JP", sans-serif;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.04em;
-  padding: 14px 24px;
-  border-radius: 8px;
-  border: 1px solid #944654;
-  background-color: #944654;
-  color: #FFFFFF;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.component-btn:hover {
-  background-color: #853E4B;
-  border-color: #853E4B;
-}
-
-.table-demo-wrap {
-  overflow-x: auto;
-}
-
-.component-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-family: "Noto Sans JP", sans-serif;
-  background-color: #FFFFFF;
-  border: 1px solid #E6D8D4;
-  border-radius: 12px;
-  overflow: hidden;
-}
-
-.component-table thead th {
-  background-color: #944654;
-  color: #FFFFFF;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  padding: 14px 16px;
-  text-align: left;
-}
-
-.component-table tbody td {
-  padding: 14px 16px;
-  border-top: 1px solid #E6D8D4;
-  font-size: 15px;
-  color: #2F2A28;
-  line-height: 1.7;
-}
-
-.component-table tbody tr:nth-child(even) {
-  background-color: #FBF8F5;
-}
-
-.alerts-demo {
-  display: grid;
-  gap: 12px;
-}
-
-.alert {
-  padding: 14px 16px;
-  border-radius: 12px;
-  font-size: 14px;
-  line-height: 1.7;
-  letter-spacing: 0.02em;
-  border-left: 4px solid transparent;
-}
-
-.alert-info {
-  background-color: #F6F1EC;
-  color: #6B5B57;
-  border-left-color: #944654;
-}
-
-.alert-success {
-  background-color: #F1F6F2;
-  color: #4F6654;
-  border-left-color: #6F8B74;
-}
-
-.alert-warning {
-  background-color: #FCF6EC;
-  color: #8A6A32;
-  border-left-color: #C79A4A;
-}
-
-.alert-error {
-  background-color: #FDF1F1;
-  color: #8A4A4A;
-  border-left-color: #B85C5C;
-}</code></pre>
+              <pre class="guide-code-block"><code>実装のスタイルは css/style.css の .hero-card / .panel / .simple-table / .form-status / .field-error を利用する。</code></pre>
             </div>
           </div>
 
@@ -1141,9 +493,7 @@
             <div class="fill-hint">グリッド・余白・角丸・シャドウ等の数値ルール</div>
             <div class="fill-content">
               <p>
-                コンテンツ最大幅は1200pxとし、PCは12カラム・ガター24px、タブレットは8カラム・ガター20px、スマートフォンは4カラム・ガター16pxを基本とする。セクション間の余白はPC120px、タブレット96px、スマートフォン72pxとし、要素間の余白は40px・24px・16pxを使い分ける。角丸はカードやフォームで12px、ボタンや入力欄で8px、小要素で4pxを基準とする。シャドウは
-                box-shadow: 0 8px 24px rgba(47, 42, 40, 0.06); を基本とし、ホバー時は 0 12px 32px rgba(47, 42, 40, 0.10);
-                を使用する。ブレークポイントはPC 1024px以上、タブレット 768px〜1023px、スマートフォン 767px以下とする。</p>
+                コンテンツ最大幅は1200px（<code>--container</code>）とし、左右余白は <code>calc(100% - 32px)</code> を基本とする。レイアウトは各グリッドの <code>gap: 20px</code> を基本とし、<code>@media (min-width: 768px)</code> で主要レイアウトを2カラム化する。セクション間の余白はスマートフォン72px（<code>--section-space</code>）、タブレット96px、PC120pxとする。角丸はカード等で12px（<code>--radius-lg</code>）、ボタンや入力欄で8px（<code>--radius-md</code>）、小要素で4px（<code>--radius-sm</code>）を基準とする。シャドウは <code>0 8px 24px rgba(47, 42, 40, 0.06)</code>（<code>--shadow-sm</code>）を基本とし、強調は <code>0 12px 32px rgba(47, 42, 40, 0.10)</code>（<code>--shadow-md</code>）を使用する。ブレークポイントはPC 1024px以上、タブレット 768px〜1023px、スマートフォン 767px以下とする。</p>
             </div>
           </div>
 
