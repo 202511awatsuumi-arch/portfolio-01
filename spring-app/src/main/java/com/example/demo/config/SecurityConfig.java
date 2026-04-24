@@ -31,7 +31,6 @@ public class SecurityConfig {
                                                 "/css/**",
                                                 "/js/**",
                                                 "/images/**",
-                                                "/h2-console/**",
                                                 "/webjars/**")
                                         .permitAll()
                                         .requestMatchers("/admin/login")
@@ -66,10 +65,6 @@ public class SecurityConfig {
                                         .logoutSuccessUrl("/admin/login?logout")
                                         .invalidateHttpSession(true)
                                         .deleteCookies("JSESSIONID"))
-                .csrf(
-                        csrf ->
-                                csrf.ignoringRequestMatchers(
-                                        new AntPathRequestMatcher("/h2-console/**")))
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
