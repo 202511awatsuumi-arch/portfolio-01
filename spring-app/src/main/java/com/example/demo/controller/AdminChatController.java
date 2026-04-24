@@ -12,7 +12,7 @@ import java.util.*;
 @PreAuthorize("isAuthenticated()")
 public class AdminChatController {
 
-    @Value("${GEMINI_API_KEY}")
+    @Value("${gemini.api.key}")
     private String apiKey;
 
     private static final String GEMINI_URL =
