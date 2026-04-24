@@ -65,6 +65,10 @@ public class SecurityConfig {
                                         .logoutSuccessUrl("/admin/login?logout")
                                         .invalidateHttpSession(true)
                                         .deleteCookies("JSESSIONID"))
+                .csrf(
+                        csrf ->
+                                csrf.ignoringRequestMatchers(
+                                        new AntPathRequestMatcher("/admin/chat")))
                 .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
 
         return http.build();
