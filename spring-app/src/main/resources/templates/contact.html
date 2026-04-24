@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
@@ -14,7 +14,10 @@
   <header class="site-header" data-site-header>
     <div class="container site-header__inner">
       <a class="brand brand--reference" href="index.html" aria-label="香り結びのトップページ">
-        <img class="brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+        <picture>
+  <source srcset="/images/LOGO.webp" type="image/webp">
+  <img class="brand__logo" src="/images/LOGO.png" alt="KAORI MUSUBI Logo">
+</picture>
         <span class="brand__text">
           <span class="brand__name">KAORI MUSUBI</span>
           <span class="brand__sub">香りで結ぶ、浅草時間</span>
@@ -67,7 +70,7 @@
       <div class="container contact-layout">
         <section class="contact-card contact-form-card" aria-labelledby="contact-form-title">
           <h2 id="contact-form-title" class="card-title">ご予約・お問い合わせフォーム</h2>
-          <p class="card-text">ワークショップのご予約・ご相談から、営業時間やアクセスなど店舗全般のお問い合わせまで承っています。内容を確認のうえ、通常1〜2営業日以内を目安にご連絡します。</p>
+          <p class="card-text">ワークショップのご予約・ご相談から、営業時間やアクセスなど店舗全般のお問い合わせまで承っています。内容を確認のうえ、通常1?2営業日以内を目安にご連絡します。</p>
           <form id="contact-form" class="form-grid" data-contact-form action="/contact" method="post" novalidate>
             <input type="hidden" th:attr="name=${_csrf != null ? _csrf.parameterName : null},value=${_csrf != null ? _csrf.token : null}">
             <div class="field">
@@ -103,7 +106,10 @@
       <div class="footer-grid">
         <section class="footer-brand">
           <div class="footer-brand__header">
-            <img class="footer-brand__logo" src="images/LOGO.png" alt="KAORI MUSUBI Logo">
+            <picture>
+  <source srcset="/images/LOGO.webp" type="image/webp">
+  <img class="footer-brand__logo" src="/images/LOGO.png" alt="KAORI MUSUBI Logo">
+</picture>
             <div class="footer-brand__text">
               <h2 class="footer-brand__title">KAORI MUSUBI</h2>
               <p class="footer-brand__sub">香りで結ぶ、浅草時間</p>
@@ -140,7 +146,7 @@
           </section>
         </div>
       </div>
-      <p class="footer-copy">© 2026 KAORI MUSUBI / 株式会社 香縁社</p>
+      <p class="footer-copy">c 2026 KAORI MUSUBI / 株式会社 香縁社</p>
     </div>
   </footer>
   <script src="js/main.js"></script>
