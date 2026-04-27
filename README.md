@@ -122,3 +122,57 @@ docker run --rm -p 10000:10000 portfolio-01
 ## 公開URL
 - （未記載）  
   https://portfolio-01-iw7m.onrender.com
+
+---
+
+## 追記（Render公開後の最新構成）
+
+### 概要
+- 管理画面に **AIアシスタント機能** を実装しています。
+- お問い合わせ対応だけでなく、ユーザー管理・削除済み問い合わせの復元など、画面ごとの操作支援ができます。
+- 画面ごとにショートカットボタンと初期説明文を出し分けています。
+- フロントから `screenType` を送信し、バックエンドで画面別コンテキストを付与して回答します。
+
+### 主な機能（AIアシスタント）
+- 管理画面内チャットUI（ショートカットボタン付き）
+- `screenType` に応じた回答文脈の切り替え
+  - ユーザー一覧
+  - ユーザー登録
+  - ユーザー編集
+  - 削除済み問い合わせ一覧
+
+### 使用技術（バックエンド追記）
+- Spring Boot
+- Spring Security
+- Thymeleaf
+- H2 Database
+- Flyway
+- MyBatis
+- **Gemini API（管理画面AIアシスタント）**
+
+### セットアップ手順（ローカル起動例）
+```powershell
+cd spring-app
+$env:GEMINI_API_KEY="your_api_key"
+$env:ADMIN_PASSWORD="your_admin_password"
+$env:DB_PASSWORD=""
+.\mvnw.cmd spring-boot:run
+```
+
+- `GEMINI_API_KEY`: Gemini APIを利用するためのAPIキー
+- `ADMIN_PASSWORD`: 管理画面ログイン用パスワード
+- `DB_PASSWORD`: H2用。ローカルでは空文字で利用
+
+### H2に関する補足（現状）
+- H2 Database: `jdbc:h2:file:./data/portfolio-db`
+- H2 Consoleは本番公開・通常確認では使用しません
+
+### 工夫した点（AIアシスタント）
+- Gemini APIを利用した管理者向けAIアシスタントを実装
+- 画面ごとに `screenType` を送信し、ユーザー一覧・ユーザー登録・ユーザー編集・削除済み問い合わせ一覧で回答文脈を切り替え
+- 管理画面の操作に不慣れな人でも、ショートカットボタンから操作説明を確認できるように設計
+
+### 今後の課題
+- AI回答の精度向上
+- レート制限時のUI改善
+- 本番DBの永続化
