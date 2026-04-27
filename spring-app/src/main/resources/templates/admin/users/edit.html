@@ -15,6 +15,14 @@
       <div class="container" style="max-width: 500px;">
         <section class="contact-card" aria-labelledby="user-edit-title">
           <h1 id="user-edit-title" class="card-title">ユーザー編集</h1>
+<p style="margin-top:8px;padding:10px;background:#ede9fe;
+          border-radius:8px;font-size:14px;color:#4f46e5;
+          line-height:1.8;">
+  ℹ️ <b>編集方法</b><br>
+  ユーザー名：変更不可です<br>
+  パスワード：新しいパスワードを入力すると変更されます<br>
+  ロール：ADMINは全機能、USERは閲覧のみ可能です
+</p>
           <form class="form-grid" th:action="@{/admin/users/{id}(id=${userEditForm.id})}" method="post" th:object="${userEditForm}">
             <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
             <div class="field">
@@ -54,5 +62,170 @@
       </div>
     </section>
   </main>
+
+<div id="chat-widget" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+  <button id="chat-toggle"
+    style="width:56px;height:56px;border-radius:50%;background:#4f46e5;
+           color:white;border:none;cursor:pointer;font-size:24px;
+           box-shadow:0 4px 12px rgba(0,0,0,0.3);">💬</button>
+
+  <div id="chat-box"
+    style="display:none;width:480px;height:600px;background:white;
+           border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.2);
+           flex-direction:column;margin-bottom:8px;overflow:hidden;">
+
+    <div style="background:#4f46e5;color:white;padding:16px;font-weight:bold;
+                display:flex;justify-content:space-between;align-items:center;">
+      <span>💎 AIアシスタント</span>
+      <button onclick="document.getElementById('chat-box').style.display='none'"
+        style="background:none;border:none;color:white;cursor:pointer;font-size:18px;">×</button>
+    </div>
+
+    <!-- ショートカットボタン -->
+        <div style="padding:8px 12px;border-bottom:1px solid #e5e7eb;
+                display:flex;gap:6px;flex-wrap:wrap;">
+      <button onclick="setShortcut('ユーザー編集の方法を教えて')"
+        style="padding:4px 10px;background:#ede9fe;color:#4f46e5;border:none;
+               border-radius:20px;cursor:pointer;font-size:12px;">編集方法を確認</button>
+      <button onclick="setShortcut('パスワードの変更方法を教えて')"
+        style="padding:4px 10px;background:#ede9fe;color:#4f46e5;border:none;
+               border-radius:20px;cursor:pointer;font-size:12px;">パスワード変更</button>
+      <button onclick="setShortcut('ADMINとUSERのロールの違いを教えて')"
+        style="padding:4px 10px;background:#ede9fe;color:#4f46e5;border:none;
+               border-radius:20px;cursor:pointer;font-size:12px;">ロールの違い</button>
+    </div>
+
+    <div id="chat-messages"
+      style="flex:1;overflow-y:auto;padding:16px;
+             display:flex;flex-direction:column;gap:8px;height:420px;">
+            <div style="background:#f3f4f6;padding:10px;border-radius:8px;font-size:14px;line-height:1.8;">
+                💎 ユーザー編集画面です。以下の内容をサポートできます。<br><br>
+        <b>【編集方法】</b><br>
+        「ユーザー編集の方法を教えて」<br><br>
+        <b>【パスワード変更】</b><br>
+        「パスワードの変更方法を教えて」<br><br>
+        <b>【ロール確認】</b><br>
+        「ADMINとUSERのロールの違いを教えて」<br><br>
+        上のショートカットボタンからも質問できます👆
+      </div>
+    </div>
+
+    <div style="padding:12px;border-top:1px solid #e5e7eb;display:flex;gap:8px;">
+      <input id="chat-input" type="text" placeholder="メッセージを入力..."
+        style="flex:1;padding:8px 12px;border:1px solid #d1d5db;
+               border-radius:8px;font-size:14px;outline:none;"
+        onkeydown="if(event.key==='Enter')sendChat()">
+      <button onclick="sendChat()"
+        style="padding:8px 16px;background:#4f46e5;color:white;
+               border:none;border-radius:8px;cursor:pointer;font-size:14px;">送信</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ① 会話履歴を保持
+let chatHistory = [];
+
+document.getElementById('chat-toggle').addEventListener('click', function() {
+  const box = document.getElementById('chat-box');
+  box.style.display = box.style.display === 'none' ? 'flex' : 'none';
+});
+
+// ショートカットボタン
+function setShortcut(text) {
+  document.getElementById('chat-input').value = text;
+  document.getElementById('chat-input').focus();
+}
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const messages = document.getElementById('chat-messages');
+  const message = input.value.trim();
+  if (!message) return;
+
+  // 送信中は入力を無効化
+  input.disabled = true;
+
+  // ユーザーメッセージ表示
+  const userDiv = document.createElement('div');
+  userDiv.style.cssText =
+    'background:#4f46e5;color:white;padding:10px;border-radius:8px;' +
+    'font-size:14px;align-self:flex-end;max-width:85%;word-break:break-word;';
+  userDiv.textContent = message;
+  messages.appendChild(userDiv);
+  input.value = '';
+  messages.scrollTop = messages.scrollHeight;
+
+  // ④ ローディング表示（改善版）
+  const loadingDiv = document.createElement('div');
+  loadingDiv.style.cssText =
+    'background:#f3f4f6;padding:10px;border-radius:8px;font-size:14px;color:#6b7280;';
+  loadingDiv.textContent = 'AIが考えています...';
+  messages.appendChild(loadingDiv);
+  messages.scrollTop = messages.scrollHeight;
+
+  // ④ タイムアウト設定（30秒）
+  const controller = new AbortController();
+  const timeout = setTimeout(() => controller.abort(), 30000);
+
+  try {
+    const response = await fetch('/admin/chat', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: message,
+        history: chatHistory,
+        screenType: "users_edit"
+      }),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+
+    const data = await response.json();
+
+    // ① 会話履歴に追加
+    chatHistory.push({
+      role: 'user',
+      parts: [{ text: message }]
+    });
+    chatHistory.push({
+      role: 'model',
+      parts: [{ text: data.reply }]
+    });
+
+    // 返答表示
+    loadingDiv.style.color = '#111827';
+    loadingDiv.style.whiteSpace = 'pre-wrap';
+    loadingDiv.textContent = data.reply;
+
+    // コピーボタン追加
+    const copyBtn = document.createElement('button');
+    copyBtn.textContent = 'コピー';
+    copyBtn.style.cssText =
+      'margin-top:6px;padding:4px 10px;background:#e5e7eb;border:none;' +
+      'border-radius:4px;cursor:pointer;font-size:12px;display:block;';
+    copyBtn.onclick = function() {
+      navigator.clipboard.writeText(data.reply);
+      copyBtn.textContent = 'コピーしました！';
+      setTimeout(() => copyBtn.textContent = 'コピー', 2000);
+    };
+    loadingDiv.appendChild(copyBtn);
+
+  } catch (e) {
+    clearTimeout(timeout);
+    // ③ エラー日本語化 + ④ タイムアウトUX
+    loadingDiv.style.color = '#ef4444';
+    if (e.name === 'AbortError') {
+      loadingDiv.textContent = 'タイムアウトしました。再度お試しください。';
+    } else {
+      loadingDiv.textContent = 'エラーが発生しました。再度お試しください。';
+    }
+  } finally {
+    input.disabled = false;
+    input.focus();
+    messages.scrollTop = messages.scrollHeight;
+  }
+}
+</script>
 </body>
 </html>
